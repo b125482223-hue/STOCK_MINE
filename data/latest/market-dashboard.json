@@ -164,6 +164,10 @@
       "shortChange": 910
     }
   ],
+  "updateStatus": {
+    "stage": "complete",
+    "label": "信用交易已補齊"
+  },
   "sourceIssues": [
     "今日資料尚未完整發布，已使用最近交易日 2026-07-09。"
   ]

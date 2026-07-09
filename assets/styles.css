@@ -85,6 +85,31 @@ h2 {
   font-weight: 700;
 }
 
+.data-version {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 5px 10px;
+  border: 1px solid #cbd9e4;
+  border-radius: 999px;
+  background: #edf4f8;
+  color: #496b82;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.data-version[data-stage="complete"] {
+  border-color: #a9d4bd;
+  background: #edf8f1;
+  color: var(--green);
+}
+
+.data-version[data-stage="preliminary"] {
+  border-color: #e6cf90;
+  background: #fff8df;
+  color: #806424;
+}
+
 .icon-button {
   width: 36px;
   height: 36px;

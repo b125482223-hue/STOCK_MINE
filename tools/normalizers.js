@@ -256,6 +256,7 @@ function buildDashboardData({
   futuresOpenInterest = [],
   credit = [],
   creditHistory = [],
+  updateStatus = null,
   sourceIssues = []
 } = {}) {
   return {
@@ -273,6 +274,7 @@ function buildDashboardData({
     futuresOpenInterest,
     credit,
     creditHistory,
+    updateStatus,
     sourceIssues
   };
 }

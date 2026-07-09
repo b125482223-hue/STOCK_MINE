@@ -25,6 +25,7 @@ async function main() {
   const previous = await readJsonIfExists(LATEST_PATH) || await readJsonIfExists(SAMPLE_PATH);
   const sample = await readJsonIfExists(SAMPLE_PATH);
   const marketDate = process.env.MARKET_DATE || taipeiDate();
+  const updateStatus = buildUpdateStatus();
   const sourceIssues = [];
 
   const tradingBundle = await findLatestTwseBundle(config, marketDate, sourceIssues);
@@ -100,6 +101,7 @@ async function main() {
     futuresOpenInterest,
     credit,
     creditHistory,
+    updateStatus,
     sourceIssues
   });
 
@@ -406,4 +408,17 @@ function taipeiDate() {
 
   const get = (type) => parts.find((part) => part.type === type).value;
   return `${get("year")}-${get("month")}-${get("day")}`;
+}
+
+function buildUpdateStatus() {
+  const hour = Number(new Intl.DateTimeFormat("en-US", {
+    timeZone: "Asia/Taipei",
+    hour: "2-digit",
+    hourCycle: "h23"
+  }).format(new Date()));
+  const stage = process.env.UPDATE_STAGE || (hour >= 20 ? "complete" : "preliminary");
+
+  return stage === "complete"
+    ? { stage: "complete", label: "信用交易已補齊" }
+    : { stage: "preliminary", label: "初步盤後資料" };
 }

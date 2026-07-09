@@ -38,6 +38,7 @@ const BUNDLED_FALLBACK = {
 
 const els = {
   dataStatus: document.querySelector("#dataStatus"),
+  dataVersion: document.querySelector("#dataVersion"),
   updatedAt: document.querySelector("#updatedAt"),
   refreshButton: document.querySelector("#refreshButton"),
   institutionalTotal: document.querySelector("#institutionalTotal"),
@@ -125,8 +126,16 @@ function renderDashboard(data, label) {
   ]);
 
   renderIssues(data.sourceIssues || []);
+  renderUpdateStatus(data.updateStatus);
   setStatus(label);
   els.updatedAt.textContent = `資料日期：${data.asOf || "--"}`;
+}
+
+function renderUpdateStatus(status) {
+  const stage = status?.stage || "unknown";
+  const label = status?.label || "資料完整度待確認";
+  els.dataVersion.textContent = label;
+  els.dataVersion.dataset.stage = stage;
 }
 
 function renderRows(target, rows, mapper) {
