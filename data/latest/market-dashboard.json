@@ -2,39 +2,39 @@
   "asOf": "2026/07/09 盤後",
   "source": "generated",
   "summary": {
-    "institutionalNet": -1064549454,
+    "institutionalNet": -56458417,
     "futuresNetOpenInterest": -6798,
     "marginBalance": 6196.48,
     "marginChange": 58.32,
-    "shortChange": -8047
+    "shortChange": -7759
   },
   "institutional": [
     {
       "market": "大盤",
       "foreign": 131219050,
-      "investmentTrust": 56717006,
+      "investmentTrust": 56657204,
       "dealer": -242485510,
-      "total": -54549454
+      "total": -54609256
     },
     {
       "market": "櫃買",
-      "foreign": -1840000000,
-      "investmentTrust": 620000000,
-      "dealer": 210000000,
-      "total": -1010000000
+      "foreign": -64246504,
+      "investmentTrust": 8284363,
+      "dealer": 54112980,
+      "total": -1849161
     }
   ],
   "institutionalHistory": [
     {
       "date": "2026/07/09",
-      "foreignNonDealer": -461.8,
+      "foreignNonDealer": -487.1,
       "foreignDealer": 0,
-      "foreignTotal": -461.8,
-      "investmentTrust": 196.48,
-      "dealerProprietary": -19.96,
-      "dealerHedge": -54.2,
-      "dealerTotal": -74.16,
-      "total": -339.49,
+      "foreignTotal": -487.1,
+      "investmentTrust": 213.73,
+      "dealerProprietary": -19.19,
+      "dealerHedge": -40.17,
+      "dealerTotal": -59.37,
+      "total": -332.74,
       "futuresForeignNet": -80730,
       "futuresInvestmentTrustNet": 71689,
       "futuresDealerNet": 2243,
@@ -116,10 +116,10 @@
     },
     {
       "market": "櫃買",
-      "marginBalance": 92600000,
-      "marginChange": 120,
-      "shortBalance": 1480000,
-      "shortChange": -33
+      "marginBalance": 2454385,
+      "marginChange": 9458,
+      "shortBalance": 36917,
+      "shortChange": 255
     }
   ],
   "creditHistory": [
@@ -165,7 +165,6 @@
     }
   ],
   "sourceIssues": [
-    "今日資料尚未完整發布，已使用最近交易日 2026-07-09。",
-    "櫃買三大法人買賣超沿用備援資料，待接穩定官方端點。"
+    "今日資料尚未完整發布，已使用最近交易日 2026-07-09。"
   ]
 }

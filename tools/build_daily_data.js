@@ -32,11 +32,12 @@ async function main() {
   const twseInstitutionalRows = tradingBundle.institutionalRows;
   const closePriceMap = buildClosePriceMap(tradingBundle.closeRows);
   const taifexFuturesNet = await tryFetchTaifexFuturesNet(config, displayDate, sourceIssues);
+  const tpexBundle = await tryFetchTpexBundle(config, yyyymmdd, sourceIssues);
   const twseCreditRows = await tryFetchJson(config.sources.margin.url, sourceIssues, "大盤信用交易");
 
   const institutional = normalizeInstitutionalSummary({
     twseRows: twseInstitutionalRows,
-    tpexRows: []
+    tpexRows: tpexBundle.institutionalRows
   });
 
   const credit = normalizeCreditSummary({
@@ -46,6 +47,11 @@ async function main() {
 
   replaceEmptyMarket(institutional, "大盤", previous, sample, sourceIssues, "大盤三大法人買賣超");
   replaceEmptyMarket(institutional, "櫃買", previous, sample, sourceIssues, "櫃買三大法人買賣超");
+
+  const tpexCredit = normalizeCreditSummary({ twseRows: [], tpexRows: tpexBundle.creditRows })[1];
+  if (tpexCredit.marginBalance || tpexCredit.shortBalance) {
+    credit[1] = tpexCredit;
+  }
 
   let futuresOpenInterest = futuresNetToRows(taifexFuturesNet);
   if (!futuresOpenInterest.length) {
@@ -57,6 +63,8 @@ async function main() {
     date: displayDate,
     twseRows: twseInstitutionalRows,
     closePriceMap,
+    tpexRows: tpexBundle.institutionalRows,
+    tpexClosePriceMap: buildClosePriceMap(tpexBundle.closeRows),
     futuresNet: taifexFuturesNet
   });
 
@@ -80,6 +88,81 @@ async function main() {
   await fs.mkdir(path.dirname(LATEST_PATH), { recursive: true });
   await fs.writeFile(LATEST_PATH, `${JSON.stringify(dashboard, null, 2)}\n`, "utf8");
   console.log(`Wrote ${path.relative(ROOT, LATEST_PATH)}`);
+}
+
+async function tryFetchTpexBundle(config, yyyymmdd, issues) {
+  const date = formatDisplayDate(yyyymmdd);
+  const institutionalPayload = await tryFetchTpexInstitutional(config.sources.institutionalTpex.url, date, issues);
+  const closePayload = await tryFetchJson(
+    config.sources.tpexClosePrices.url.replace("{YYYYMMDD}", yyyymmdd),
+    issues,
+    "TPEx closing prices"
+  );
+  const creditPayload = await tryFetchJson(
+    config.sources.tpexMargin.url.replace("{YYYYMMDD}", yyyymmdd),
+    issues,
+    "TPEx margin trading"
+  );
+
+  return {
+    institutionalRows: extractTpexInstitutionalRows(institutionalPayload),
+    closeRows: extractTpexCloseRows(closePayload),
+    creditRows: extractTpexCreditRows(creditPayload)
+  };
+}
+
+async function tryFetchTpexInstitutional(url, date, issues) {
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "content-type": "application/x-www-form-urlencoded", "accept": "application/json" },
+      body: new URLSearchParams({ type: "Daily", sect: "EW", date, response: "json" })
+    });
+    if (!response.ok) {
+      issues.push(`TPEx institutional data returned HTTP ${response.status}.`);
+      return null;
+    }
+
+    return await response.json();
+  } catch (error) {
+    issues.push(`TPEx institutional data failed: ${error.message}`);
+    return null;
+  }
+}
+
+function extractTpexInstitutionalRows(payload) {
+  const data = payload?.tables?.[0]?.data;
+  if (!Array.isArray(data)) {
+    return [];
+  }
+
+  return data.map((row) => ({
+    code: row[0],
+    foreignNonDealer: row[4],
+    foreignDealer: row[7],
+    foreign: row[10],
+    investmentTrust: row[13],
+    dealerProprietary: row[16],
+    dealerHedge: row[19],
+    dealer: row[22],
+    dealerTotal: row[22],
+    total: row[23]
+  }));
+}
+
+function extractTpexCloseRows(payload) {
+  const data = payload?.tables?.[0]?.data;
+  return Array.isArray(data) ? data.map((row) => ({ code: row[0], close: row[2] })) : [];
+}
+
+function extractTpexCreditRows(payload) {
+  const data = payload?.tables?.[0]?.data;
+  return Array.isArray(data) ? data.map((row) => ({
+    marginPrevious: row[2],
+    marginBalance: row[6],
+    shortPrevious: row[10],
+    shortBalance: row[14]
+  })) : [];
 }
 
 async function findLatestTwseBundle(config, marketDate, issues) {

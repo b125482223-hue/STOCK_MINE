@@ -37,7 +37,14 @@ function buildClosePriceMap(rows = []) {
   return prices;
 }
 
-function buildInstitutionalHistoryRow({ date, twseRows = [], closePriceMap = new Map(), futuresNet = {} } = {}) {
+function buildInstitutionalHistoryRow({
+  date,
+  twseRows = [],
+  closePriceMap = new Map(),
+  tpexRows = [],
+  tpexClosePriceMap = new Map(),
+  futuresNet = {}
+} = {}) {
   const fields = {
     foreignNonDealer: 0,
     foreignDealer: 0,
@@ -63,6 +70,22 @@ function buildInstitutionalHistoryRow({ date, twseRows = [], closePriceMap = new
     addAmount(fields, "dealerHedge", row, ["自營商買賣超股數(避險)", "dealerHedge"], close);
     addAmount(fields, "dealerTotal", row, ["自營商買賣超股數", "dealerTotal"], close);
     addAmount(fields, "total", row, ["三大法人買賣超股數", "total"], close);
+  });
+
+  // TPEx uses the same net-share fields after the updater normalizes its table.
+  tpexRows.forEach((row) => {
+    const close = tpexClosePriceMap.get(textFrom(row, ["code"]));
+    if (!close) {
+      return;
+    }
+
+    addAmount(fields, "foreignNonDealer", row, ["foreignNonDealer"], close);
+    addAmount(fields, "foreignDealer", row, ["foreignDealer"], close);
+    addAmount(fields, "investmentTrust", row, ["investmentTrust"], close);
+    addAmount(fields, "dealerProprietary", row, ["dealerProprietary"], close);
+    addAmount(fields, "dealerHedge", row, ["dealerHedge"], close);
+    addAmount(fields, "dealerTotal", row, ["dealerTotal"], close);
+    addAmount(fields, "total", row, ["total"], close);
   });
 
   fields.foreignTotal = fields.foreignNonDealer + fields.foreignDealer;
