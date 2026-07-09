@@ -1,0 +1,67 @@
+{
+  "asOf": "2026-07-09 14:30",
+  "source": "sample",
+  "marketSummary": {
+    "indexName": "發行量加權股價指數",
+    "last": 23520.18,
+    "change": 86.42,
+    "changePercent": 0.37,
+    "marketStatus": "範例資料"
+  },
+  "institutional": [
+    {
+      "market": "大盤",
+      "foreign": 25740000000,
+      "investmentTrust": 3820000000,
+      "dealer": -1260000000,
+      "total": 28300000000
+    },
+    {
+      "market": "櫃買",
+      "foreign": -1840000000,
+      "investmentTrust": 620000000,
+      "dealer": 210000000,
+      "total": -1010000000
+    }
+  ],
+  "margin": [
+    {
+      "name": "台積電",
+      "code": "2330",
+      "marginBalance": 8200,
+      "marginChange": 120,
+      "shortBalance": 950,
+      "shortChange": -35
+    },
+    {
+      "name": "鴻海",
+      "code": "2317",
+      "marginBalance": 31200,
+      "marginChange": -840,
+      "shortBalance": 2200,
+      "shortChange": 160
+    },
+    {
+      "name": "聯發科",
+      "code": "2454",
+      "marginBalance": 6400,
+      "marginChange": 75,
+      "shortBalance": 510,
+      "shortChange": -18
+    }
+  ],
+  "futuresOpenInterest": [
+    {
+      "product": "臺股期貨",
+      "contract": "近月",
+      "openInterest": 85432,
+      "change": 1240
+    },
+    {
+      "product": "小型臺指期貨",
+      "contract": "近月",
+      "openInterest": 73108,
+      "change": -920
+    }
+  ]
+}

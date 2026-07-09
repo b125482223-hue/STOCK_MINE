@@ -1,0 +1,41 @@
+{
+  "version": "0.1.0",
+  "updated": "2026-07-09",
+  "sources": {
+    "institutionalTwse": {
+      "label": "大盤三大法人買賣超",
+      "provider": "TWSE OpenAPI",
+      "url": "https://openapi.twse.com.tw/v1/exchangeReport/T86",
+      "status": "candidate"
+    },
+    "institutionalTpex": {
+      "label": "櫃買三大法人買賣超",
+      "provider": "TPEx public data",
+      "url": "",
+      "status": "needs-verification",
+      "note": "櫃買三大法人端點需確認最穩定的可機器讀取來源。"
+    },
+    "margin": {
+      "label": "融資融券",
+      "provider": "TWSE OpenAPI",
+      "url": "https://openapi.twse.com.tw/v1/exchangeReport/MI_MARGN",
+      "status": "candidate"
+    },
+    "index": {
+      "label": "目前指數",
+      "provider": "TWSE OpenAPI",
+      "url": "https://openapi.twse.com.tw/v1/indicesReport/MI_5MINS",
+      "status": "candidate"
+    },
+    "futuresOpenInterest": {
+      "label": "期貨未平倉",
+      "provider": "TAIFEX public data",
+      "url": "",
+      "status": "needs-verification",
+      "note": "GitHub Pages 純前端直連期交所資料可能遇到 CORS 或格式限制，第二階段建議用 GitHub Actions 快取。"
+    }
+  },
+  "fallback": {
+    "url": "data/sample/market-dashboard.json"
+  }
+}
