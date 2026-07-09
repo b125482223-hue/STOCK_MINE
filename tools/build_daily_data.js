@@ -51,6 +51,7 @@ async function main() {
     institutional,
     futuresOpenInterest,
     credit,
+    creditHistory: previous?.creditHistory || sample?.creditHistory || [],
     sourceIssues
   });
 

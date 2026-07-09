@@ -22,32 +22,58 @@
 
       <section class="summary-grid three" aria-label="盤後摘要">
         <article class="metric-card strong">
-          <span class="metric-label">每日三大法人買賣超</span>
-          <strong id="institutionalTotal">--</strong>
-          <span class="muted">大盤 + 櫃買合計</span>
+          <span class="metric-label">融資增減</span>
+          <strong id="creditTotal">--</strong>
+          <span class="muted">最新交易日</span>
+        </article>
+        <article class="metric-card">
+          <span class="metric-label">融資餘額</span>
+          <strong id="marginBalanceTotal">--</strong>
+          <span class="muted">最新交易日</span>
         </article>
         <article class="metric-card">
           <span class="metric-label">三大法人未平倉</span>
           <strong id="futuresTotal">--</strong>
-          <span class="muted">期貨多空淨額合計</span>
-        </article>
-        <article class="metric-card">
-          <span class="metric-label">每日信用交易變化</span>
-          <strong id="creditTotal">--</strong>
-          <span class="muted">融資餘額變化合計</span>
+          <span class="muted">多空淨額合計</span>
         </article>
       </section>
 
       <section id="sourceIssues" class="notice" hidden></section>
 
       <section class="content-grid">
+        <article class="panel full focus-panel">
+          <div class="panel-header">
+            <h2>每日信用交易變化</h2>
+            <span class="muted">融資餘額、增減、維持率</span>
+          </div>
+          <div class="table-wrap credit-table-wrap">
+            <table class="data-table credit-table">
+              <thead>
+                <tr>
+                  <th rowspan="2">日期</th>
+                  <th colspan="3">融資</th>
+                  <th colspan="2">融券</th>
+                </tr>
+                <tr>
+                  <th>餘額</th>
+                  <th>增減</th>
+                  <th>維持率</th>
+                  <th>餘額</th>
+                  <th>增減</th>
+                </tr>
+              </thead>
+              <tbody id="creditHistoryRows"></tbody>
+            </table>
+          </div>
+        </article>
+
         <article class="panel full">
           <div class="panel-header">
             <h2>每日三大法人買賣超</h2>
             <span class="muted">大盤與櫃買</span>
           </div>
           <div class="table-wrap">
-            <table>
+            <table class="data-table">
               <thead>
                 <tr>
                   <th>市場</th>
@@ -68,7 +94,7 @@
             <span class="muted">期貨多空淨額</span>
           </div>
           <div class="table-wrap">
-            <table>
+            <table class="data-table">
               <thead>
                 <tr>
                   <th>身份別</th>
@@ -82,26 +108,6 @@
           </div>
         </article>
 
-        <article class="panel">
-          <div class="panel-header">
-            <h2>每日信用交易變化</h2>
-            <span class="muted">融資融券市場合計</span>
-          </div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>市場</th>
-                  <th>融資餘額</th>
-                  <th>融資變化</th>
-                  <th>融券餘額</th>
-                  <th>融券變化</th>
-                </tr>
-              </thead>
-              <tbody id="creditRows"></tbody>
-            </table>
-          </div>
-        </article>
       </section>
     </main>
 

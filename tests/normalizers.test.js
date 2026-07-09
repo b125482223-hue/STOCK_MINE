@@ -2,6 +2,7 @@ const assert = require("node:assert/strict");
 const {
   buildDashboardData,
   normalizeInstitutionalSummary,
+  normalizeCreditHistory,
   normalizeCreditSummary,
   normalizeFuturesOpenInterest,
   sumBy
@@ -58,6 +59,34 @@ assert.deepEqual(credit[1], {
   shortChange: 20
 });
 
+const creditHistory = normalizeCreditHistory([
+  {
+    date: "07/09",
+    marginBalance: "6196.48",
+    marginChange: "58.32",
+    marginMaintenanceRatio: "186.65%",
+    shortBalance: "203714",
+    shortChange: "-1200"
+  },
+  {
+    date: "07/08",
+    marginBalance: "6138.16",
+    marginChange: "28.71",
+    marginMaintenanceRatio: "186.83%",
+    shortBalance: "205830",
+    shortChange: "320"
+  }
+]);
+
+assert.deepEqual(creditHistory[0], {
+  date: "07/09",
+  marginBalance: 6196.48,
+  marginChange: 58.32,
+  marginMaintenanceRatio: 186.65,
+  shortBalance: 203714,
+  shortChange: -1200
+});
+
 const futures = normalizeFuturesOpenInterest([
   { product: "TX", participant: "外資", long: "12,000", short: "10,000" },
   { product: "TX", participant: "投信", long: "2,000", short: "2,500" },
@@ -76,15 +105,18 @@ const dashboard = buildDashboardData({
   asOf: "2026-07-10 15:30",
   institutional,
   futuresOpenInterest: futures,
-  credit
+  credit,
+  creditHistory
 });
 
 assert.equal(dashboard.asOf, "2026-07-10 15:30");
 assert.equal(dashboard.institutional.length, 2);
 assert.equal(dashboard.futuresOpenInterest.length, 3);
 assert.equal(dashboard.credit.length, 2);
+assert.equal(dashboard.creditHistory.length, 2);
 assert.equal(dashboard.summary.institutionalNet, 1350);
 assert.equal(dashboard.summary.futuresNetOpenInterest, 2500);
-assert.equal(dashboard.summary.marginChange, 200);
+assert.equal(dashboard.summary.marginBalance, 6196.48);
+assert.equal(dashboard.summary.marginChange, 58.32);
 
 console.log("normalizers.test.js passed");

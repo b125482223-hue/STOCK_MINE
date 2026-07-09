@@ -4,6 +4,7 @@
   "summary": {
     "institutionalNet": 27290000000,
     "futuresNetOpenInterest": 1580,
+    "marginBalance": 6196.48,
     "marginChange": -720,
     "shortChange": 127
   },
@@ -57,6 +58,48 @@
       "marginChange": 120,
       "shortBalance": 1480000,
       "shortChange": -33
+    }
+  ],
+  "creditHistory": [
+    {
+      "date": "07/09",
+      "marginBalance": 6196.48,
+      "marginChange": 58.32,
+      "marginMaintenanceRatio": 186.65,
+      "shortBalance": 203714,
+      "shortChange": -1200
+    },
+    {
+      "date": "07/08",
+      "marginBalance": 6138.16,
+      "marginChange": 28.71,
+      "marginMaintenanceRatio": 186.83,
+      "shortBalance": 205830,
+      "shortChange": 320
+    },
+    {
+      "date": "07/07",
+      "marginBalance": 6109.45,
+      "marginChange": -204,
+      "marginMaintenanceRatio": 186.11,
+      "shortBalance": 213844,
+      "shortChange": -880
+    },
+    {
+      "date": "07/06",
+      "marginBalance": 6313.45,
+      "marginChange": 5.28,
+      "marginMaintenanceRatio": 194.55,
+      "shortBalance": 209010,
+      "shortChange": -240
+    },
+    {
+      "date": "07/03",
+      "marginBalance": 6308.12,
+      "marginChange": 99.75,
+      "marginMaintenanceRatio": 197.78,
+      "shortBalance": 200370,
+      "shortChange": 910
     }
   ],
   "sourceIssues": [

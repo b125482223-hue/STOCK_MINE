@@ -36,6 +36,17 @@ function normalizeCreditSummary({ twseRows = [], tpexRows = [] } = {}) {
   ];
 }
 
+function normalizeCreditHistory(rows = []) {
+  return rows.map((row) => ({
+    date: textFrom(row, ["date", "日期"]),
+    marginBalance: numberFrom(row, ["marginBalance", "融資餘額", "融資今日餘額"]),
+    marginChange: numberFrom(row, ["marginChange", "融資增減", "增減"]),
+    marginMaintenanceRatio: numberFrom(row, ["marginMaintenanceRatio", "融資維持率", "維持率"]),
+    shortBalance: numberFrom(row, ["shortBalance", "融券餘額", "融券今日餘額"]),
+    shortChange: numberFrom(row, ["shortChange", "融券增減"])
+  })).filter((row) => row.date);
+}
+
 function aggregateCreditMarket(market, rows) {
   const result = {
     market,
@@ -80,6 +91,7 @@ function buildDashboardData({
   institutional = [],
   futuresOpenInterest = [],
   credit = [],
+  creditHistory = [],
   sourceIssues = []
 } = {}) {
   return {
@@ -88,12 +100,14 @@ function buildDashboardData({
     summary: {
       institutionalNet: sumBy(institutional, "total"),
       futuresNetOpenInterest: sumBy(futuresOpenInterest, "net"),
-      marginChange: sumBy(credit, "marginChange"),
+      marginBalance: creditHistory[0]?.marginBalance ?? sumBy(credit, "marginBalance"),
+      marginChange: creditHistory[0]?.marginChange ?? sumBy(credit, "marginChange"),
       shortChange: sumBy(credit, "shortChange")
     },
     institutional,
     futuresOpenInterest,
     credit,
+    creditHistory,
     sourceIssues
   };
 }
@@ -121,6 +135,7 @@ module.exports = {
   buildDashboardData,
   normalizeInstitutionalSummary,
   normalizeCreditSummary,
+  normalizeCreditHistory,
   normalizeFuturesOpenInterest,
   sumBy,
   numberFrom,

@@ -7,6 +7,7 @@ const BUNDLED_FALLBACK = {
     institutionalNet: 27290000000,
     futuresNetOpenInterest: 1580,
     marginChange: -720,
+    marginBalance: 6196.48,
     shortChange: 127
   },
   institutional: [
@@ -22,6 +23,11 @@ const BUNDLED_FALLBACK = {
     { market: "大盤", marginBalance: 238450000, marginChange: -840, shortBalance: 6120000, shortChange: 160 },
     { market: "櫃買", marginBalance: 92600000, marginChange: 120, shortBalance: 1480000, shortChange: -33 }
   ],
+  creditHistory: [
+    { date: "07/09", marginBalance: 6196.48, marginChange: 58.32, marginMaintenanceRatio: 186.65, shortBalance: 203714, shortChange: -1200 },
+    { date: "07/08", marginBalance: 6138.16, marginChange: 28.71, marginMaintenanceRatio: 186.83, shortBalance: 205830, shortChange: 320 },
+    { date: "07/07", marginBalance: 6109.45, marginChange: -204, marginMaintenanceRatio: 186.11, shortBalance: 213844, shortChange: -880 }
+  ],
   sourceIssues: ["目前顯示內建範例資料，正式資料會由 data/latest/market-dashboard.json 提供。"]
 };
 
@@ -32,10 +38,11 @@ const els = {
   institutionalTotal: document.querySelector("#institutionalTotal"),
   futuresTotal: document.querySelector("#futuresTotal"),
   creditTotal: document.querySelector("#creditTotal"),
+  marginBalanceTotal: document.querySelector("#marginBalanceTotal"),
   sourceIssues: document.querySelector("#sourceIssues"),
   institutionalRows: document.querySelector("#institutionalRows"),
   futuresRows: document.querySelector("#futuresRows"),
-  creditRows: document.querySelector("#creditRows")
+  creditHistoryRows: document.querySelector("#creditHistoryRows")
 };
 
 els.refreshButton.addEventListener("click", () => loadDashboard());
@@ -74,11 +81,20 @@ function renderDashboard(data, label) {
   const summary = data.summary || {};
   const institutional = data.institutional || [];
   const futures = data.futuresOpenInterest || [];
-  const credit = data.credit || [];
+  const creditHistory = data.creditHistory || [];
 
-  els.institutionalTotal.innerHTML = signedText(summary.institutionalNet, 0);
+  els.marginBalanceTotal.textContent = formatNumber(summary.marginBalance ?? creditHistory[0]?.marginBalance, 2);
   els.futuresTotal.innerHTML = signedText(summary.futuresNetOpenInterest, 0);
-  els.creditTotal.innerHTML = signedText(summary.marginChange, 0);
+  els.creditTotal.innerHTML = signedText(summary.marginChange ?? creditHistory[0]?.marginChange, 2);
+
+  renderRows(els.creditHistoryRows, creditHistory, (row) => [
+    row.date,
+    formatNumber(row.marginBalance, 2),
+    signedCell(row.marginChange, 2),
+    `${formatNumber(row.marginMaintenanceRatio, 2)}%`,
+    formatNumber(row.shortBalance, 0),
+    signedCell(row.shortChange, 0)
+  ]);
 
   renderRows(els.institutionalRows, institutional, (row) => [
     row.market,
@@ -93,14 +109,6 @@ function renderDashboard(data, label) {
     formatNumber(row.long, 0),
     formatNumber(row.short, 0),
     signedCell(row.net)
-  ]);
-
-  renderRows(els.creditRows, credit, (row) => [
-    row.market,
-    formatNumber(row.marginBalance, 0),
-    signedCell(row.marginChange),
-    formatNumber(row.shortBalance, 0),
-    signedCell(row.shortChange)
   ]);
 
   renderIssues(data.sourceIssues || []);
@@ -128,8 +136,8 @@ function renderIssues(issues) {
   els.sourceIssues.innerHTML = issues.map((issue) => `<div>${escapeHtml(issue)}</div>`).join("");
 }
 
-function signedCell(value) {
-  return `<span class="${signClass(value)}">${formatSigned(value, 0)}</span>`;
+function signedCell(value, digits = 0) {
+  return `<span class="${signClass(value)}">${formatSigned(value, digits)}</span>`;
 }
 
 function signedText(value, digits) {
