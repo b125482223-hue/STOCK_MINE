@@ -2,8 +2,11 @@ const fs = require("node:fs/promises");
 const path = require("node:path");
 const {
   buildDashboardData,
+  buildClosePriceMap,
+  buildInstitutionalHistoryRow,
   normalizeInstitutionalSummary,
-  normalizeCreditSummary
+  normalizeCreditSummary,
+  parseTaifexFuturesOpenInterestHtml
 } = require("./normalizers");
 
 const ROOT = path.resolve(__dirname, "..");
@@ -21,10 +24,14 @@ async function main() {
   const previous = await readJsonIfExists(LATEST_PATH) || await readJsonIfExists(SAMPLE_PATH);
   const sample = await readJsonIfExists(SAMPLE_PATH);
   const marketDate = process.env.MARKET_DATE || taipeiDate();
-  const yyyymmdd = marketDate.replaceAll("-", "");
   const sourceIssues = [];
 
-  const twseInstitutionalRows = await tryFetchTwseInstitutional(config, yyyymmdd, sourceIssues);
+  const tradingBundle = await findLatestTwseBundle(config, marketDate, sourceIssues);
+  const yyyymmdd = tradingBundle.yyyymmdd;
+  const displayDate = formatDisplayDate(yyyymmdd);
+  const twseInstitutionalRows = tradingBundle.institutionalRows;
+  const closePriceMap = buildClosePriceMap(tradingBundle.closeRows);
+  const taifexFuturesNet = await tryFetchTaifexFuturesNet(config, displayDate, sourceIssues);
   const twseCreditRows = await tryFetchJson(config.sources.margin.url, sourceIssues, "大盤信用交易");
 
   const institutional = normalizeInstitutionalSummary({
@@ -40,16 +47,30 @@ async function main() {
   replaceEmptyMarket(institutional, "大盤", previous, sample, sourceIssues, "大盤三大法人買賣超");
   replaceEmptyMarket(institutional, "櫃買", previous, sample, sourceIssues, "櫃買三大法人買賣超");
 
-  const futuresOpenInterest = previous?.futuresOpenInterest || [];
-  if (futuresOpenInterest.length) {
+  let futuresOpenInterest = futuresNetToRows(taifexFuturesNet);
+  if (!futuresOpenInterest.length) {
+    futuresOpenInterest = previous?.futuresOpenInterest || [];
     sourceIssues.push("三大法人未平倉沿用上一版資料，待接穩定 TAIFEX 端點。");
   }
 
+  const generatedInstitutionalHistoryRow = buildInstitutionalHistoryRow({
+    date: displayDate,
+    twseRows: twseInstitutionalRows,
+    closePriceMap,
+    futuresNet: taifexFuturesNet
+  });
+
+  const institutionalHistory = mergeHistoryRows(
+    generatedInstitutionalHistoryRow,
+    previous?.institutionalHistory || sample?.institutionalHistory || [],
+    20
+  );
+
   const dashboard = buildDashboardData({
-    asOf: `${marketDate} 盤後`,
+    asOf: `${displayDate} 盤後`,
     source: "generated",
     institutional,
-    institutionalHistory: previous?.institutionalHistory || sample?.institutionalHistory || [],
+    institutionalHistory,
     futuresOpenInterest,
     credit,
     creditHistory: previous?.creditHistory || sample?.creditHistory || [],
@@ -59,6 +80,38 @@ async function main() {
   await fs.mkdir(path.dirname(LATEST_PATH), { recursive: true });
   await fs.writeFile(LATEST_PATH, `${JSON.stringify(dashboard, null, 2)}\n`, "utf8");
   console.log(`Wrote ${path.relative(ROOT, LATEST_PATH)}`);
+}
+
+async function findLatestTwseBundle(config, marketDate, issues) {
+  const candidates = recentDateCandidates(marketDate, 10);
+
+  for (const candidate of candidates) {
+    const yyyymmdd = candidate.replaceAll("-", "");
+    const institutionalRows = await tryFetchTwseInstitutional(config, yyyymmdd, issues, true);
+    if (!institutionalRows.length) {
+      continue;
+    }
+
+    const closePayload = await tryFetchJson(
+      config.sources.twseClosePrices.url.replace("{YYYYMMDD}", yyyymmdd),
+      issues,
+      "上市收盤價",
+      true
+    );
+    const closeRows = extractTwseCloseRows(closePayload);
+    if (!closeRows.length) {
+      continue;
+    }
+
+    if (candidate !== marketDate) {
+      issues.push(`今日資料尚未完整發布，已使用最近交易日 ${candidate}。`);
+    }
+
+    return { yyyymmdd, institutionalRows, closeRows };
+  }
+
+  issues.push("找不到最近可用的證交所 T86 與收盤價資料，改用備援資料。");
+  return { yyyymmdd: marketDate.replaceAll("-", ""), institutionalRows: [], closeRows: [] };
 }
 
 function replaceEmptyMarket(rows, market, previous, sample, issues, label) {
@@ -80,9 +133,9 @@ function findNonZeroMarket(data, market) {
   return data?.institutional?.find((row) => row.market === market && row.total);
 }
 
-async function tryFetchTwseInstitutional(config, yyyymmdd, issues) {
+async function tryFetchTwseInstitutional(config, yyyymmdd, issues, quiet = false) {
   const url = config.sources.institutionalTwse.url.replace("{YYYYMMDD}", yyyymmdd);
-  const payload = await tryFetchJson(url, issues, "大盤三大法人買賣超");
+  const payload = await tryFetchJson(url, issues, "大盤三大法人買賣超", quiet);
   if (!payload) {
     return [];
   }
@@ -95,11 +148,13 @@ async function tryFetchTwseInstitutional(config, yyyymmdd, issues) {
     return payload.data.map((values) => Object.fromEntries(payload.fields.map((field, index) => [field, values[index]])));
   }
 
-  issues.push("大盤三大法人買賣超回傳格式不符合預期。");
+  if (!quiet) {
+    issues.push("大盤三大法人買賣超回傳格式不符合預期。");
+  }
   return [];
 }
 
-async function tryFetchJson(url, issues, label) {
+async function tryFetchJson(url, issues, label, quiet = false) {
   try {
     const response = await fetch(url, { headers: { "accept": "application/json,text/plain,*/*" } });
     if (!response.ok) {
@@ -111,13 +166,92 @@ async function tryFetchJson(url, issues, label) {
     try {
       return JSON.parse(text);
     } catch {
-      issues.push(`${label}讀取失敗：回傳不是 JSON。`);
+      if (!quiet) {
+        issues.push(`${label}讀取失敗：回傳不是 JSON。`);
+      }
       return null;
     }
   } catch (error) {
-    issues.push(`${label}讀取失敗：${error.message}`);
+    if (!quiet) {
+      issues.push(`${label}讀取失敗：${error.message}`);
+    }
     return null;
   }
+}
+
+async function tryFetchTaifexFuturesNet(config, displayDate, issues) {
+  try {
+    const response = await fetch(config.sources.futuresOpenInterest.url, {
+      method: "POST",
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        queryDate: displayDate,
+        commodityId: "TXF",
+        queryType: "",
+        goDay: "",
+        doQuery: "1",
+        dateaddcnt: ""
+      })
+    });
+
+    if (!response.ok) {
+      issues.push(`期交所台股期貨未平倉讀取失敗：HTTP ${response.status}`);
+      return {};
+    }
+
+    return parseTaifexFuturesOpenInterestHtml(await response.text());
+  } catch (error) {
+    issues.push(`期交所台股期貨未平倉讀取失敗：${error.message}`);
+    return {};
+  }
+}
+
+function extractTwseCloseRows(payload) {
+  const table = payload?.tables?.find((item) => item.title?.includes("每日收盤行情"));
+  if (!table?.fields || !Array.isArray(table.data)) {
+    return [];
+  }
+
+  return table.data.map((values) => Object.fromEntries(table.fields.map((field, index) => [field, values[index]])));
+}
+
+function mergeHistoryRows(newRow, existingRows, limit) {
+  const rows = [newRow, ...existingRows.filter((row) => row.date !== newRow.date)];
+  return rows.filter((row) => row.date).slice(0, limit);
+}
+
+function futuresNetToRows(futuresNet) {
+  if (!futuresNet?.futuresTotalNet) {
+    return [];
+  }
+
+  return [
+    { participant: "外資", long: null, short: null, net: futuresNet.futuresForeignNet },
+    { participant: "投信", long: null, short: null, net: futuresNet.futuresInvestmentTrustNet },
+    { participant: "自營商", long: null, short: null, net: futuresNet.futuresDealerNet }
+  ];
+}
+
+function recentDateCandidates(marketDate, days) {
+  const base = new Date(`${marketDate}T12:00:00+08:00`);
+  const dates = [];
+  for (let offset = 0; offset <= days; offset += 1) {
+    const date = new Date(base);
+    date.setDate(base.getDate() - offset);
+    dates.push(formatDate(date));
+  }
+  return dates;
+}
+
+function formatDate(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function formatDisplayDate(yyyymmdd) {
+  return `${yyyymmdd.slice(0, 4)}/${yyyymmdd.slice(4, 6)}/${yyyymmdd.slice(6, 8)}`;
 }
 
 async function readJsonIfExists(filePath) {

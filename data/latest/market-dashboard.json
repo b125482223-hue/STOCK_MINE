@@ -1,9 +1,9 @@
 {
-  "asOf": "2026-07-10 盤後",
+  "asOf": "2026/07/09 盤後",
   "source": "generated",
   "summary": {
-    "institutionalNet": 27290000000,
-    "futuresNetOpenInterest": 1580,
+    "institutionalNet": -1064549454,
+    "futuresNetOpenInterest": -6798,
     "marginBalance": 6196.48,
     "marginChange": 58.32,
     "shortChange": -8047
@@ -11,10 +11,10 @@
   "institutional": [
     {
       "market": "大盤",
-      "foreign": 25740000000,
-      "investmentTrust": 3820000000,
-      "dealer": -1260000000,
-      "total": 28300000000
+      "foreign": 131219050,
+      "investmentTrust": 56717006,
+      "dealer": -242485510,
+      "total": -54549454
     },
     {
       "market": "櫃買",
@@ -27,16 +27,16 @@
   "institutionalHistory": [
     {
       "date": "2026/07/09",
-      "foreignNonDealer": -472.53,
+      "foreignNonDealer": -461.8,
       "foreignDealer": 0,
-      "foreignTotal": -472.53,
-      "investmentTrust": 199.01,
-      "dealerProprietary": -20.36,
-      "dealerHedge": -56.35,
-      "dealerTotal": -76.71,
-      "total": -350.23,
+      "foreignTotal": -461.8,
+      "investmentTrust": 196.48,
+      "dealerProprietary": -19.96,
+      "dealerHedge": -54.2,
+      "dealerTotal": -74.16,
+      "total": -339.49,
       "futuresForeignNet": -80730,
-      "futuresInvestmentTrustNet": 71089,
+      "futuresInvestmentTrustNet": 71689,
       "futuresDealerNet": 2243,
       "futuresTotalNet": -6798
     },
@@ -89,21 +89,21 @@
   "futuresOpenInterest": [
     {
       "participant": "外資",
-      "long": 48210,
-      "short": 46180,
-      "net": 2030
+      "long": null,
+      "short": null,
+      "net": -80730
     },
     {
       "participant": "投信",
-      "long": 8120,
-      "short": 8460,
-      "net": -340
+      "long": null,
+      "short": null,
+      "net": 71689
     },
     {
       "participant": "自營商",
-      "long": 21400,
-      "short": 21510,
-      "net": -110
+      "long": null,
+      "short": null,
+      "net": 2243
     }
   ],
   "credit": [
@@ -165,9 +165,7 @@
     }
   ],
   "sourceIssues": [
-    "大盤三大法人買賣超回傳格式不符合預期。",
-    "大盤三大法人買賣超沿用備援資料，待接穩定官方端點。",
-    "櫃買三大法人買賣超沿用備援資料，待接穩定官方端點。",
-    "三大法人未平倉沿用上一版資料，待接穩定 TAIFEX 端點。"
+    "今日資料尚未完整發布，已使用最近交易日 2026-07-09。",
+    "櫃買三大法人買賣超沿用備援資料，待接穩定官方端點。"
   ]
 }

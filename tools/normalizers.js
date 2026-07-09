@@ -23,6 +23,109 @@ function normalizeInstitutionalHistory(rows = []) {
   })).filter((row) => row.date);
 }
 
+function buildClosePriceMap(rows = []) {
+  const prices = new Map();
+
+  rows.forEach((row) => {
+    const code = textFrom(row, ["證券代號", "code"]);
+    const close = numberFrom(row, ["收盤價", "close"]);
+    if (code && close) {
+      prices.set(code, close);
+    }
+  });
+
+  return prices;
+}
+
+function buildInstitutionalHistoryRow({ date, twseRows = [], closePriceMap = new Map(), futuresNet = {} } = {}) {
+  const fields = {
+    foreignNonDealer: 0,
+    foreignDealer: 0,
+    foreignTotal: 0,
+    investmentTrust: 0,
+    dealerProprietary: 0,
+    dealerHedge: 0,
+    dealerTotal: 0,
+    total: 0
+  };
+
+  twseRows.forEach((row) => {
+    const code = textFrom(row, ["證券代號", "code"]);
+    const close = closePriceMap.get(code);
+    if (!close) {
+      return;
+    }
+
+    addAmount(fields, "foreignNonDealer", row, ["外陸資買賣超股數(不含外資自營商)", "foreignNonDealer"], close);
+    addAmount(fields, "foreignDealer", row, ["外資自營商買賣超股數", "foreignDealer"], close);
+    addAmount(fields, "investmentTrust", row, ["投信買賣超股數", "investmentTrust"], close);
+    addAmount(fields, "dealerProprietary", row, ["自營商買賣超股數(自行買賣)", "dealerProprietary"], close);
+    addAmount(fields, "dealerHedge", row, ["自營商買賣超股數(避險)", "dealerHedge"], close);
+    addAmount(fields, "dealerTotal", row, ["自營商買賣超股數", "dealerTotal"], close);
+    addAmount(fields, "total", row, ["三大法人買賣超股數", "total"], close);
+  });
+
+  fields.foreignTotal = fields.foreignNonDealer + fields.foreignDealer;
+
+  return {
+    date,
+    foreignNonDealer: round2(fields.foreignNonDealer),
+    foreignDealer: round2(fields.foreignDealer),
+    foreignTotal: round2(fields.foreignTotal),
+    investmentTrust: round2(fields.investmentTrust),
+    dealerProprietary: round2(fields.dealerProprietary),
+    dealerHedge: round2(fields.dealerHedge),
+    dealerTotal: round2(fields.dealerTotal),
+    total: round2(fields.total),
+    futuresForeignNet: Number(futuresNet.futuresForeignNet) || 0,
+    futuresInvestmentTrustNet: Number(futuresNet.futuresInvestmentTrustNet) || 0,
+    futuresDealerNet: Number(futuresNet.futuresDealerNet) || 0,
+    futuresTotalNet: Number(futuresNet.futuresTotalNet) || 0
+  };
+}
+
+function addAmount(target, targetKey, row, sourceKeys, close) {
+  target[targetKey] += numberFrom(row, sourceKeys) * close / 100000000;
+}
+
+function parseTaifexFuturesOpenInterestHtml(html = "") {
+  const result = {
+    futuresForeignNet: 0,
+    futuresInvestmentTrustNet: 0,
+    futuresDealerNet: 0,
+    futuresTotalNet: 0
+  };
+
+  const rows = [...String(html).matchAll(/<tr[^>]*>[\s\S]*?<\/tr>/gi)].map((match) => match[0]);
+  rows.forEach((row) => {
+    const cells = extractHtmlCells(row);
+    const participant = cells.find((cell) => ["外資", "投信", "自營商"].includes(cell));
+    if (!participant) {
+      return;
+    }
+
+    const numbers = cells.map((cell) => numberFrom({ value: cell }, ["value"], NaN)).filter(Number.isFinite);
+    const netOpenInterest = numbers[numbers.length - 2] || 0;
+
+    if (participant === "外資") {
+      result.futuresForeignNet = netOpenInterest;
+    } else if (participant === "投信") {
+      result.futuresInvestmentTrustNet = netOpenInterest;
+    } else if (participant === "自營商") {
+      result.futuresDealerNet = netOpenInterest;
+    }
+  });
+
+  result.futuresTotalNet = result.futuresForeignNet + result.futuresInvestmentTrustNet + result.futuresDealerNet;
+  return result;
+}
+
+function extractHtmlCells(rowHtml) {
+  return [...String(rowHtml).matchAll(/<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/gi)]
+    .map((match) => match[1].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim())
+    .filter(Boolean);
+}
+
 function aggregateInstitutionalMarket(market, rows) {
   const result = {
     market,
@@ -151,13 +254,20 @@ function numberFrom(row, keys, fallback = 0) {
   return Number.isFinite(value) ? value : fallback;
 }
 
+function round2(value) {
+  return Math.round((Number(value) || 0) * 100) / 100;
+}
+
 module.exports = {
   buildDashboardData,
+  buildClosePriceMap,
+  buildInstitutionalHistoryRow,
   normalizeInstitutionalSummary,
   normalizeInstitutionalHistory,
   normalizeCreditSummary,
   normalizeCreditHistory,
   normalizeFuturesOpenInterest,
+  parseTaifexFuturesOpenInterestHtml,
   sumBy,
   numberFrom,
   textFrom

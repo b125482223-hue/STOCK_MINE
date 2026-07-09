@@ -8,6 +8,12 @@
       "url": "https://www.twse.com.tw/rwd/zh/fund/T86?date={YYYYMMDD}&selectType=ALLBUT0999&response=json",
       "status": "candidate"
     },
+    "twseClosePrices": {
+      "label": "上市收盤價",
+      "provider": "TWSE",
+      "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date={YYYYMMDD}&type=ALLBUT0999&response=json",
+      "status": "candidate"
+    },
     "institutionalTpex": {
       "label": "櫃買三大法人買賣超",
       "provider": "TPEx public data",
@@ -24,9 +30,9 @@
     "futuresOpenInterest": {
       "label": "三大法人未平倉",
       "provider": "TAIFEX public data",
-      "url": "",
-      "status": "needs-verification",
-      "note": "GitHub Pages 純前端直連期交所資料可能遇到 CORS 或格式限制，第二階段建議用 GitHub Actions 快取。"
+      "url": "https://www.taifex.com.tw/cht/3/futContractsDate",
+      "status": "candidate",
+      "note": "由 Node 腳本 POST 查詢台股期貨 TXF，解析三大法人未平倉多空淨額。"
     }
   },
   "fallback": {

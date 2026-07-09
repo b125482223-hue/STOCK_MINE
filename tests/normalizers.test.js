@@ -1,11 +1,14 @@
 const assert = require("node:assert/strict");
 const {
   buildDashboardData,
+  buildClosePriceMap,
+  buildInstitutionalHistoryRow,
   normalizeInstitutionalSummary,
   normalizeInstitutionalHistory,
   normalizeCreditHistory,
   normalizeCreditSummary,
   normalizeFuturesOpenInterest,
+  parseTaifexFuturesOpenInterestHtml,
   sumBy
 } = require("../tools/normalizers");
 
@@ -118,6 +121,66 @@ assert.deepEqual(institutionalHistory[0], {
   total: -350.23,
   futuresForeignNet: -80730,
   futuresInvestmentTrustNet: 71089,
+  futuresDealerNet: 2243,
+  futuresTotalNet: -6798
+});
+
+const closePriceMap = buildClosePriceMap([
+  { "證券代號": "2330", "收盤價": "1,000" },
+  { "證券代號": "2317", "收盤價": "200" }
+]);
+
+assert.equal(closePriceMap.get("2330"), 1000);
+
+const generatedInstitutionalRow = buildInstitutionalHistoryRow({
+  date: "2026/07/09",
+  twseRows: [
+    {
+      "證券代號": "2330",
+      "外陸資買賣超股數(不含外資自營商)": "1,000,000",
+      "外資自營商買賣超股數": "0",
+      "投信買賣超股數": "200,000",
+      "自營商買賣超股數(自行買賣)": "-50,000",
+      "自營商買賣超股數(避險)": "-20,000",
+      "自營商買賣超股數": "-70,000",
+      "三大法人買賣超股數": "1,130,000"
+    },
+    {
+      "證券代號": "2317",
+      "外陸資買賣超股數(不含外資自營商)": "-500,000",
+      "外資自營商買賣超股數": "0",
+      "投信買賣超股數": "100,000",
+      "自營商買賣超股數(自行買賣)": "10,000",
+      "自營商買賣超股數(避險)": "5,000",
+      "自營商買賣超股數": "15,000",
+      "三大法人買賣超股數": "-385,000"
+    }
+  ],
+  closePriceMap,
+  futuresNet: {
+    futuresForeignNet: -80730,
+    futuresInvestmentTrustNet: 71089,
+    futuresDealerNet: 2243,
+    futuresTotalNet: -6798
+  }
+});
+
+assert.equal(generatedInstitutionalRow.date, "2026/07/09");
+assert.equal(generatedInstitutionalRow.foreignNonDealer, 9);
+assert.equal(generatedInstitutionalRow.investmentTrust, 2.2);
+assert.equal(generatedInstitutionalRow.dealerTotal, -0.67);
+assert.equal(generatedInstitutionalRow.total, 10.53);
+assert.equal(generatedInstitutionalRow.futuresForeignNet, -80730);
+
+const parsedFutures = parseTaifexFuturesOpenInterestHtml(`
+  <tr><td>1</td><td>臺股期貨</td><td>自營商</td><td>7,489</td><td>68,392,046</td><td>8,439</td><td>77,152,690</td><td>-950</td><td>-8,760,643</td><td>7,455</td><td>68,296,266</td><td>5,212</td><td>47,769,736</td><td>2,243</td><td>20,526,530</td></tr>
+  <tr><td>投信</td><td>7,421</td><td>68,185,516</td><td>5,719</td><td>52,315,804</td><td>1,702</td><td>15,869,712</td><td>77,706</td><td>710,124,202</td><td>6,017</td><td>55,009,742</td><td>71,689</td><td>655,114,460</td></tr>
+  <tr><td>外資</td><td>87,694</td><td>798,802,069</td><td>87,226</td><td>794,995,895</td><td>468</td><td>3,806,174</td><td>6,562</td><td>60,008,754</td><td>87,292</td><td>797,925,628</td><td>-80,730</td><td>-737,916,874</td></tr>
+`);
+
+assert.deepEqual(parsedFutures, {
+  futuresForeignNet: -80730,
+  futuresInvestmentTrustNet: 71689,
   futuresDealerNet: 2243,
   futuresTotalNet: -6798
 });
