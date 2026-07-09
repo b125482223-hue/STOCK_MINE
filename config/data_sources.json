@@ -40,6 +40,12 @@
       "url": "https://openapi.twse.com.tw/v1/exchangeReport/MI_MARGN",
       "status": "candidate"
     },
+    "twseCreditHistory": {
+      "label": "TWSE daily credit trading statistics",
+      "provider": "TWSE",
+      "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date={YYYYMMDD}&response=json",
+      "status": "verified"
+    },
     "futuresOpenInterest": {
       "label": "三大法人未平倉",
       "provider": "TAIFEX public data",

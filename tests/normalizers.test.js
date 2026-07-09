@@ -7,6 +7,7 @@ const {
   normalizeInstitutionalHistory,
   normalizeCreditHistory,
   normalizeCreditSummary,
+  buildCreditHistoryRow,
   normalizeFuturesOpenInterest,
   parseTaifexFuturesOpenInterestHtml,
   sumBy
@@ -81,6 +82,21 @@ const creditHistory = normalizeCreditHistory([
     shortChange: "320"
   }
 ]);
+
+assert.deepEqual(buildCreditHistoryRow({
+  date: "07/09",
+  statisticsRows: [
+    { item: "shortBalance", previous: "205,830", current: "203,714" },
+    { item: "marginAmount", previous: "613,815,722", current: "619,648,244" }
+  ]
+}), {
+  date: "07/09",
+  marginBalance: 6196.48,
+  marginChange: 58.33,
+  marginMaintenanceRatio: null,
+  shortBalance: 203714,
+  shortChange: -2116
+});
 
 assert.deepEqual(creditHistory[0], {
   date: "07/09",

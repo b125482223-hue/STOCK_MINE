@@ -6,6 +6,7 @@ const {
   buildInstitutionalHistoryRow,
   normalizeInstitutionalSummary,
   normalizeCreditSummary,
+  buildCreditHistoryRow,
   parseTaifexFuturesOpenInterestHtml
 } = require("./normalizers");
 
@@ -33,6 +34,11 @@ async function main() {
   const closePriceMap = buildClosePriceMap(tradingBundle.closeRows);
   const taifexFuturesNet = await tryFetchTaifexFuturesNet(config, displayDate, sourceIssues);
   const tpexBundle = await tryFetchTpexBundle(config, yyyymmdd, sourceIssues);
+  const twseCreditStatistics = await tryFetchJson(
+    config.sources.twseCreditHistory.url.replace("{YYYYMMDD}", yyyymmdd),
+    sourceIssues,
+    "TWSE credit trading statistics"
+  );
   const twseCreditRows = await tryFetchJson(config.sources.margin.url, sourceIssues, "大盤信用交易");
 
   const institutional = normalizeInstitutionalSummary({
@@ -49,6 +55,10 @@ async function main() {
   replaceEmptyMarket(institutional, "櫃買", previous, sample, sourceIssues, "櫃買三大法人買賣超");
 
   const tpexCredit = normalizeCreditSummary({ twseRows: [], tpexRows: tpexBundle.creditRows })[1];
+  const twseCredit = buildTwseCreditSummary(extractTwseCreditStatistics(twseCreditStatistics));
+  if (twseCredit) {
+    credit[0] = { ...credit[0], ...twseCredit };
+  }
   if (tpexCredit.marginBalance || tpexCredit.shortBalance) {
     credit[1] = tpexCredit;
   }
@@ -74,6 +84,14 @@ async function main() {
     20
   );
 
+  const generatedCreditHistoryRow = buildCreditHistoryRow({
+    date: displayDate.slice(5),
+    statisticsRows: extractTwseCreditStatistics(twseCreditStatistics)
+  });
+  const creditHistory = generatedCreditHistoryRow
+    ? mergeHistoryRows(generatedCreditHistoryRow, previous?.creditHistory || sample?.creditHistory || [], 20)
+    : previous?.creditHistory || sample?.creditHistory || [];
+
   const dashboard = buildDashboardData({
     asOf: `${displayDate} 盤後`,
     source: "generated",
@@ -81,7 +99,7 @@ async function main() {
     institutionalHistory,
     futuresOpenInterest,
     credit,
-    creditHistory: previous?.creditHistory || sample?.creditHistory || [],
+    creditHistory,
     sourceIssues
   });
 
@@ -163,6 +181,39 @@ function extractTpexCreditRows(payload) {
     shortPrevious: row[10],
     shortBalance: row[14]
   })) : [];
+}
+
+function extractTwseCreditStatistics(payload) {
+  const rows = payload?.tables?.[0]?.data;
+  if (!Array.isArray(rows) || rows.length < 3) {
+    return [];
+  }
+
+  return [
+    { item: "marginUnits", previous: rows[0]?.[4], current: rows[0]?.[5] },
+    { item: "shortBalance", previous: rows[1]?.[4], current: rows[1]?.[5] },
+    { item: "marginAmount", previous: rows[2]?.[4], current: rows[2]?.[5] }
+  ];
+}
+
+function buildTwseCreditSummary(statisticsRows) {
+  const margin = statisticsRows.find((row) => row.item === "marginUnits");
+  const short = statisticsRows.find((row) => row.item === "shortBalance");
+  if (!margin || !short) {
+    return null;
+  }
+
+  return {
+    marginBalance: numberFromValue(margin.current),
+    marginChange: numberFromValue(margin.current) - numberFromValue(margin.previous),
+    shortBalance: numberFromValue(short.current),
+    shortChange: numberFromValue(short.current) - numberFromValue(short.previous)
+  };
+}
+
+function numberFromValue(value) {
+  const parsed = Number(String(value ?? "").replaceAll(",", ""));
+  return Number.isFinite(parsed) ? parsed : 0;
 }
 
 async function findLatestTwseBundle(config, marketDate, issues) {

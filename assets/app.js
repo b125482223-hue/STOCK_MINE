@@ -96,7 +96,7 @@ function renderDashboard(data, label) {
     row.date,
     formatNumber(row.marginBalance, 2),
     signedCell(row.marginChange, 2),
-    `${formatNumber(row.marginMaintenanceRatio, 2)}%`,
+    formatPercent(row.marginMaintenanceRatio),
     formatNumber(row.shortBalance, 0),
     signedCell(row.shortChange, 0)
   ]);
@@ -183,6 +183,10 @@ function formatSigned(value, digits) {
 
   const prefix = value > 0 ? "+" : "";
   return `${prefix}${formatNumber(value, digits)}`;
+}
+
+function formatPercent(value) {
+  return Number.isFinite(value) ? `${formatNumber(value, 2)}%` : "--";
 }
 
 function escapeHtml(value) {

@@ -5,8 +5,8 @@
     "institutionalNet": -56458417,
     "futuresNetOpenInterest": -6798,
     "marginBalance": 6196.48,
-    "marginChange": 58.32,
-    "shortChange": -7759
+    "marginChange": 58.33,
+    "shortChange": -1861
   },
   "institutional": [
     {
@@ -109,10 +109,10 @@
   "credit": [
     {
       "market": "大盤",
-      "marginBalance": 9590605,
-      "marginChange": 58707,
-      "shortBalance": 205830,
-      "shortChange": -8014
+      "marginBalance": 9614955,
+      "marginChange": 24351,
+      "shortBalance": 203714,
+      "shortChange": -2116
     },
     {
       "market": "櫃買",
@@ -126,10 +126,10 @@
     {
       "date": "07/09",
       "marginBalance": 6196.48,
-      "marginChange": 58.32,
-      "marginMaintenanceRatio": 186.65,
+      "marginChange": 58.33,
+      "marginMaintenanceRatio": null,
       "shortBalance": 203714,
-      "shortChange": -1200
+      "shortChange": -2116
     },
     {
       "date": "07/08",

@@ -180,6 +180,25 @@ function normalizeCreditSummary({ twseRows = [], tpexRows = [] } = {}) {
   ];
 }
 
+function buildCreditHistoryRow({ date, statisticsRows = [] } = {}) {
+  const marginAmount = statisticsRows.find((row) => row.item === "marginAmount");
+  const shortBalance = statisticsRows.find((row) => row.item === "shortBalance");
+
+  if (!date || !marginAmount || !shortBalance) {
+    return null;
+  }
+
+  // The official statistic is in thousand NTD; 100,000 thousand NTD equals one hundred million NTD.
+  return {
+    date,
+    marginBalance: round2(numberFrom(marginAmount, ["current"]) / 100000),
+    marginChange: round2((numberFrom(marginAmount, ["current"]) - numberFrom(marginAmount, ["previous"])) / 100000),
+    marginMaintenanceRatio: null,
+    shortBalance: numberFrom(shortBalance, ["current"]),
+    shortChange: numberFrom(shortBalance, ["current"]) - numberFrom(shortBalance, ["previous"])
+  };
+}
+
 function normalizeCreditHistory(rows = []) {
   return rows.map((row) => ({
     date: textFrom(row, ["date", "日期"]),
@@ -288,6 +307,7 @@ module.exports = {
   normalizeInstitutionalSummary,
   normalizeInstitutionalHistory,
   normalizeCreditSummary,
+  buildCreditHistoryRow,
   normalizeCreditHistory,
   normalizeFuturesOpenInterest,
   parseTaifexFuturesOpenInterestHtml,
