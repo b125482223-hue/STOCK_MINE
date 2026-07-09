@@ -1,11 +1,11 @@
 {
   "version": "0.1.0",
-  "updated": "2026-07-09",
+  "updated": "2026-07-10",
   "sources": {
     "institutionalTwse": {
       "label": "大盤三大法人買賣超",
-      "provider": "TWSE OpenAPI",
-      "url": "https://openapi.twse.com.tw/v1/exchangeReport/T86",
+      "provider": "TWSE",
+      "url": "https://www.twse.com.tw/rwd/zh/fund/T86?date={YYYYMMDD}&selectType=ALLBUT0999&response=json",
       "status": "candidate"
     },
     "institutionalTpex": {
@@ -16,19 +16,13 @@
       "note": "櫃買三大法人端點需確認最穩定的可機器讀取來源。"
     },
     "margin": {
-      "label": "融資融券",
+      "label": "大盤信用交易",
       "provider": "TWSE OpenAPI",
       "url": "https://openapi.twse.com.tw/v1/exchangeReport/MI_MARGN",
       "status": "candidate"
     },
-    "index": {
-      "label": "目前指數",
-      "provider": "TWSE OpenAPI",
-      "url": "https://openapi.twse.com.tw/v1/indicesReport/MI_5MINS",
-      "status": "candidate"
-    },
     "futuresOpenInterest": {
-      "label": "期貨未平倉",
+      "label": "三大法人未平倉",
       "provider": "TAIFEX public data",
       "url": "",
       "status": "needs-verification",

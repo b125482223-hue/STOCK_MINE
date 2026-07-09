@@ -1,15 +1,14 @@
 # 台股籌碼與指數靜態儀表板
 
-這是一個可部署到 GitHub Pages 的純前端 HTML 儀表板，用來查看台股盤後籌碼與指數資料。
+這是一個可部署到 GitHub Pages 的純前端 HTML 儀表板，用來查看台股每日盤後籌碼資料。
 
 ## MVP 範圍
 
-- 三大法人買賣超：只顯示大盤與櫃買各自市場合計
-- 融資融券
-- 期貨未平倉
-- 目前指數摘要
+- 每日盤後三大法人買賣超：只顯示大盤與櫃買各自市場合計
+- 三大法人未平倉
+- 每日信用交易變化
 
-目前版本以純前端為主，優先讀取官方公開端點；若瀏覽器直連失敗，會自動改用 `data/sample/market-dashboard.json` 範例資料，避免頁面空白。
+目前網頁優先讀取 `data/latest/market-dashboard.json`；若檔案不存在或讀取失敗，會自動改用 `data/sample/market-dashboard.json` 範例資料，避免頁面空白。
 
 ## 本機使用
 
@@ -19,11 +18,10 @@
 Start-Process .\index.html
 ```
 
-如果瀏覽器因本機檔案限制阻擋 `fetch()`，可用簡易靜態伺服器：
+如果瀏覽器因本機檔案限制阻擋 `fetch()`，頁面會改用內建備援資料；正式使用以 GitHub Pages 網址為準。手動更新本地 latest JSON：
 
 ```powershell
-python -m http.server 8080
-Start-Process http://127.0.0.1:8080/
+node tools\build_daily_data.js
 ```
 
 ## GitHub Pages 部署
@@ -38,13 +36,23 @@ Start-Process http://127.0.0.1:8080/
 
 資料來源設定集中在 `config/data_sources.json`。目前規劃：
 
-- 證交所 OpenAPI：大盤三大法人買賣超、融資融券、指數資料。
+- 證交所公開資料：大盤三大法人買賣超、信用交易資料。
 - 櫃買中心公開資料：櫃買三大法人買賣超，後續需確認最穩定的可機器讀取端點。
-- 期交所公開資料：期貨未平倉，後續需確認最穩定的可機器讀取端點。
+- 期交所公開資料：三大法人未平倉，後續需確認最穩定的可機器讀取端點。
 - 本地範例資料：`data/sample/market-dashboard.json`。
+
+## 每日更新
+
+手動更新：
+
+```powershell
+node tools\build_daily_data.js
+```
+
+GitHub Actions 會在台灣時間週一到週五 16:30 自動執行，更新 `data/latest/market-dashboard.json`。
 
 ## 重要限制
 
 - GitHub Pages 是靜態網站，不能保存密鑰，也不能穩定代理 API。
-- 官方公開端點可能有 CORS、TLS、更新頻率或防護限制。
-- 若前端直連不穩，第二階段建議改用 GitHub Actions 定時抓資料並輸出 `data/latest/*.json`。
+- 官方公開端點可能有 CORS、TLS、更新頻率或防護限制，因此網頁讀取本 repo 內的固定 JSON。
+- 櫃買與期交所端點尚未完全穩定化前，頁面會清楚顯示來源提醒。

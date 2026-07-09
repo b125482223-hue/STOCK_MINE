@@ -1,11 +1,11 @@
 {
-  "asOf": "2026-07-10 15:30",
-  "source": "sample",
+  "asOf": "2026-07-10 盤後",
+  "source": "generated",
   "summary": {
     "institutionalNet": 27290000000,
     "futuresNetOpenInterest": 1580,
-    "marginChange": -720,
-    "shortChange": 127
+    "marginChange": 58827,
+    "shortChange": -8047
   },
   "institutional": [
     {
@@ -46,10 +46,10 @@
   "credit": [
     {
       "market": "大盤",
-      "marginBalance": 238450000,
-      "marginChange": -840,
-      "shortBalance": 6120000,
-      "shortChange": 160
+      "marginBalance": 9590605,
+      "marginChange": 58707,
+      "shortBalance": 205830,
+      "shortChange": -8014
     },
     {
       "market": "櫃買",
@@ -60,6 +60,9 @@
     }
   ],
   "sourceIssues": [
-    "這是範例資料，用於官方資料尚未更新或讀取失敗時維持頁面可讀。"
+    "大盤三大法人買賣超回傳格式不符合預期。",
+    "大盤三大法人買賣超沿用備援資料，待接穩定官方端點。",
+    "櫃買三大法人買賣超沿用備援資料，待接穩定官方端點。",
+    "三大法人未平倉沿用上一版資料，待接穩定 TAIFEX 端點。"
   ]
 }

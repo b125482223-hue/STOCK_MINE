@@ -3,54 +3,48 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>台股籌碼與指數儀表板</title>
+    <title>台股盤後籌碼儀表板</title>
     <link rel="stylesheet" href="assets/styles.css">
   </head>
   <body>
     <main class="dashboard">
       <header class="topbar">
         <div>
-          <p class="eyebrow">Taiwan Market Monitor</p>
-          <h1>台股籌碼與指數儀表板</h1>
+          <p class="eyebrow">Daily Market Close</p>
+          <h1>台股盤後籌碼儀表板</h1>
         </div>
         <div class="status-panel">
           <span id="dataStatus" class="status-pill">載入中</span>
-          <span id="updatedAt" class="muted">最後更新：--</span>
+          <span id="updatedAt" class="muted">資料日期：--</span>
           <button id="refreshButton" class="icon-button" type="button" title="重新整理" aria-label="重新整理">↻</button>
         </div>
       </header>
 
-      <section class="summary-grid" aria-label="市場摘要">
+      <section class="summary-grid three" aria-label="盤後摘要">
         <article class="metric-card strong">
-          <span class="metric-label">目前指數</span>
-          <strong id="indexName">--</strong>
-          <div class="metric-row">
-            <span id="indexLast" class="metric-value">--</span>
-            <span id="indexChange" class="metric-change neutral">--</span>
-          </div>
-        </article>
-        <article class="metric-card">
-          <span class="metric-label">三大法人</span>
+          <span class="metric-label">每日三大法人買賣超</span>
           <strong id="institutionalTotal">--</strong>
           <span class="muted">大盤 + 櫃買合計</span>
         </article>
         <article class="metric-card">
-          <span class="metric-label">融資餘額變化</span>
-          <strong id="marginTotal">--</strong>
-          <span class="muted">樣本合計</span>
+          <span class="metric-label">三大法人未平倉</span>
+          <strong id="futuresTotal">--</strong>
+          <span class="muted">期貨多空淨額合計</span>
         </article>
         <article class="metric-card">
-          <span class="metric-label">期貨未平倉變化</span>
-          <strong id="futuresTotal">--</strong>
-          <span class="muted">樣本合計</span>
+          <span class="metric-label">每日信用交易變化</span>
+          <strong id="creditTotal">--</strong>
+          <span class="muted">融資餘額變化合計</span>
         </article>
       </section>
 
+      <section id="sourceIssues" class="notice" hidden></section>
+
       <section class="content-grid">
-        <article class="panel">
+        <article class="panel full">
           <div class="panel-header">
-            <h2>三大法人買賣超</h2>
-            <span class="muted">大盤與櫃買市場合計</span>
+            <h2>每日三大法人買賣超</h2>
+            <span class="muted">大盤與櫃買</span>
           </div>
           <div class="table-wrap">
             <table>
@@ -70,42 +64,41 @@
 
         <article class="panel">
           <div class="panel-header">
-            <h2>融資融券</h2>
-            <span class="muted">餘額與日變化</span>
+            <h2>三大法人未平倉</h2>
+            <span class="muted">期貨多空淨額</span>
           </div>
           <div class="table-wrap">
             <table>
               <thead>
                 <tr>
-                  <th>代號</th>
-                  <th>名稱</th>
+                  <th>身份別</th>
+                  <th>多方未平倉</th>
+                  <th>空方未平倉</th>
+                  <th>多空淨額</th>
+                </tr>
+              </thead>
+              <tbody id="futuresRows"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <h2>每日信用交易變化</h2>
+            <span class="muted">融資融券市場合計</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>市場</th>
                   <th>融資餘額</th>
                   <th>融資變化</th>
                   <th>融券餘額</th>
                   <th>融券變化</th>
                 </tr>
               </thead>
-              <tbody id="marginRows"></tbody>
-            </table>
-          </div>
-        </article>
-
-        <article class="panel full">
-          <div class="panel-header">
-            <h2>期貨未平倉</h2>
-            <span class="muted">期交所資料源待穩定化</span>
-          </div>
-          <div class="table-wrap compact">
-            <table>
-              <thead>
-                <tr>
-                  <th>商品</th>
-                  <th>契約</th>
-                  <th>未平倉</th>
-                  <th>變化</th>
-                </tr>
-              </thead>
-              <tbody id="futuresRows"></tbody>
+              <tbody id="creditRows"></tbody>
             </table>
           </div>
         </article>
