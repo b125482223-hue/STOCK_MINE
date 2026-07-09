@@ -5,6 +5,24 @@ function normalizeInstitutionalSummary({ twseRows = [], tpexRows = [] } = {}) {
   ];
 }
 
+function normalizeInstitutionalHistory(rows = []) {
+  return rows.map((row) => ({
+    date: textFrom(row, ["date", "日期"]),
+    foreignNonDealer: numberFrom(row, ["foreignNonDealer", "外資不含自營商"]),
+    foreignDealer: numberFrom(row, ["foreignDealer", "外資自營商"]),
+    foreignTotal: numberFrom(row, ["foreignTotal", "外資合計"]),
+    investmentTrust: numberFrom(row, ["investmentTrust", "投信"]),
+    dealerProprietary: numberFrom(row, ["dealerProprietary", "自營自行買賣"]),
+    dealerHedge: numberFrom(row, ["dealerHedge", "自營避險"]),
+    dealerTotal: numberFrom(row, ["dealerTotal", "自營合計"]),
+    total: numberFrom(row, ["total", "總和"]),
+    futuresForeignNet: numberFrom(row, ["futuresForeignNet", "外資未平倉"]),
+    futuresInvestmentTrustNet: numberFrom(row, ["futuresInvestmentTrustNet", "投信未平倉"]),
+    futuresDealerNet: numberFrom(row, ["futuresDealerNet", "自營未平倉"]),
+    futuresTotalNet: numberFrom(row, ["futuresTotalNet", "未平倉總和"])
+  })).filter((row) => row.date);
+}
+
 function aggregateInstitutionalMarket(market, rows) {
   const result = {
     market,
@@ -89,6 +107,7 @@ function buildDashboardData({
   asOf,
   source = "generated",
   institutional = [],
+  institutionalHistory = [],
   futuresOpenInterest = [],
   credit = [],
   creditHistory = [],
@@ -105,6 +124,7 @@ function buildDashboardData({
       shortChange: sumBy(credit, "shortChange")
     },
     institutional,
+    institutionalHistory,
     futuresOpenInterest,
     credit,
     creditHistory,
@@ -134,6 +154,7 @@ function numberFrom(row, keys, fallback = 0) {
 module.exports = {
   buildDashboardData,
   normalizeInstitutionalSummary,
+  normalizeInstitutionalHistory,
   normalizeCreditSummary,
   normalizeCreditHistory,
   normalizeFuturesOpenInterest,

@@ -2,6 +2,7 @@ const assert = require("node:assert/strict");
 const {
   buildDashboardData,
   normalizeInstitutionalSummary,
+  normalizeInstitutionalHistory,
   normalizeCreditHistory,
   normalizeCreditSummary,
   normalizeFuturesOpenInterest,
@@ -87,6 +88,40 @@ assert.deepEqual(creditHistory[0], {
   shortChange: -1200
 });
 
+const institutionalHistory = normalizeInstitutionalHistory([
+  {
+    date: "2026/07/09",
+    foreignNonDealer: "-472.53",
+    foreignDealer: "0",
+    foreignTotal: "-472.53",
+    investmentTrust: "199.01",
+    dealerProprietary: "-20.36",
+    dealerHedge: "-56.35",
+    dealerTotal: "-76.71",
+    total: "-350.23",
+    futuresForeignNet: "-80730",
+    futuresInvestmentTrustNet: "71089",
+    futuresDealerNet: "2243",
+    futuresTotalNet: "-6798"
+  }
+]);
+
+assert.deepEqual(institutionalHistory[0], {
+  date: "2026/07/09",
+  foreignNonDealer: -472.53,
+  foreignDealer: 0,
+  foreignTotal: -472.53,
+  investmentTrust: 199.01,
+  dealerProprietary: -20.36,
+  dealerHedge: -56.35,
+  dealerTotal: -76.71,
+  total: -350.23,
+  futuresForeignNet: -80730,
+  futuresInvestmentTrustNet: 71089,
+  futuresDealerNet: 2243,
+  futuresTotalNet: -6798
+});
+
 const futures = normalizeFuturesOpenInterest([
   { product: "TX", participant: "外資", long: "12,000", short: "10,000" },
   { product: "TX", participant: "投信", long: "2,000", short: "2,500" },
@@ -106,7 +141,8 @@ const dashboard = buildDashboardData({
   institutional,
   futuresOpenInterest: futures,
   credit,
-  creditHistory
+  creditHistory,
+  institutionalHistory
 });
 
 assert.equal(dashboard.asOf, "2026-07-10 15:30");
@@ -114,6 +150,7 @@ assert.equal(dashboard.institutional.length, 2);
 assert.equal(dashboard.futuresOpenInterest.length, 3);
 assert.equal(dashboard.credit.length, 2);
 assert.equal(dashboard.creditHistory.length, 2);
+assert.equal(dashboard.institutionalHistory.length, 1);
 assert.equal(dashboard.summary.institutionalNet, 1350);
 assert.equal(dashboard.summary.futuresNetOpenInterest, 2500);
 assert.equal(dashboard.summary.marginBalance, 6196.48);

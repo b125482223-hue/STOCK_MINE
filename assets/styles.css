@@ -226,6 +226,10 @@ table {
   min-width: 620px;
 }
 
+.institution-history-table {
+  min-width: 1120px;
+}
+
 th,
 td {
   padding: 12px 14px;

@@ -49,6 +49,7 @@ async function main() {
     asOf: `${marketDate} 盤後`,
     source: "generated",
     institutional,
+    institutionalHistory: previous?.institutionalHistory || sample?.institutionalHistory || [],
     futuresOpenInterest,
     credit,
     creditHistory: previous?.creditHistory || sample?.creditHistory || [],

@@ -69,21 +69,33 @@
 
         <article class="panel full">
           <div class="panel-header">
-            <h2>每日三大法人買賣超</h2>
-            <span class="muted">大盤與櫃買</span>
+            <h2>法人買賣金額與外資未平倉</h2>
+            <span class="muted">近 20 日</span>
           </div>
           <div class="table-wrap">
-            <table class="data-table">
+            <table class="data-table institution-history-table">
               <thead>
                 <tr>
-                  <th>市場</th>
+                  <th rowspan="2">日期</th>
+                  <th colspan="8">法人買賣超金額(億)</th>
+                  <th colspan="4">台股期貨未平倉(口)</th>
+                </tr>
+                <tr>
+                  <th>外資<br>不含自營</th>
+                  <th>外資<br>自營商</th>
+                  <th>外資<br>合計</th>
+                  <th>投信</th>
+                  <th>自營<br>自行買賣</th>
+                  <th>自營<br>避險</th>
+                  <th>自營<br>合計</th>
+                  <th>總和</th>
                   <th>外資</th>
                   <th>投信</th>
-                  <th>自營商</th>
-                  <th>合計</th>
+                  <th>自營</th>
+                  <th>總和</th>
                 </tr>
               </thead>
-              <tbody id="institutionalRows"></tbody>
+              <tbody id="institutionalHistoryRows"></tbody>
             </table>
           </div>
         </article>

@@ -14,6 +14,11 @@ const BUNDLED_FALLBACK = {
     { market: "大盤", foreign: 25740000000, investmentTrust: 3820000000, dealer: -1260000000, total: 28300000000 },
     { market: "櫃買", foreign: -1840000000, investmentTrust: 620000000, dealer: 210000000, total: -1010000000 }
   ],
+  institutionalHistory: [
+    { date: "2026/07/09", foreignNonDealer: -472.53, foreignDealer: 0, foreignTotal: -472.53, investmentTrust: 199.01, dealerProprietary: -20.36, dealerHedge: -56.35, dealerTotal: -76.71, total: -350.23, futuresForeignNet: -80730, futuresInvestmentTrustNet: 71089, futuresDealerNet: 2243, futuresTotalNet: -6798 },
+    { date: "2026/07/08", foreignNonDealer: -379.49, foreignDealer: 0, foreignTotal: -379.49, investmentTrust: 126.8, dealerProprietary: -33.43, dealerHedge: -136, dealerTotal: -169.43, total: -422.11, futuresForeignNet: -81208, futuresInvestmentTrustNet: 69987, futuresDealerNet: 3311, futuresTotalNet: -7970 },
+    { date: "2026/07/07", foreignNonDealer: -547.31, foreignDealer: 0, foreignTotal: -547.31, investmentTrust: 96.83, dealerProprietary: -126.1, dealerHedge: -361.24, dealerTotal: -487.33, total: -937.82, futuresForeignNet: -80042, futuresInvestmentTrustNet: 68187, futuresDealerNet: 3793, futuresTotalNet: -8062 }
+  ],
   futuresOpenInterest: [
     { participant: "外資", long: 48210, short: 46180, net: 2030 },
     { participant: "投信", long: 8120, short: 8460, net: -340 },
@@ -40,7 +45,7 @@ const els = {
   creditTotal: document.querySelector("#creditTotal"),
   marginBalanceTotal: document.querySelector("#marginBalanceTotal"),
   sourceIssues: document.querySelector("#sourceIssues"),
-  institutionalRows: document.querySelector("#institutionalRows"),
+  institutionalHistoryRows: document.querySelector("#institutionalHistoryRows"),
   futuresRows: document.querySelector("#futuresRows"),
   creditHistoryRows: document.querySelector("#creditHistoryRows")
 };
@@ -79,7 +84,7 @@ async function fetchJson(url) {
 
 function renderDashboard(data, label) {
   const summary = data.summary || {};
-  const institutional = data.institutional || [];
+  const institutionalHistory = data.institutionalHistory || [];
   const futures = data.futuresOpenInterest || [];
   const creditHistory = data.creditHistory || [];
 
@@ -96,12 +101,20 @@ function renderDashboard(data, label) {
     signedCell(row.shortChange, 0)
   ]);
 
-  renderRows(els.institutionalRows, institutional, (row) => [
-    row.market,
-    signedCell(row.foreign),
-    signedCell(row.investmentTrust),
-    signedCell(row.dealer),
-    signedCell(row.total)
+  renderRows(els.institutionalHistoryRows, institutionalHistory, (row) => [
+    row.date,
+    signedCell(row.foreignNonDealer, 2),
+    signedCell(row.foreignDealer, 2),
+    signedCell(row.foreignTotal, 2),
+    signedCell(row.investmentTrust, 2),
+    signedCell(row.dealerProprietary, 2),
+    signedCell(row.dealerHedge, 2),
+    signedCell(row.dealerTotal, 2),
+    signedCell(row.total, 2),
+    signedCell(row.futuresForeignNet, 0),
+    signedCell(row.futuresInvestmentTrustNet, 0),
+    signedCell(row.futuresDealerNet, 0),
+    signedCell(row.futuresTotalNet, 0)
   ]);
 
   renderRows(els.futuresRows, futures, (row) => [
