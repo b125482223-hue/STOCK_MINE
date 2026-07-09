@@ -2,7 +2,8 @@ name: Update market data
 
 on:
   schedule:
-    - cron: "30 8 * * 1-5"
+    # 21:00 Asia/Taipei (UTC+8); wait for the evening credit-trading release.
+    - cron: "0 13 * * 1-5"
   workflow_dispatch:
 
 permissions:
