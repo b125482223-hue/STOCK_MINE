@@ -2,10 +2,14 @@ name: Update market data
 
 on:
   schedule:
-    # 16:30 Asia/Taipei (UTC+8): publish the earliest available post-market data.
-    - cron: "30 8 * * 1-5"
-    # 21:00 Asia/Taipei (UTC+8): refresh after the evening credit-trading release.
-    - cron: "0 13 * * 1-5"
+    # 14:50, 15:00, 15:05 Asia/Taipei (UTC+8): institutional and futures data.
+    - cron: "50 6 * * 1-5"
+    - cron: "0 7 * * 1-5"
+    - cron: "5 7 * * 1-5"
+    # 21:30, 21:35, 21:40 Asia/Taipei (UTC+8): credit-trading data follow-up.
+    - cron: "30 13 * * 1-5"
+    - cron: "35 13 * * 1-5"
+    - cron: "40 13 * * 1-5"
   workflow_dispatch:
 
 permissions:

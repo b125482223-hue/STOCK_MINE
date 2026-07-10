@@ -29,6 +29,11 @@ async function main() {
   const sourceIssues = [];
 
   const tradingBundle = await findLatestTwseBundle(config, marketDate, sourceIssues);
+  const requestedYyyymmdd = marketDate.replaceAll("-", "");
+  if (!tradingBundle.found || tradingBundle.yyyymmdd !== requestedYyyymmdd) {
+    console.log("No current trading-day data available; keeping the existing dashboard data.");
+    return;
+  }
   const yyyymmdd = tradingBundle.yyyymmdd;
   const displayDate = formatDisplayDate(yyyymmdd);
   const twseInstitutionalRows = tradingBundle.institutionalRows;
@@ -243,11 +248,11 @@ async function findLatestTwseBundle(config, marketDate, issues) {
       issues.push(`今日資料尚未完整發布，已使用最近交易日 ${candidate}。`);
     }
 
-    return { yyyymmdd, institutionalRows, closeRows };
+    return { found: true, yyyymmdd, institutionalRows, closeRows };
   }
 
   issues.push("找不到最近可用的證交所 T86 與收盤價資料，改用備援資料。");
-  return { yyyymmdd: marketDate.replaceAll("-", ""), institutionalRows: [], closeRows: [] };
+  return { found: false, yyyymmdd: marketDate.replaceAll("-", ""), institutionalRows: [], closeRows: [] };
 }
 
 function replaceEmptyMarket(rows, market, previous, sample, issues, label) {
@@ -411,14 +416,19 @@ function taipeiDate() {
 }
 
 function buildUpdateStatus() {
-  const hour = Number(new Intl.DateTimeFormat("en-US", {
+  const parts = new Intl.DateTimeFormat("en-US", {
     timeZone: "Asia/Taipei",
     hour: "2-digit",
+    minute: "2-digit",
     hourCycle: "h23"
-  }).format(new Date()));
-  const stage = process.env.UPDATE_STAGE || (hour >= 20 ? "complete" : "preliminary");
+  }).formatToParts(new Date());
+  const value = (type) => Number(parts.find((part) => part.type === type)?.value || 0);
+  const hour = value("hour");
+  const stage = process.env.UPDATE_STAGE || (hour >= 21 ? "complete" : hour >= 15 ? "futures" : "preliminary");
 
   return stage === "complete"
     ? { stage: "complete", label: "信用交易已補齊" }
+    : stage === "futures"
+      ? { stage: "futures", label: "法人、期貨已更新" }
     : { stage: "preliminary", label: "初步盤後資料" };
 }
