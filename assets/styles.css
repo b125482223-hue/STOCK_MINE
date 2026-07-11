@@ -194,11 +194,11 @@ h2 {
 }
 
 .positive {
-  color: var(--green);
+  color: var(--red);
 }
 
 .negative {
-  color: var(--red);
+  color: var(--green);
 }
 
 .neutral {
@@ -253,6 +253,22 @@ table {
 
 .institution-history-table {
   min-width: 1120px;
+}
+
+.futures-table {
+  min-width: 0;
+}
+
+.futures-table th:last-child,
+.futures-table td:last-child {
+  text-align: right;
+}
+
+.metric-unit {
+  margin-left: 5px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
 }
 
 th,
@@ -328,6 +344,10 @@ td {
 
   .summary-grid,
   .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-grid.three {
     grid-template-columns: 1fr;
   }
 

@@ -36,6 +36,8 @@ const BUNDLED_FALLBACK = {
   sourceIssues: ["目前顯示內建範例資料，正式資料會由 data/latest/market-dashboard.json 提供。"]
 };
 
+const summaryCards = document.querySelectorAll(".summary-grid.three .metric-card");
+
 const els = {
   dataStatus: document.querySelector("#dataStatus"),
   dataVersion: document.querySelector("#dataVersion"),
@@ -48,9 +50,16 @@ const els = {
   sourceIssues: document.querySelector("#sourceIssues"),
   institutionalHistoryRows: document.querySelector("#institutionalHistoryRows"),
   futuresRows: document.querySelector("#futuresRows"),
-  creditHistoryRows: document.querySelector("#creditHistoryRows")
+  creditHistoryRows: document.querySelector("#creditHistoryRows"),
+  foreignLabel: summaryCards[0]?.querySelector(".metric-label"),
+  foreignSubtitle: summaryCards[0]?.querySelector(".muted"),
+  marginLabel: summaryCards[1]?.querySelector(".metric-label"),
+  marginSubtitle: summaryCards[1]?.querySelector(".muted"),
+  futuresLabel: summaryCards[2]?.querySelector(".metric-label"),
+  futuresSubtitle: summaryCards[2]?.querySelector(".muted")
 };
 
+setupFuturesTable();
 els.refreshButton.addEventListener("click", () => loadDashboard());
 
 loadDashboard();
@@ -88,10 +97,28 @@ function renderDashboard(data, label) {
   const institutionalHistory = data.institutionalHistory || [];
   const futures = data.futuresOpenInterest || [];
   const creditHistory = data.creditHistory || [];
+  const currentInstitutional = institutionalHistory[0] || {};
+  const previousInstitutional = institutionalHistory[1] || {};
+  const currentCredit = creditHistory[0] || {};
+  const foreignAmount = currentInstitutional.foreignTotal;
+  const previousForeignAmount = previousInstitutional.foreignTotal;
+  const foreignFutures = currentInstitutional.futuresForeignNet;
+  const previousForeignFutures = previousInstitutional.futuresForeignNet;
+  const foreignFuturesChange = Number.isFinite(foreignFutures) && Number.isFinite(previousForeignFutures)
+    ? foreignFutures - previousForeignFutures
+    : null;
 
-  els.marginBalanceTotal.textContent = formatNumber(summary.marginBalance ?? creditHistory[0]?.marginBalance, 2);
-  els.futuresTotal.innerHTML = signedText(summary.futuresNetOpenInterest, 0);
-  els.creditTotal.innerHTML = signedText(summary.marginChange ?? creditHistory[0]?.marginChange, 2);
+  els.foreignLabel.textContent = "外資今日買賣超金額";
+  els.creditTotal.innerHTML = metricValue(foreignAmount, 2, "億", true);
+  els.foreignSubtitle.innerHTML = comparisonText("昨日", previousForeignAmount, 2, "億");
+
+  els.marginLabel.textContent = "融資餘額";
+  els.marginBalanceTotal.innerHTML = metricValue(summary.marginBalance ?? currentCredit.marginBalance, 2, "億");
+  els.marginSubtitle.innerHTML = comparisonText("與前次相比", currentCredit.marginChange ?? summary.marginChange, 2, "億");
+
+  els.futuresLabel.textContent = "外資未平倉";
+  els.futuresTotal.innerHTML = metricValue(foreignFutures, 0, "口", true);
+  els.futuresSubtitle.innerHTML = comparisonText("與前次相比", foreignFuturesChange, 0, "口");
 
   renderRows(els.creditHistoryRows, creditHistory, (row) => [
     row.date,
@@ -120,8 +147,6 @@ function renderDashboard(data, label) {
 
   renderRows(els.futuresRows, futures, (row) => [
     row.participant,
-    formatNumber(row.long, 0),
-    formatNumber(row.short, 0),
     signedCell(row.net)
   ]);
 
@@ -129,6 +154,29 @@ function renderDashboard(data, label) {
   renderUpdateStatus(data.updateStatus);
   setStatus(label);
   els.updatedAt.textContent = `資料日期：${data.asOf || "--"}`;
+}
+
+function setupFuturesTable() {
+  const table = els.futuresRows?.closest("table");
+  if (!table) {
+    return;
+  }
+
+  table.classList.add("futures-table");
+  const headers = table.querySelectorAll("thead th");
+  if (headers.length >= 4) {
+    headers[2].remove();
+    headers[1].remove();
+  }
+}
+
+function metricValue(value, digits, unit, signed = false) {
+  const number = signed ? signedText(value, digits) : formatNumber(value, digits);
+  return `${number}<small class="metric-unit">${unit}</small>`;
+}
+
+function comparisonText(label, value, digits, unit) {
+  return `${label} ${signedText(value, digits)} ${unit}`;
 }
 
 function renderUpdateStatus(status) {
