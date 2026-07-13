@@ -217,11 +217,20 @@ assert.equal(sumBy(futures, "net"), 2500);
 
 const dashboard = buildDashboardData({
   asOf: "2026-07-10 15:30",
+  generatedAt: "2026-07-10T15:35:00+08:00",
   institutional,
   futuresOpenInterest: futures,
   credit,
   creditHistory,
-  institutionalHistory
+  institutionalHistory,
+  sectionUpdates: {
+    credit: {
+      dataDate: "2026/07/10",
+      updatedAt: "2026-07-10T15:35:00+08:00",
+      lastCheckedAt: "2026-07-10T15:35:00+08:00",
+      status: "current"
+    }
+  }
 });
 
 assert.equal(dashboard.asOf, "2026-07-10 15:30");
@@ -234,5 +243,7 @@ assert.equal(dashboard.summary.institutionalNet, 1350);
 assert.equal(dashboard.summary.futuresNetOpenInterest, 2500);
 assert.equal(dashboard.summary.marginBalance, 6196.48);
 assert.equal(dashboard.summary.marginChange, 58.32);
+assert.equal(dashboard.generatedAt, "2026-07-10T15:35:00+08:00");
+assert.equal(dashboard.sectionUpdates.credit.status, "current");
 
 console.log("normalizers.test.js passed");

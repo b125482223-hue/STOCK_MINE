@@ -17,6 +17,8 @@
           <span id="dataVersion" class="data-version">--</span>
           <span id="dataStatus" class="status-pill">載入中</span>
           <span id="updatedAt" class="muted">資料日期：--</span>
+          <a class="action-link" href="https://github.com/b125482223-hue/STOCK_MINE/actions/workflows/update-market-data.yml" target="_blank" rel="noopener noreferrer">手動更新 API</a>
+          <a class="action-link secondary" href="data/logs/api-call-history.json" target="_blank" rel="noopener noreferrer">API 紀錄</a>
           <button id="refreshButton" class="icon-button" type="button" title="重新整理" aria-label="重新整理">↻</button>
         </div>
       </header>
@@ -45,7 +47,7 @@
         <article class="panel full focus-panel">
           <div class="panel-header">
             <h2>每日信用交易變化</h2>
-            <span class="muted">融資餘額、增減、維持率</span>
+            <span id="creditUpdatedAt" class="muted update-time">信用資料：--</span>
           </div>
           <div class="table-wrap credit-table-wrap">
             <table class="data-table credit-table">

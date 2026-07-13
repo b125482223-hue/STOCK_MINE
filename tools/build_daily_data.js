@@ -14,6 +14,9 @@ const ROOT = path.resolve(__dirname, "..");
 const CONFIG_PATH = path.join(ROOT, "config", "data_sources.json");
 const LATEST_PATH = path.join(ROOT, "data", "latest", "market-dashboard.json");
 const SAMPLE_PATH = path.join(ROOT, "data", "sample", "market-dashboard.json");
+const API_HISTORY_PATH = path.join(ROOT, "data", "logs", "api-call-history.json");
+const API_HISTORY_LIMIT = 100;
+const apiCalls = [];
 
 main().catch((error) => {
   console.error(error);
@@ -25,81 +28,133 @@ async function main() {
   const previous = await readJsonIfExists(LATEST_PATH) || await readJsonIfExists(SAMPLE_PATH);
   const sample = await readJsonIfExists(SAMPLE_PATH);
   const marketDate = process.env.MARKET_DATE || taipeiDate();
-  const updateStatus = buildUpdateStatus();
+  const runAt = taipeiTimestamp();
   const sourceIssues = [];
-
-  const tradingBundle = await findLatestTwseBundle(config, marketDate, sourceIssues);
   const requestedYyyymmdd = marketDate.replaceAll("-", "");
-  if (!tradingBundle.found || tradingBundle.yyyymmdd !== requestedYyyymmdd) {
-    console.log("No current trading-day data available; keeping the existing dashboard data.");
-    return;
-  }
-  const yyyymmdd = tradingBundle.yyyymmdd;
-  const displayDate = formatDisplayDate(yyyymmdd);
-  const twseInstitutionalRows = tradingBundle.institutionalRows;
-  const closePriceMap = buildClosePriceMap(tradingBundle.closeRows);
-  const taifexFuturesNet = await tryFetchTaifexFuturesNet(config, displayDate, sourceIssues);
-  const tpexBundle = await tryFetchTpexBundle(config, yyyymmdd, sourceIssues);
-  const twseCreditStatistics = await tryFetchJson(
-    config.sources.twseCreditHistory.url.replace("{YYYYMMDD}", yyyymmdd),
+  const displayDate = formatDisplayDate(requestedYyyymmdd);
+
+  const twseInstitutionalRows = await tryFetchTwseInstitutional(
+    config,
+    requestedYyyymmdd,
     sourceIssues,
-    "TWSE credit trading statistics"
+    true
   );
-  const twseCreditRows = await tryFetchJson(config.sources.margin.url, sourceIssues, "大盤信用交易");
-
-  const institutional = normalizeInstitutionalSummary({
-    twseRows: twseInstitutionalRows,
-    tpexRows: tpexBundle.institutionalRows
+  const closePayload = await tryFetchJson(
+    config.sources.twseClosePrices.url.replace("{YYYYMMDD}", requestedYyyymmdd),
+    sourceIssues,
+    "TWSE closing prices",
+    true,
+    displayDate
+  );
+  const closeRows = extractTwseCloseRows(closePayload);
+  updateApiCall("TWSE closing prices", displayDate, {
+    dataAvailable: closeRows.length > 0,
+    rowCount: closeRows.length
   });
 
-  const credit = normalizeCreditSummary({
-    twseRows: Array.isArray(twseCreditRows) ? twseCreditRows : [],
-    tpexRows: previous?.credit?.filter((row) => row.market === "櫃買") || []
+  const taifexFuturesNet = await tryFetchTaifexFuturesNet(config, displayDate, sourceIssues);
+  const tpexBundle = await tryFetchTpexBundle(config, requestedYyyymmdd, sourceIssues);
+  const twseCreditStatistics = await tryFetchJson(
+    config.sources.twseCreditHistory.url.replace("{YYYYMMDD}", requestedYyyymmdd),
+    sourceIssues,
+    "TWSE credit trading statistics",
+    false,
+    displayDate
+  );
+  const statisticsRows = extractTwseCreditStatistics(twseCreditStatistics);
+  updateApiCall("TWSE credit trading statistics", displayDate, {
+    dataAvailable: statisticsRows.length > 0,
+    rowCount: statisticsRows.length
   });
 
-  replaceEmptyMarket(institutional, "大盤", previous, sample, sourceIssues, "大盤三大法人買賣超");
-  replaceEmptyMarket(institutional, "櫃買", previous, sample, sourceIssues, "櫃買三大法人買賣超");
+  const twseCreditRows = await tryFetchJson(
+    config.sources.margin.url,
+    sourceIssues,
+    "TWSE margin OpenAPI",
+    false,
+    displayDate
+  );
+  updateApiCall("TWSE margin OpenAPI", displayDate, {
+    dataAvailable: Array.isArray(twseCreditRows) && twseCreditRows.length > 0,
+    rowCount: Array.isArray(twseCreditRows) ? twseCreditRows.length : 0
+  });
+
+  let institutional = previous?.institutional || sample?.institutional || [];
+  let institutionalHistory = previous?.institutionalHistory || sample?.institutionalHistory || [];
+  let futuresOpenInterest = previous?.futuresOpenInterest || sample?.futuresOpenInterest || [];
+  let credit = previous?.credit || sample?.credit || [];
+  let creditHistory = previous?.creditHistory || sample?.creditHistory || [];
+  const sectionUpdates = buildPreviousSectionUpdates(previous, runAt);
+
+  const institutionalAvailable = twseInstitutionalRows.length > 0 && closeRows.length > 0;
+  const futuresAvailable = hasFuturesNet(taifexFuturesNet);
+  const generatedCreditHistoryRow = buildCreditHistoryRow({
+    date: displayDate.slice(5),
+    statisticsRows
+  });
+  const creditAvailable = Boolean(generatedCreditHistoryRow);
+
+  if (institutionalAvailable) {
+    institutional = normalizeInstitutionalSummary({
+      twseRows: twseInstitutionalRows,
+      tpexRows: tpexBundle.institutionalRows
+    });
+    replaceEmptyMarket(institutional, "大盤", previous, sample, sourceIssues, "大盤三大法人買賣超");
+    replaceEmptyMarket(institutional, "櫃買", previous, sample, sourceIssues, "櫃買三大法人買賣超");
+
+    const generatedInstitutionalHistoryRow = buildInstitutionalHistoryRow({
+      date: displayDate,
+      twseRows: twseInstitutionalRows,
+      closePriceMap: buildClosePriceMap(closeRows),
+      tpexRows: tpexBundle.institutionalRows,
+      tpexClosePriceMap: buildClosePriceMap(tpexBundle.closeRows),
+      futuresNet: taifexFuturesNet
+    });
+    institutionalHistory = mergeHistoryRows(generatedInstitutionalHistoryRow, institutionalHistory, 20);
+    sectionUpdates.institutional = currentSectionUpdate(displayDate, runAt);
+  } else {
+    sourceIssues.push(`三大法人 ${displayDate} 資料尚未完整發布，法人資料維持前次版本。`);
+    sectionUpdates.institutional = staleSectionUpdate(sectionUpdates.institutional, runAt);
+  }
+
+  if (futuresAvailable) {
+    futuresOpenInterest = futuresNetToRows(taifexFuturesNet);
+    sectionUpdates.futures = currentSectionUpdate(displayDate, runAt);
+  } else {
+    sourceIssues.push(`外資未平倉 ${displayDate} 資料尚未發布，期貨資料維持前次版本。`);
+    sectionUpdates.futures = staleSectionUpdate(sectionUpdates.futures, runAt);
+  }
 
   const tpexCredit = normalizeCreditSummary({ twseRows: [], tpexRows: tpexBundle.creditRows })[1];
   const twseCredit = buildTwseCreditSummary(extractTwseCreditStatistics(twseCreditStatistics));
-  if (twseCredit) {
-    credit[0] = { ...credit[0], ...twseCredit };
-  }
-  if (tpexCredit.marginBalance || tpexCredit.shortBalance) {
-    credit[1] = tpexCredit;
+  if (creditAvailable) {
+    credit = normalizeCreditSummary({
+      twseRows: Array.isArray(twseCreditRows) ? twseCreditRows : [],
+      tpexRows: tpexBundle.creditRows
+    });
+    if (twseCredit) {
+      credit[0] = { ...credit[0], ...twseCredit };
+    }
+    if (tpexCredit.marginBalance || tpexCredit.shortBalance) {
+      credit[1] = tpexCredit;
+    }
+    creditHistory = mergeHistoryRows(generatedCreditHistoryRow, creditHistory, 20);
+    sectionUpdates.credit = currentSectionUpdate(displayDate, runAt);
+  } else {
+    sourceIssues.push(`融資融券 ${displayDate} 資料尚未發布，信用交易維持前次版本。`);
+    sectionUpdates.credit = staleSectionUpdate(sectionUpdates.credit, runAt);
   }
 
-  let futuresOpenInterest = futuresNetToRows(taifexFuturesNet);
-  if (!futuresOpenInterest.length) {
-    futuresOpenInterest = previous?.futuresOpenInterest || [];
-    sourceIssues.push("三大法人未平倉沿用上一版資料，待接穩定 TAIFEX 端點。");
-  }
-
-  const generatedInstitutionalHistoryRow = buildInstitutionalHistoryRow({
-    date: displayDate,
-    twseRows: twseInstitutionalRows,
-    closePriceMap,
-    tpexRows: tpexBundle.institutionalRows,
-    tpexClosePriceMap: buildClosePriceMap(tpexBundle.closeRows),
-    futuresNet: taifexFuturesNet
+  const updateStatus = buildUpdateStatus({
+    institutionalAvailable,
+    futuresAvailable,
+    creditAvailable
   });
-
-  const institutionalHistory = mergeHistoryRows(
-    generatedInstitutionalHistoryRow,
-    previous?.institutionalHistory || sample?.institutionalHistory || [],
-    20
-  );
-
-  const generatedCreditHistoryRow = buildCreditHistoryRow({
-    date: displayDate.slice(5),
-    statisticsRows: extractTwseCreditStatistics(twseCreditStatistics)
-  });
-  const creditHistory = generatedCreditHistoryRow
-    ? mergeHistoryRows(generatedCreditHistoryRow, previous?.creditHistory || sample?.creditHistory || [], 20)
-    : previous?.creditHistory || sample?.creditHistory || [];
+  const newestDataDate = latestSectionDate(sectionUpdates) || previous?.asOf?.slice(0, 10) || displayDate;
 
   const dashboard = buildDashboardData({
-    asOf: `${displayDate} 盤後`,
+    asOf: `${newestDataDate} 盤後`,
+    generatedAt: runAt,
     source: "generated",
     institutional,
     institutionalHistory,
@@ -107,12 +162,25 @@ async function main() {
     credit,
     creditHistory,
     updateStatus,
+    sectionUpdates,
     sourceIssues
   });
 
   await fs.mkdir(path.dirname(LATEST_PATH), { recursive: true });
   await fs.writeFile(LATEST_PATH, `${JSON.stringify(dashboard, null, 2)}\n`, "utf8");
+  await writeApiCallHistory({
+    runAt,
+    marketDate,
+    trigger: process.env.MARKET_UPDATE_TRIGGER || "manual-local",
+    result: {
+      institutionalUpdated: institutionalAvailable,
+      futuresUpdated: futuresAvailable,
+      creditUpdated: creditAvailable
+    },
+    calls: apiCalls
+  });
   console.log(`Wrote ${path.relative(ROOT, LATEST_PATH)}`);
+  console.log(`Wrote ${path.relative(ROOT, API_HISTORY_PATH)}`);
 }
 
 async function tryFetchTpexBundle(config, yyyymmdd, issues) {
@@ -121,28 +189,48 @@ async function tryFetchTpexBundle(config, yyyymmdd, issues) {
   const closePayload = await tryFetchJson(
     config.sources.tpexClosePrices.url.replace("{YYYYMMDD}", yyyymmdd),
     issues,
-    "TPEx closing prices"
+    "TPEx closing prices",
+    false,
+    date
   );
   const creditPayload = await tryFetchJson(
     config.sources.tpexMargin.url.replace("{YYYYMMDD}", yyyymmdd),
     issues,
-    "TPEx margin trading"
+    "TPEx margin trading",
+    false,
+    date
   );
 
+  const institutionalRows = extractTpexInstitutionalRows(institutionalPayload);
+  const closeRows = extractTpexCloseRows(closePayload);
+  const creditRows = extractTpexCreditRows(creditPayload);
+  updateApiCall("TPEx institutional data", date, {
+    dataAvailable: institutionalRows.length > 0,
+    rowCount: institutionalRows.length
+  });
+  updateApiCall("TPEx closing prices", date, {
+    dataAvailable: closeRows.length > 0,
+    rowCount: closeRows.length
+  });
+  updateApiCall("TPEx margin trading", date, {
+    dataAvailable: creditRows.length > 0,
+    rowCount: creditRows.length
+  });
+
   return {
-    institutionalRows: extractTpexInstitutionalRows(institutionalPayload),
-    closeRows: extractTpexCloseRows(closePayload),
-    creditRows: extractTpexCreditRows(creditPayload)
+    institutionalRows,
+    closeRows,
+    creditRows
   };
 }
 
 async function tryFetchTpexInstitutional(url, date, issues) {
   try {
-    const response = await fetch(url, {
+    const response = await fetchWithLog(url, {
       method: "POST",
       headers: { "content-type": "application/x-www-form-urlencoded", "accept": "application/json" },
       body: new URLSearchParams({ type: "Daily", sect: "EW", date, response: "json" })
-    });
+    }, "TPEx institutional data", date);
     if (!response.ok) {
       issues.push(`TPEx institutional data returned HTTP ${response.status}.`);
       return null;
@@ -223,38 +311,6 @@ function numberFromValue(value) {
   return Number.isFinite(parsed) ? parsed : 0;
 }
 
-async function findLatestTwseBundle(config, marketDate, issues) {
-  const candidates = recentDateCandidates(marketDate, 10);
-
-  for (const candidate of candidates) {
-    const yyyymmdd = candidate.replaceAll("-", "");
-    const institutionalRows = await tryFetchTwseInstitutional(config, yyyymmdd, issues, true);
-    if (!institutionalRows.length) {
-      continue;
-    }
-
-    const closePayload = await tryFetchJson(
-      config.sources.twseClosePrices.url.replace("{YYYYMMDD}", yyyymmdd),
-      issues,
-      "上市收盤價",
-      true
-    );
-    const closeRows = extractTwseCloseRows(closePayload);
-    if (!closeRows.length) {
-      continue;
-    }
-
-    if (candidate !== marketDate) {
-      issues.push(`今日資料尚未完整發布，已使用最近交易日 ${candidate}。`);
-    }
-
-    return { found: true, yyyymmdd, institutionalRows, closeRows };
-  }
-
-  issues.push("找不到最近可用的證交所 T86 與收盤價資料，改用備援資料。");
-  return { found: false, yyyymmdd: marketDate.replaceAll("-", ""), institutionalRows: [], closeRows: [] };
-}
-
 function replaceEmptyMarket(rows, market, previous, sample, issues, label) {
   const index = rows.findIndex((row) => row.market === market);
   if (index < 0 || rows[index].total) {
@@ -276,17 +332,28 @@ function findNonZeroMarket(data, market) {
 
 async function tryFetchTwseInstitutional(config, yyyymmdd, issues, quiet = false) {
   const url = config.sources.institutionalTwse.url.replace("{YYYYMMDD}", yyyymmdd);
-  const payload = await tryFetchJson(url, issues, "大盤三大法人買賣超", quiet);
+  const requestedDate = formatDisplayDate(yyyymmdd);
+  const payload = await tryFetchJson(url, issues, "TWSE T86 institutional", quiet, requestedDate);
   if (!payload) {
+    updateApiCall("TWSE T86 institutional", requestedDate, { dataAvailable: false, rowCount: 0 });
     return [];
   }
 
   if (Array.isArray(payload)) {
+    updateApiCall("TWSE T86 institutional", requestedDate, {
+      dataAvailable: payload.length > 0,
+      rowCount: payload.length
+    });
     return payload;
   }
 
   if (Array.isArray(payload.data) && Array.isArray(payload.fields)) {
-    return payload.data.map((values) => Object.fromEntries(payload.fields.map((field, index) => [field, values[index]])));
+    const rows = payload.data.map((values) => Object.fromEntries(payload.fields.map((field, index) => [field, values[index]])));
+    updateApiCall("TWSE T86 institutional", requestedDate, {
+      dataAvailable: rows.length > 0,
+      rowCount: rows.length
+    });
+    return rows;
   }
 
   if (!quiet) {
@@ -295,9 +362,14 @@ async function tryFetchTwseInstitutional(config, yyyymmdd, issues, quiet = false
   return [];
 }
 
-async function tryFetchJson(url, issues, label, quiet = false) {
+async function tryFetchJson(url, issues, label, quiet = false, requestedDate = null) {
   try {
-    const response = await fetch(url, { headers: { "accept": "application/json,text/plain,*/*" } });
+    const response = await fetchWithLog(
+      url,
+      { headers: { "accept": "application/json,text/plain,*/*" } },
+      label,
+      requestedDate
+    );
     if (!response.ok) {
       issues.push(`${label}讀取失敗：HTTP ${response.status}`);
       return null;
@@ -322,7 +394,7 @@ async function tryFetchJson(url, issues, label, quiet = false) {
 
 async function tryFetchTaifexFuturesNet(config, displayDate, issues) {
   try {
-    const response = await fetch(config.sources.futuresOpenInterest.url, {
+    const response = await fetchWithLog(config.sources.futuresOpenInterest.url, {
       method: "POST",
       headers: { "content-type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({
@@ -333,14 +405,19 @@ async function tryFetchTaifexFuturesNet(config, displayDate, issues) {
         doQuery: "1",
         dateaddcnt: ""
       })
-    });
+    }, "TAIFEX futures open interest", displayDate);
 
     if (!response.ok) {
       issues.push(`期交所台股期貨未平倉讀取失敗：HTTP ${response.status}`);
       return {};
     }
 
-    return parseTaifexFuturesOpenInterestHtml(await response.text());
+    const result = parseTaifexFuturesOpenInterestHtml(await response.text());
+    updateApiCall("TAIFEX futures open interest", displayDate, {
+      dataAvailable: hasFuturesNet(result),
+      rowCount: hasFuturesNet(result) ? 3 : 0
+    });
+    return result;
   } catch (error) {
     issues.push(`期交所台股期貨未平倉讀取失敗：${error.message}`);
     return {};
@@ -362,7 +439,7 @@ function mergeHistoryRows(newRow, existingRows, limit) {
 }
 
 function futuresNetToRows(futuresNet) {
-  if (!futuresNet?.futuresTotalNet) {
+  if (!hasFuturesNet(futuresNet)) {
     return [];
   }
 
@@ -373,22 +450,12 @@ function futuresNetToRows(futuresNet) {
   ];
 }
 
-function recentDateCandidates(marketDate, days) {
-  const base = new Date(`${marketDate}T12:00:00+08:00`);
-  const dates = [];
-  for (let offset = 0; offset <= days; offset += 1) {
-    const date = new Date(base);
-    date.setDate(base.getDate() - offset);
-    dates.push(formatDate(date));
-  }
-  return dates;
-}
-
-function formatDate(date) {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
+function hasFuturesNet(futuresNet) {
+  return [
+    futuresNet?.futuresForeignNet,
+    futuresNet?.futuresInvestmentTrustNet,
+    futuresNet?.futuresDealerNet
+  ].some((value) => Number(value) !== 0);
 }
 
 function formatDisplayDate(yyyymmdd) {
@@ -403,6 +470,117 @@ async function readJsonIfExists(filePath) {
   }
 }
 
+async function fetchWithLog(url, options, source, requestedDate = null) {
+  const entry = {
+    source,
+    requestedDate,
+    calledAt: taipeiTimestamp(),
+    url,
+    httpStatus: null,
+    ok: false,
+    dataAvailable: null,
+    rowCount: null,
+    message: null
+  };
+  apiCalls.push(entry);
+
+  try {
+    const response = await fetch(url, options);
+    entry.httpStatus = response.status;
+    entry.ok = response.ok;
+    if (!response.ok) {
+      entry.message = `HTTP ${response.status}`;
+    }
+    return response;
+  } catch (error) {
+    entry.message = error.message;
+    throw error;
+  }
+}
+
+function updateApiCall(source, requestedDate, details) {
+  const entry = [...apiCalls].reverse().find((item) => (
+    item.source === source && item.requestedDate === requestedDate
+  ));
+  if (entry) {
+    Object.assign(entry, details);
+  }
+}
+
+function buildPreviousSectionUpdates(previous, checkedAt) {
+  const generatedAt = previous?.generatedAt || null;
+  const institutionalDate = previous?.institutionalHistory?.[0]?.date || null;
+  const creditDate = fullCreditDate(previous?.creditHistory?.[0]?.date, previous?.asOf);
+
+  return {
+    institutional: {
+      dataDate: previous?.sectionUpdates?.institutional?.dataDate || institutionalDate,
+      updatedAt: previous?.sectionUpdates?.institutional?.updatedAt || generatedAt,
+      lastCheckedAt: checkedAt,
+      status: "stale"
+    },
+    futures: {
+      dataDate: previous?.sectionUpdates?.futures?.dataDate || institutionalDate,
+      updatedAt: previous?.sectionUpdates?.futures?.updatedAt || generatedAt,
+      lastCheckedAt: checkedAt,
+      status: "stale"
+    },
+    credit: {
+      dataDate: previous?.sectionUpdates?.credit?.dataDate || creditDate,
+      updatedAt: previous?.sectionUpdates?.credit?.updatedAt || generatedAt,
+      lastCheckedAt: checkedAt,
+      status: "stale"
+    }
+  };
+}
+
+function currentSectionUpdate(dataDate, timestamp) {
+  return {
+    dataDate,
+    updatedAt: timestamp,
+    lastCheckedAt: timestamp,
+    status: "current"
+  };
+}
+
+function staleSectionUpdate(section, checkedAt) {
+  return {
+    dataDate: section?.dataDate || null,
+    updatedAt: section?.updatedAt || null,
+    lastCheckedAt: checkedAt,
+    status: "stale"
+  };
+}
+
+function fullCreditDate(shortDate, asOf) {
+  if (!shortDate) {
+    return null;
+  }
+  const year = String(asOf || "").slice(0, 4);
+  return /^\d{4}$/.test(year) ? `${year}/${shortDate}` : shortDate;
+}
+
+function latestSectionDate(sectionUpdates) {
+  return Object.values(sectionUpdates)
+    .map((section) => section?.dataDate)
+    .filter(Boolean)
+    .sort()
+    .at(-1) || null;
+}
+
+async function writeApiCallHistory(entry) {
+  const previous = await readJsonIfExists(API_HISTORY_PATH);
+  const entries = [entry, ...(previous?.entries || [])].slice(0, API_HISTORY_LIMIT);
+  const history = {
+    version: "1.0.0",
+    updatedAt: entry.runAt,
+    entries
+  };
+
+  await fs.mkdir(path.dirname(API_HISTORY_PATH), { recursive: true });
+  await fs.writeFile(API_HISTORY_PATH, `${JSON.stringify(history, null, 2)}\n`, "utf8");
+}
+
 function taipeiDate() {
   const parts = new Intl.DateTimeFormat("en-CA", {
     timeZone: "Asia/Taipei",
@@ -415,20 +593,30 @@ function taipeiDate() {
   return `${get("year")}-${get("month")}-${get("day")}`;
 }
 
-function buildUpdateStatus() {
-  const parts = new Intl.DateTimeFormat("en-US", {
+function taipeiTimestamp() {
+  const parts = new Intl.DateTimeFormat("en-CA", {
     timeZone: "Asia/Taipei",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
     hour: "2-digit",
     minute: "2-digit",
+    second: "2-digit",
     hourCycle: "h23"
   }).formatToParts(new Date());
-  const value = (type) => Number(parts.find((part) => part.type === type)?.value || 0);
-  const hour = value("hour");
-  const stage = process.env.UPDATE_STAGE || (hour >= 21 ? "complete" : hour >= 15 ? "futures" : "preliminary");
+  const value = (type) => parts.find((part) => part.type === type)?.value || "00";
+  return `${value("year")}-${value("month")}-${value("day")}T${value("hour")}:${value("minute")}:${value("second")}+08:00`;
+}
 
-  return stage === "complete"
-    ? { stage: "complete", label: "信用交易已補齊" }
-    : stage === "futures"
-      ? { stage: "futures", label: "法人、期貨已更新" }
-    : { stage: "preliminary", label: "初步盤後資料" };
+function buildUpdateStatus({ institutionalAvailable, futuresAvailable, creditAvailable }) {
+  if (institutionalAvailable && futuresAvailable && creditAvailable) {
+    return { stage: "complete", label: "當日資料已補齊" };
+  }
+  if (creditAvailable) {
+    return { stage: "credit", label: "信用交易已更新" };
+  }
+  if (institutionalAvailable || futuresAvailable) {
+    return { stage: "partial", label: "部分盤後資料已更新" };
+  }
+  return { stage: "waiting", label: "等待官方資料" };
 }

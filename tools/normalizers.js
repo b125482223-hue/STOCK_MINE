@@ -250,6 +250,7 @@ function normalizeFuturesOpenInterest(rows = []) {
 
 function buildDashboardData({
   asOf,
+  generatedAt = null,
   source = "generated",
   institutional = [],
   institutionalHistory = [],
@@ -257,10 +258,12 @@ function buildDashboardData({
   credit = [],
   creditHistory = [],
   updateStatus = null,
+  sectionUpdates = {},
   sourceIssues = []
 } = {}) {
   return {
     asOf,
+    generatedAt,
     source,
     summary: {
       institutionalNet: sumBy(institutional, "total"),
@@ -275,6 +278,7 @@ function buildDashboardData({
     credit,
     creditHistory,
     updateStatus,
+    sectionUpdates,
     sourceIssues
   };
 }

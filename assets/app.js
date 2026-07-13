@@ -43,6 +43,7 @@ const els = {
   dataVersion: document.querySelector("#dataVersion"),
   updatedAt: document.querySelector("#updatedAt"),
   refreshButton: document.querySelector("#refreshButton"),
+  creditUpdatedAt: document.querySelector("#creditUpdatedAt"),
   institutionalTotal: document.querySelector("#institutionalTotal"),
   futuresTotal: document.querySelector("#futuresTotal"),
   creditTotal: document.querySelector("#creditTotal"),
@@ -100,9 +101,10 @@ function renderDashboard(data, label) {
   const currentInstitutional = institutionalHistory[0] || {};
   const previousInstitutional = institutionalHistory[1] || {};
   const currentCredit = creditHistory[0] || {};
+  const currentForeignFutures = futures.find((row) => row.participant === "外資");
   const foreignAmount = currentInstitutional.foreignTotal;
   const previousForeignAmount = previousInstitutional.foreignTotal;
-  const foreignFutures = currentInstitutional.futuresForeignNet;
+  const foreignFutures = currentForeignFutures?.net ?? currentInstitutional.futuresForeignNet;
   const previousForeignFutures = previousInstitutional.futuresForeignNet;
   const foreignFuturesChange = Number.isFinite(foreignFutures) && Number.isFinite(previousForeignFutures)
     ? foreignFutures - previousForeignFutures
@@ -152,8 +154,9 @@ function renderDashboard(data, label) {
 
   renderIssues(data.sourceIssues || []);
   renderUpdateStatus(data.updateStatus);
+  renderCreditTimestamp(data.sectionUpdates?.credit);
   setStatus(label);
-  els.updatedAt.textContent = `資料日期：${data.asOf || "--"}`;
+  els.updatedAt.textContent = sectionDateSummary(data);
 }
 
 function setupFuturesTable() {
@@ -184,6 +187,38 @@ function renderUpdateStatus(status) {
   const label = status?.label || "資料完整度待確認";
   els.dataVersion.textContent = label;
   els.dataVersion.dataset.stage = stage;
+}
+
+function renderCreditTimestamp(section) {
+  if (!els.creditUpdatedAt) {
+    return;
+  }
+
+  const dataDate = section?.dataDate || "--";
+  const updatedAt = formatTimestamp(section?.updatedAt);
+  const checkedAt = formatTimestamp(section?.lastCheckedAt);
+  els.creditUpdatedAt.textContent = `資料 ${dataDate} · 更新 ${updatedAt} · 檢查 ${checkedAt}`;
+}
+
+function sectionDateSummary(data) {
+  const institutionalDate = data.sectionUpdates?.institutional?.dataDate;
+  const creditDate = data.sectionUpdates?.credit?.dataDate;
+  if (institutionalDate || creditDate) {
+    return `資料日期：法人 ${shortDate(institutionalDate)} · 信用 ${shortDate(creditDate)}`;
+  }
+  return `資料日期：${data.asOf || "--"}`;
+}
+
+function shortDate(value) {
+  return value ? String(value).slice(5) : "--";
+}
+
+function formatTimestamp(value) {
+  if (!value) {
+    return "--";
+  }
+  const match = String(value).match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
+  return match ? `${match[2]}/${match[3]} ${match[4]}:${match[5]}` : value;
 }
 
 function renderRows(target, rows, mapper) {

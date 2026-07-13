@@ -33,6 +33,8 @@ jobs:
 
       - name: Build daily data
         run: node tools/build_daily_data.js
+        env:
+          MARKET_UPDATE_TRIGGER: ${{ github.event_name }}
 
       - name: Report dashboard freshness
         shell: bash
@@ -40,8 +42,11 @@ jobs:
           node <<'NODE'
           const fs = require("node:fs");
           const data = JSON.parse(fs.readFileSync("data/latest/market-dashboard.json", "utf8"));
+          const history = JSON.parse(fs.readFileSync("data/logs/api-call-history.json", "utf8"));
+          const latestRun = history.entries[0];
           const issues = data.sourceIssues?.length ? data.sourceIssues.join("; ") : "none";
-          const report = `Dashboard date: ${data.asOf}\nUpdate stage: ${data.updateStatus?.stage || "unknown"}\nSource issues: ${issues}`;
+          const availableCalls = latestRun.calls.filter((call) => call.dataAvailable).length;
+          const report = `Dashboard date: ${data.asOf}\nGenerated at: ${data.generatedAt}\nUpdate stage: ${data.updateStatus?.stage || "unknown"}\nAPI data available: ${availableCalls}/${latestRun.calls.length}\nSource issues: ${issues}`;
           console.log(report);
           fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `## Market data result\n\n${report.replaceAll("\n", "  \n")}\n`);
           NODE
@@ -50,6 +55,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/latest/market-dashboard.json
+          git add data/latest/market-dashboard.json data/logs/api-call-history.json
           git diff --cached --quiet || git commit -m "chore: update daily market data"
           git push
