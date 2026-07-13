@@ -2,7 +2,7 @@
   "asOf": "2026/07/13 盤後",
   "source": "generated",
   "summary": {
-    "institutionalNet": -811292995,
+    "institutionalNet": -810539995,
     "futuresNetOpenInterest": -8002,
     "marginBalance": 6196.48,
     "marginChange": 58.33,
@@ -19,9 +19,9 @@
     {
       "market": "櫃買",
       "foreign": -143825882,
-      "investmentTrust": -567074,
+      "investmentTrust": 185926,
       "dealer": 46060481,
-      "total": -98332475
+      "total": -97579475
     }
   ],
   "institutionalHistory": [
@@ -30,11 +30,11 @@
       "foreignNonDealer": -184.56,
       "foreignDealer": 0,
       "foreignTotal": -184.56,
-      "investmentTrust": 78.29,
+      "investmentTrust": 75.88,
       "dealerProprietary": -18.96,
       "dealerHedge": -90.92,
       "dealerTotal": -109.88,
-      "total": -216.15,
+      "total": -218.56,
       "futuresForeignNet": -81066,
       "futuresInvestmentTrustNet": 71794,
       "futuresDealerNet": 1270,
