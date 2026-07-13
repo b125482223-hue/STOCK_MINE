@@ -274,6 +274,58 @@ h2 {
   text-align: right;
 }
 
+.api-dashboard {
+  max-width: 920px;
+}
+
+.api-topbar {
+  align-items: center;
+}
+
+.api-log-updated {
+  margin: 10px 0 0;
+}
+
+.api-log-table {
+  min-width: 0;
+}
+
+.api-log-table th:nth-child(2),
+.api-log-table td:nth-child(2) {
+  text-align: left;
+}
+
+.api-call-name {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.api-state {
+  display: inline-flex;
+  min-width: 56px;
+  justify-content: center;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+.api-state.success {
+  background: #edf8f1;
+  color: var(--green);
+}
+
+.api-state.waiting {
+  background: #fff8df;
+  color: #806424;
+}
+
+.api-state.failed {
+  background: #fbefef;
+  color: var(--red);
+}
+
 .table-wrap {
   overflow-x: auto;
 }

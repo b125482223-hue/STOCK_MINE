@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>API 呼叫紀錄</title>
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <main class="dashboard api-dashboard">
+      <header class="topbar api-topbar">
+        <div>
+          <p class="eyebrow">API CALL HISTORY</p>
+          <h1>API 呼叫紀錄</h1>
+          <p id="apiLogUpdatedAt" class="muted api-log-updated">最後更新：--</p>
+        </div>
+        <a class="action-link secondary" href="index.html">返回儀表板</a>
+      </header>
+
+      <section class="panel full">
+        <div class="table-wrap">
+          <table class="data-table api-log-table">
+            <thead>
+              <tr>
+                <th>呼叫時間</th>
+                <th>呼叫項目</th>
+              </tr>
+            </thead>
+            <tbody id="apiLogRows">
+              <tr class="empty-row"><td colspan="2">載入中</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="assets/api-status.js"></script>
+  </body>
+</html>
