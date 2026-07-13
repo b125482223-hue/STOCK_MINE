@@ -1,9 +1,9 @@
 {
-  "asOf": "2026/07/09 盤後",
+  "asOf": "2026/07/13 盤後",
   "source": "generated",
   "summary": {
-    "institutionalNet": -56458417,
-    "futuresNetOpenInterest": -6798,
+    "institutionalNet": -811292995,
+    "futuresNetOpenInterest": -8002,
     "marginBalance": 6196.48,
     "marginChange": 58.33,
     "shortChange": -1861
@@ -11,20 +11,35 @@
   "institutional": [
     {
       "market": "大盤",
-      "foreign": 131219050,
-      "investmentTrust": 56657204,
-      "dealer": -242485510,
-      "total": -54609256
+      "foreign": -307516492,
+      "investmentTrust": 46890156,
+      "dealer": -452334184,
+      "total": -712960520
     },
     {
       "market": "櫃買",
-      "foreign": -64246504,
-      "investmentTrust": 8284363,
-      "dealer": 54112980,
-      "total": -1849161
+      "foreign": -143825882,
+      "investmentTrust": -567074,
+      "dealer": 46060481,
+      "total": -98332475
     }
   ],
   "institutionalHistory": [
+    {
+      "date": "2026/07/13",
+      "foreignNonDealer": -163.7,
+      "foreignDealer": 0,
+      "foreignTotal": -163.7,
+      "investmentTrust": 94.68,
+      "dealerProprietary": -17.97,
+      "dealerHedge": -93.91,
+      "dealerTotal": -111.88,
+      "total": -180.9,
+      "futuresForeignNet": -81066,
+      "futuresInvestmentTrustNet": 71794,
+      "futuresDealerNet": 1270,
+      "futuresTotalNet": -8002
+    },
     {
       "date": "2026/07/09",
       "foreignNonDealer": -487.1,
@@ -91,19 +106,19 @@
       "participant": "外資",
       "long": null,
       "short": null,
-      "net": -80730
+      "net": -81066
     },
     {
       "participant": "投信",
       "long": null,
       "short": null,
-      "net": 71689
+      "net": 71794
     },
     {
       "participant": "自營商",
       "long": null,
       "short": null,
-      "net": 2243
+      "net": 1270
     }
   ],
   "credit": [
@@ -165,10 +180,10 @@
     }
   ],
   "updateStatus": {
-    "stage": "complete",
-    "label": "信用交易已補齊"
+    "stage": "futures",
+    "label": "法人、期貨已更新"
   },
   "sourceIssues": [
-    "今日資料尚未完整發布，已使用最近交易日 2026-07-09。"
+    "TPEx closing prices讀取失敗：terminated"
   ]
 }
