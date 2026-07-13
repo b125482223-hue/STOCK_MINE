@@ -2,6 +2,7 @@ const assert = require("node:assert/strict");
 const {
   buildDashboardData,
   buildClosePriceMap,
+  extractTwseMarketIndex,
   buildInstitutionalHistoryRow,
   normalizeInstitutionalSummary,
   normalizeInstitutionalHistory,
@@ -148,6 +149,22 @@ const closePriceMap = buildClosePriceMap([
 
 assert.equal(closePriceMap.get("2330"), 1000);
 
+assert.deepEqual(extractTwseMarketIndex({
+  tables: [{
+    title: "115年07月13日 價格指數(臺灣證券交易所)",
+    data: [["發行量加權股價指數", "45,380.52", "<p style='color:red'>+</p>", "25.91", "0.06", ""]]
+  }]
+}, "2026/07/13"), {
+  name: "發行量加權股價指數",
+  date: "2026/07/13",
+  close: 45380.52,
+  change: 25.91,
+  changePercent: 0.06,
+  direction: "up"
+});
+
+assert.equal(extractTwseMarketIndex({ tables: [] }), null);
+
 const generatedInstitutionalRow = buildInstitutionalHistoryRow({
   date: "2026/07/09",
   twseRows: [
@@ -218,6 +235,14 @@ assert.equal(sumBy(futures, "net"), 2500);
 const dashboard = buildDashboardData({
   asOf: "2026-07-10 15:30",
   generatedAt: "2026-07-10T15:35:00+08:00",
+  marketIndex: {
+    name: "發行量加權股價指數",
+    date: "2026/07/10",
+    close: 45380.52,
+    change: 25.91,
+    changePercent: 0.06,
+    direction: "up"
+  },
   institutional,
   futuresOpenInterest: futures,
   credit,
@@ -244,6 +269,7 @@ assert.equal(dashboard.summary.futuresNetOpenInterest, 2500);
 assert.equal(dashboard.summary.marginBalance, 6196.48);
 assert.equal(dashboard.summary.marginChange, 58.32);
 assert.equal(dashboard.generatedAt, "2026-07-10T15:35:00+08:00");
+assert.equal(dashboard.marketIndex.close, 45380.52);
 assert.equal(dashboard.sectionUpdates.credit.status, "current");
 
 console.log("normalizers.test.js passed");

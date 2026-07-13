@@ -23,21 +23,26 @@
         </div>
       </header>
 
-      <section class="summary-grid three" aria-label="盤後摘要">
+      <section class="summary-grid four" aria-label="盤後摘要">
+        <article class="metric-card index-card">
+          <span class="metric-label">加權指數</span>
+          <strong id="marketIndex">--</strong>
+          <span id="marketIndexChange" class="muted">漲跌待更新</span>
+        </article>
         <article class="metric-card strong">
-          <span class="metric-label">融資增減</span>
+          <span id="foreignLabel" class="metric-label">外資今日買賣超金額</span>
           <strong id="creditTotal">--</strong>
-          <span class="muted">最新交易日</span>
+          <span id="foreignSubtitle" class="muted">昨日 --</span>
         </article>
         <article class="metric-card">
-          <span class="metric-label">融資餘額</span>
+          <span id="marginLabel" class="metric-label">融資餘額</span>
           <strong id="marginBalanceTotal">--</strong>
-          <span class="muted">最新交易日</span>
+          <span id="marginSubtitle" class="muted">與前次相比 --</span>
         </article>
         <article class="metric-card">
-          <span class="metric-label">三大法人未平倉</span>
+          <span id="futuresLabel" class="metric-label">外資未平倉</span>
           <strong id="futuresTotal">--</strong>
-          <span class="muted">多空淨額合計</span>
+          <span id="futuresSubtitle" class="muted">與前次相比 --</span>
         </article>
       </section>
 

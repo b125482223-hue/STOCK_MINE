@@ -37,6 +37,27 @@ function buildClosePriceMap(rows = []) {
   return prices;
 }
 
+function extractTwseMarketIndex(payload, date = null) {
+  const table = payload?.tables?.find((item) => item.title?.includes("價格指數(臺灣證券交易所)"));
+  const row = table?.data?.find((item) => item[0] === "發行量加權股價指數");
+  if (!row) {
+    return null;
+  }
+
+  const direction = String(row[2]).includes("+") ? 1 : String(row[2]).includes("-") ? -1 : 0;
+  const change = Math.abs(numberFrom({ value: row[3] }, ["value"])) * direction;
+  const changePercent = Math.abs(numberFrom({ value: row[4] }, ["value"])) * direction;
+
+  return {
+    name: row[0],
+    date,
+    close: numberFrom({ value: row[1] }, ["value"]),
+    change,
+    changePercent,
+    direction: direction > 0 ? "up" : direction < 0 ? "down" : "flat"
+  };
+}
+
 function buildInstitutionalHistoryRow({
   date,
   twseRows = [],
@@ -252,6 +273,7 @@ function buildDashboardData({
   asOf,
   generatedAt = null,
   source = "generated",
+  marketIndex = null,
   institutional = [],
   institutionalHistory = [],
   futuresOpenInterest = [],
@@ -265,6 +287,7 @@ function buildDashboardData({
     asOf,
     generatedAt,
     source,
+    marketIndex,
     summary: {
       institutionalNet: sumBy(institutional, "total"),
       futuresNetOpenInterest: sumBy(futuresOpenInterest, "net"),
@@ -309,6 +332,7 @@ function round2(value) {
 module.exports = {
   buildDashboardData,
   buildClosePriceMap,
+  extractTwseMarketIndex,
   buildInstitutionalHistoryRow,
   normalizeInstitutionalSummary,
   normalizeInstitutionalHistory,

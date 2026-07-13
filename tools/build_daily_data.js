@@ -3,6 +3,7 @@ const path = require("node:path");
 const {
   buildDashboardData,
   buildClosePriceMap,
+  extractTwseMarketIndex,
   buildInstitutionalHistoryRow,
   normalizeInstitutionalSummary,
   normalizeCreditSummary,
@@ -47,6 +48,7 @@ async function main() {
     displayDate
   );
   const closeRows = extractTwseCloseRows(closePayload);
+  const currentMarketIndex = extractTwseMarketIndex(closePayload, displayDate);
   updateApiCall("TWSE closing prices", displayDate, {
     dataAvailable: closeRows.length > 0,
     rowCount: closeRows.length
@@ -80,6 +82,7 @@ async function main() {
   });
 
   let institutional = previous?.institutional || sample?.institutional || [];
+  let marketIndex = previous?.marketIndex || sample?.marketIndex || null;
   let institutionalHistory = previous?.institutionalHistory || sample?.institutionalHistory || [];
   let futuresOpenInterest = previous?.futuresOpenInterest || sample?.futuresOpenInterest || [];
   let credit = previous?.credit || sample?.credit || [];
@@ -87,12 +90,21 @@ async function main() {
   const sectionUpdates = buildPreviousSectionUpdates(previous, runAt);
 
   const institutionalAvailable = twseInstitutionalRows.length > 0 && closeRows.length > 0;
+  const indexAvailable = Boolean(currentMarketIndex);
   const futuresAvailable = hasFuturesNet(taifexFuturesNet);
   const generatedCreditHistoryRow = buildCreditHistoryRow({
     date: displayDate.slice(5),
     statisticsRows
   });
   const creditAvailable = Boolean(generatedCreditHistoryRow);
+
+  if (indexAvailable) {
+    marketIndex = currentMarketIndex;
+    sectionUpdates.index = currentSectionUpdate(displayDate, runAt);
+  } else {
+    sourceIssues.push(`加權指數 ${displayDate} 資料尚未發布，指數資料維持前次版本。`);
+    sectionUpdates.index = staleSectionUpdate(sectionUpdates.index, runAt);
+  }
 
   if (institutionalAvailable) {
     institutional = normalizeInstitutionalSummary({
@@ -156,6 +168,7 @@ async function main() {
     asOf: `${newestDataDate} 盤後`,
     generatedAt: runAt,
     source: "generated",
+    marketIndex,
     institutional,
     institutionalHistory,
     futuresOpenInterest,
@@ -174,6 +187,7 @@ async function main() {
     trigger: process.env.MARKET_UPDATE_TRIGGER || "manual-local",
     result: {
       institutionalUpdated: institutionalAvailable,
+      indexUpdated: indexAvailable,
       futuresUpdated: futuresAvailable,
       creditUpdated: creditAvailable
     },
@@ -513,6 +527,12 @@ function buildPreviousSectionUpdates(previous, checkedAt) {
   const creditDate = fullCreditDate(previous?.creditHistory?.[0]?.date, previous?.asOf);
 
   return {
+    index: {
+      dataDate: previous?.sectionUpdates?.index?.dataDate || previous?.marketIndex?.date || institutionalDate,
+      updatedAt: previous?.sectionUpdates?.index?.updatedAt || generatedAt,
+      lastCheckedAt: checkedAt,
+      status: "stale"
+    },
     institutional: {
       dataDate: previous?.sectionUpdates?.institutional?.dataDate || institutionalDate,
       updatedAt: previous?.sectionUpdates?.institutional?.updatedAt || generatedAt,

@@ -36,12 +36,12 @@ const BUNDLED_FALLBACK = {
   sourceIssues: ["目前顯示內建範例資料，正式資料會由 data/latest/market-dashboard.json 提供。"]
 };
 
-const summaryCards = document.querySelectorAll(".summary-grid.three .metric-card");
-
 const els = {
   dataStatus: document.querySelector("#dataStatus"),
   dataVersion: document.querySelector("#dataVersion"),
   updatedAt: document.querySelector("#updatedAt"),
+  marketIndex: document.querySelector("#marketIndex"),
+  marketIndexChange: document.querySelector("#marketIndexChange"),
   refreshButton: document.querySelector("#refreshButton"),
   creditUpdatedAt: document.querySelector("#creditUpdatedAt"),
   institutionalTotal: document.querySelector("#institutionalTotal"),
@@ -52,12 +52,12 @@ const els = {
   institutionalHistoryRows: document.querySelector("#institutionalHistoryRows"),
   futuresRows: document.querySelector("#futuresRows"),
   creditHistoryRows: document.querySelector("#creditHistoryRows"),
-  foreignLabel: summaryCards[0]?.querySelector(".metric-label"),
-  foreignSubtitle: summaryCards[0]?.querySelector(".muted"),
-  marginLabel: summaryCards[1]?.querySelector(".metric-label"),
-  marginSubtitle: summaryCards[1]?.querySelector(".muted"),
-  futuresLabel: summaryCards[2]?.querySelector(".metric-label"),
-  futuresSubtitle: summaryCards[2]?.querySelector(".muted")
+  foreignLabel: document.querySelector("#foreignLabel"),
+  foreignSubtitle: document.querySelector("#foreignSubtitle"),
+  marginLabel: document.querySelector("#marginLabel"),
+  marginSubtitle: document.querySelector("#marginSubtitle"),
+  futuresLabel: document.querySelector("#futuresLabel"),
+  futuresSubtitle: document.querySelector("#futuresSubtitle")
 };
 
 setupFuturesTable();
@@ -95,6 +95,7 @@ async function fetchJson(url) {
 
 function renderDashboard(data, label) {
   const summary = data.summary || {};
+  const marketIndex = data.marketIndex || {};
   const institutionalHistory = data.institutionalHistory || [];
   const futures = data.futuresOpenInterest || [];
   const creditHistory = data.creditHistory || [];
@@ -109,6 +110,9 @@ function renderDashboard(data, label) {
   const foreignFuturesChange = Number.isFinite(foreignFutures) && Number.isFinite(previousForeignFutures)
     ? foreignFutures - previousForeignFutures
     : null;
+
+  els.marketIndex.innerHTML = metricValue(marketIndex.close, 2, "點");
+  els.marketIndexChange.innerHTML = `${signedText(marketIndex.change, 2)} 點 · ${signedText(marketIndex.changePercent, 2)}%`;
 
   els.foreignLabel.textContent = "外資今日買賣超金額";
   els.creditTotal.innerHTML = metricValue(foreignAmount, 2, "億", true);

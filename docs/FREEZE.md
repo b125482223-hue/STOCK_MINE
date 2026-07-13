@@ -57,3 +57,10 @@
 - 新增 GitHub Actions 手動更新入口，不在公開網頁儲存 Token。
 - `data/logs/api-call-history.json` 保留最近 100 次 API 呼叫時間與可用狀態。
 - `data/latest/market-dashboard.json` 僅新增 metadata，既有顯示契約不變。
+
+## 2026-07-13 大盤方向
+
+- 沿用 TWSE `MI_INDEX`，不新增外部 API。
+- 摘要區新增加權指數卡，顯示收盤指數、漲跌點與漲跌幅。
+- 漲跌顏色沿用台股慣例：紅漲、綠跌。
+- 指數更新時間獨立記錄於 `sectionUpdates.index`。
