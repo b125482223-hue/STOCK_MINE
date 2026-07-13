@@ -27,14 +27,14 @@
   "institutionalHistory": [
     {
       "date": "2026/07/13",
-      "foreignNonDealer": -163.7,
+      "foreignNonDealer": -184.56,
       "foreignDealer": 0,
-      "foreignTotal": -163.7,
-      "investmentTrust": 94.68,
-      "dealerProprietary": -17.97,
-      "dealerHedge": -93.91,
-      "dealerTotal": -111.88,
-      "total": -180.9,
+      "foreignTotal": -184.56,
+      "investmentTrust": 78.29,
+      "dealerProprietary": -18.96,
+      "dealerHedge": -90.92,
+      "dealerTotal": -109.88,
+      "total": -216.15,
       "futuresForeignNet": -81066,
       "futuresInvestmentTrustNet": 71794,
       "futuresDealerNet": 1270,
@@ -183,7 +183,5 @@
     "stage": "futures",
     "label": "法人、期貨已更新"
   },
-  "sourceIssues": [
-    "TPEx closing prices讀取失敗：terminated"
-  ]
+  "sourceIssues": []
 }
