@@ -2,18 +2,22 @@ name: Update market data
 
 on:
   schedule:
-    # 14:50, 15:00, 15:05 Asia/Taipei (UTC+8): institutional and futures data.
+    # 14:50 Asia/Taipei (UTC+8): first institutional-data attempt.
     - cron: "50 6 * * 1-5"
-    - cron: "0 7 * * 1-5"
-    - cron: "5 7 * * 1-5"
-    # 21:30, 21:35, 21:40 Asia/Taipei (UTC+8): credit-trading data follow-up.
-    - cron: "30 13 * * 1-5"
-    - cron: "35 13 * * 1-5"
-    - cron: "40 13 * * 1-5"
+    # 15:00-16:50 every 10 minutes, plus 17:00: retry delayed TWSE/TAIFEX publication.
+    - cron: "*/10 7-8 * * 1-5"
+    - cron: "0 9 * * 1-5"
+    # 21:30-22:30 every 10 minutes: retry delayed credit-trading publication.
+    - cron: "30,40,50 13 * * 1-5"
+    - cron: "0,10,20,30 14 * * 1-5"
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: market-data-update
+  cancel-in-progress: false
 
 jobs:
   update:
@@ -29,6 +33,18 @@ jobs:
 
       - name: Build daily data
         run: node tools/build_daily_data.js
+
+      - name: Report dashboard freshness
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require("node:fs");
+          const data = JSON.parse(fs.readFileSync("data/latest/market-dashboard.json", "utf8"));
+          const issues = data.sourceIssues?.length ? data.sourceIssues.join("; ") : "none";
+          const report = `Dashboard date: ${data.asOf}\nUpdate stage: ${data.updateStatus?.stage || "unknown"}\nSource issues: ${issues}`;
+          console.log(report);
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `## Market data result\n\n${report.replaceAll("\n", "  \n")}\n`);
+          NODE
 
       - name: Commit generated data
         run: |
