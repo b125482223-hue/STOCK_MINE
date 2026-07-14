@@ -185,6 +185,7 @@ async function main() {
     runAt,
     marketDate,
     trigger: process.env.MARKET_UPDATE_TRIGGER || "manual-local",
+    schedule: process.env.MARKET_SCHEDULE || null,
     result: {
       institutionalUpdated: institutionalAvailable,
       indexUpdated: indexAvailable,
@@ -373,6 +374,10 @@ async function tryFetchTwseInstitutional(config, yyyymmdd, issues, quiet = false
   if (!quiet) {
     issues.push("大盤三大法人買賣超回傳格式不符合預期。");
   }
+  updateApiCall("TWSE T86 institutional", requestedDate, {
+    dataAvailable: false,
+    rowCount: 0
+  });
   return [];
 }
 
