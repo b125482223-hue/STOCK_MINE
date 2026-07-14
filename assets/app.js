@@ -84,7 +84,8 @@ async function loadDashboard() {
 }
 
 async function fetchJson(url) {
-  const response = await fetch(url, { cache: "no-store" });
+  const separator = url.includes("?") ? "&" : "?";
+  const response = await fetch(`${url}${separator}v=${Date.now()}`, { cache: "no-store" });
 
   if (!response.ok) {
     throw new Error(`${response.status} ${response.statusText}: ${url}`);

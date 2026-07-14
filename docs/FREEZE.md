@@ -78,3 +78,4 @@
 - 摘要卡的外資買賣超金額限定 TWSE 上市市場，不再納入 TPEx 上櫃市場。
 - 新增 `institutionalHistory[].twseForeignTotal`，既有上市加上櫃的 `foreignTotal` 契約維持不變。
 - 摘要卡當日與昨日比較都使用相同的上市市場口徑。
+- 首頁與 API 紀錄頁的 JavaScript 加入部署版本，JSON 請求加入時間參數，避免 GitHub Pages 或瀏覽器沿用舊資源。

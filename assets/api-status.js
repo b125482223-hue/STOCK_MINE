@@ -18,7 +18,7 @@ loadApiLog();
 
 async function loadApiLog() {
   try {
-    const response = await fetch(API_LOG_URL, { cache: "no-store" });
+    const response = await fetch(`${API_LOG_URL}?v=${Date.now()}`, { cache: "no-store" });
     if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);
     }
