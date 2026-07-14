@@ -37,7 +37,7 @@ node tools\build_daily_data.js
 資料來源設定集中在 `config/data_sources.json`。目前規劃：
 
 - 證交所公開資料：大盤三大法人買賣超、信用交易資料。
-- 法人買賣金額：以證交所 T86 買賣超股數乘以當日收盤價估算，單位轉為億。
+- 首頁外資買賣超金額：只計算 TWSE 上市市場，以 T86 買賣超股數乘以當日收盤價估算，單位轉為億。
 - 櫃買中心公開資料：櫃買三大法人買賣超，後續需確認最穩定的可機器讀取端點。
 - 期交所公開資料：台股期貨三大法人未平倉多空淨額。
 - 本地範例資料：`data/sample/market-dashboard.json`。
@@ -50,7 +50,9 @@ node tools\build_daily_data.js
 node tools\build_daily_data.js
 ```
 
-GitHub Actions 會在台灣時間週一到週五 16:30 自動執行，更新 `data/latest/market-dashboard.json`。
+GitHub Actions 於台灣時間週一到週五錯峰執行：11:47–17:17 每 30 分鐘重試盤後資料，
+另保留 14:50 正式抓取；18:17–22:47 每 30 分鐘重試信用交易資料。
+詳細規則與限制請見 `docs/UPDATE_SCHEDULE.md`。
 
 ## 重要限制
 
