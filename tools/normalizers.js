@@ -11,6 +11,11 @@ function normalizeInstitutionalHistory(rows = []) {
     foreignNonDealer: numberFrom(row, ["foreignNonDealer", "外資不含自營商"]),
     foreignDealer: numberFrom(row, ["foreignDealer", "外資自營商"]),
     foreignTotal: numberFrom(row, ["foreignTotal", "外資合計"]),
+    twseForeignTotal: numberFrom(
+      row,
+      ["twseForeignTotal", "上市外資合計"],
+      numberFrom(row, ["foreignTotal", "外資合計"])
+    ),
     investmentTrust: numberFrom(row, ["investmentTrust", "投信"]),
     dealerProprietary: numberFrom(row, ["dealerProprietary", "自營自行買賣"]),
     dealerHedge: numberFrom(row, ["dealerHedge", "自營避險"]),
@@ -76,6 +81,10 @@ function buildInstitutionalHistoryRow({
     dealerTotal: 0,
     total: 0
   };
+  const twseForeign = {
+    foreignNonDealer: 0,
+    foreignDealer: 0
+  };
 
   twseRows.forEach((row) => {
     const code = textFrom(row, ["證券代號", "code"]);
@@ -86,6 +95,8 @@ function buildInstitutionalHistoryRow({
 
     addAmount(fields, "foreignNonDealer", row, ["外陸資買賣超股數(不含外資自營商)", "foreignNonDealer"], close);
     addAmount(fields, "foreignDealer", row, ["外資自營商買賣超股數", "foreignDealer"], close);
+    addAmount(twseForeign, "foreignNonDealer", row, ["外陸資買賣超股數(不含外資自營商)", "foreignNonDealer"], close);
+    addAmount(twseForeign, "foreignDealer", row, ["外資自營商買賣超股數", "foreignDealer"], close);
     addAmount(fields, "investmentTrust", row, ["投信買賣超股數", "investmentTrust"], close);
     addAmount(fields, "dealerProprietary", row, ["自營商買賣超股數(自行買賣)", "dealerProprietary"], close);
     addAmount(fields, "dealerHedge", row, ["自營商買賣超股數(避險)", "dealerHedge"], close);
@@ -116,6 +127,7 @@ function buildInstitutionalHistoryRow({
     foreignNonDealer: round2(fields.foreignNonDealer),
     foreignDealer: round2(fields.foreignDealer),
     foreignTotal: round2(fields.foreignTotal),
+    twseForeignTotal: round2(twseForeign.foreignNonDealer + twseForeign.foreignDealer),
     investmentTrust: round2(fields.investmentTrust),
     dealerProprietary: round2(fields.dealerProprietary),
     dealerHedge: round2(fields.dealerHedge),

@@ -1,6 +1,6 @@
 {
   "asOf": "2026/07/14 盤後",
-  "generatedAt": "2026-07-14T16:39:50+08:00",
+  "generatedAt": "2026-07-14T16:52:11+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -39,6 +39,7 @@
       "foreignNonDealer": -385.06,
       "foreignDealer": 0,
       "foreignTotal": -385.06,
+      "twseForeignTotal": -512,
       "investmentTrust": 110.79,
       "dealerProprietary": -26.09,
       "dealerHedge": -382.15,
@@ -51,14 +52,15 @@
     },
     {
       "date": "2026/07/13",
-      "foreignNonDealer": -184.39,
+      "foreignNonDealer": -186.22,
       "foreignDealer": 0,
-      "foreignTotal": -184.39,
-      "investmentTrust": 104.77,
-      "dealerProprietary": -18.96,
-      "dealerHedge": -90.92,
-      "dealerTotal": -109.88,
-      "total": -189.5,
+      "foreignTotal": -186.22,
+      "twseForeignTotal": -163.53,
+      "investmentTrust": 105.76,
+      "dealerProprietary": -18.63,
+      "dealerHedge": -90.2,
+      "dealerTotal": -108.84,
+      "total": -189.3,
       "futuresForeignNet": -81066,
       "futuresInvestmentTrustNet": 71794,
       "futuresDealerNet": 1270,
@@ -218,26 +220,26 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/07/14",
-      "updatedAt": "2026-07-14T16:39:50+08:00",
-      "lastCheckedAt": "2026-07-14T16:39:50+08:00",
+      "updatedAt": "2026-07-14T16:52:11+08:00",
+      "lastCheckedAt": "2026-07-14T16:52:11+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/07/14",
-      "updatedAt": "2026-07-14T16:39:50+08:00",
-      "lastCheckedAt": "2026-07-14T16:39:50+08:00",
+      "updatedAt": "2026-07-14T16:52:11+08:00",
+      "lastCheckedAt": "2026-07-14T16:52:11+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/07/14",
-      "updatedAt": "2026-07-14T16:39:50+08:00",
-      "lastCheckedAt": "2026-07-14T16:39:50+08:00",
+      "updatedAt": "2026-07-14T16:52:11+08:00",
+      "lastCheckedAt": "2026-07-14T16:52:11+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/07/13",
-      "updatedAt": "2026-07-13T22:35:01+08:00",
-      "lastCheckedAt": "2026-07-14T16:39:50+08:00",
+      "updatedAt": "2026-07-14T16:52:08+08:00",
+      "lastCheckedAt": "2026-07-14T16:52:11+08:00",
       "status": "stale"
     }
   },

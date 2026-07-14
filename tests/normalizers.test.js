@@ -114,6 +114,7 @@ const institutionalHistory = normalizeInstitutionalHistory([
     foreignNonDealer: "-472.53",
     foreignDealer: "0",
     foreignTotal: "-472.53",
+    twseForeignTotal: "-460.00",
     investmentTrust: "199.01",
     dealerProprietary: "-20.36",
     dealerHedge: "-56.35",
@@ -131,6 +132,7 @@ assert.deepEqual(institutionalHistory[0], {
   foreignNonDealer: -472.53,
   foreignDealer: 0,
   foreignTotal: -472.53,
+  twseForeignTotal: -460,
   investmentTrust: 199.01,
   dealerProprietary: -20.36,
   dealerHedge: -56.35,
@@ -190,6 +192,19 @@ const generatedInstitutionalRow = buildInstitutionalHistoryRow({
     }
   ],
   closePriceMap,
+  tpexRows: [
+    {
+      code: "1234",
+      foreignNonDealer: "1,000,000",
+      foreignDealer: "0",
+      investmentTrust: "0",
+      dealerProprietary: "0",
+      dealerHedge: "0",
+      dealerTotal: "0",
+      total: "1,000,000"
+    }
+  ],
+  tpexClosePriceMap: buildClosePriceMap([{ code: "1234", close: "100" }]),
   futuresNet: {
     futuresForeignNet: -80730,
     futuresInvestmentTrustNet: 71089,
@@ -199,10 +214,12 @@ const generatedInstitutionalRow = buildInstitutionalHistoryRow({
 });
 
 assert.equal(generatedInstitutionalRow.date, "2026/07/09");
-assert.equal(generatedInstitutionalRow.foreignNonDealer, 9);
+assert.equal(generatedInstitutionalRow.foreignNonDealer, 10);
+assert.equal(generatedInstitutionalRow.foreignTotal, 10);
+assert.equal(generatedInstitutionalRow.twseForeignTotal, 9);
 assert.equal(generatedInstitutionalRow.investmentTrust, 2.2);
 assert.equal(generatedInstitutionalRow.dealerTotal, -0.67);
-assert.equal(generatedInstitutionalRow.total, 10.53);
+assert.equal(generatedInstitutionalRow.total, 11.53);
 assert.equal(generatedInstitutionalRow.futuresForeignNet, -80730);
 
 const parsedFutures = parseTaifexFuturesOpenInterestHtml(`

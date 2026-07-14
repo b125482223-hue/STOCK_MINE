@@ -103,8 +103,8 @@ function renderDashboard(data, label) {
   const previousInstitutional = institutionalHistory[1] || {};
   const currentCredit = creditHistory[0] || {};
   const currentForeignFutures = futures.find((row) => row.participant === "外資");
-  const foreignAmount = currentInstitutional.foreignTotal;
-  const previousForeignAmount = previousInstitutional.foreignTotal;
+  const foreignAmount = currentInstitutional.twseForeignTotal ?? currentInstitutional.foreignTotal;
+  const previousForeignAmount = previousInstitutional.twseForeignTotal ?? previousInstitutional.foreignTotal;
   const foreignFutures = currentForeignFutures?.net ?? currentInstitutional.futuresForeignNet;
   const previousForeignFutures = previousInstitutional.futuresForeignNet;
   const foreignFuturesChange = Number.isFinite(foreignFutures) && Number.isFinite(previousForeignFutures)
@@ -114,7 +114,7 @@ function renderDashboard(data, label) {
   els.marketIndex.innerHTML = metricValue(marketIndex.close, 2, "點");
   els.marketIndexChange.innerHTML = `${signedText(marketIndex.change, 2)} 點 · ${signedText(marketIndex.changePercent, 2)}%`;
 
-  els.foreignLabel.textContent = "外資今日買賣超金額";
+  els.foreignLabel.textContent = "外資今日買賣超金額（上市）";
   els.creditTotal.innerHTML = metricValue(foreignAmount, 2, "億", true);
   els.foreignSubtitle.innerHTML = comparisonText("昨日", previousForeignAmount, 2, "億");
 
