@@ -1,6 +1,6 @@
 {
   "asOf": "2026/07/15 盤後",
-  "generatedAt": "2026-07-15T17:20:59+08:00",
+  "generatedAt": "2026-07-15T19:50:16+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -11,7 +11,7 @@
     "direction": "up"
   },
   "summary": {
-    "institutionalNet": 684540543,
+    "institutionalNet": 689716779,
     "futuresNetOpenInterest": -4575,
     "marginBalance": 6040.34,
     "marginChange": -142.66,
@@ -21,16 +21,16 @@
     {
       "market": "大盤",
       "foreign": 592402315,
-      "investmentTrust": 19032598,
+      "investmentTrust": 21204834,
       "dealer": 123123668,
-      "total": 734558581
+      "total": 736730817
     },
     {
       "market": "櫃買",
       "foreign": -38447056,
-      "investmentTrust": 946893,
+      "investmentTrust": 3950893,
       "dealer": -12517875,
-      "total": -50018038
+      "total": -47014038
     }
   ],
   "institutionalHistory": [
@@ -248,26 +248,26 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/07/15",
-      "updatedAt": "2026-07-15T17:20:59+08:00",
-      "lastCheckedAt": "2026-07-15T17:20:59+08:00",
+      "updatedAt": "2026-07-15T19:50:16+08:00",
+      "lastCheckedAt": "2026-07-15T19:50:16+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/07/15",
-      "updatedAt": "2026-07-15T17:20:59+08:00",
-      "lastCheckedAt": "2026-07-15T17:20:59+08:00",
+      "updatedAt": "2026-07-15T19:50:16+08:00",
+      "lastCheckedAt": "2026-07-15T19:50:16+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/07/15",
-      "updatedAt": "2026-07-15T17:20:59+08:00",
-      "lastCheckedAt": "2026-07-15T17:20:59+08:00",
+      "updatedAt": "2026-07-15T19:50:16+08:00",
+      "lastCheckedAt": "2026-07-15T19:50:16+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/07/14",
       "updatedAt": "2026-07-15T16:08:48+08:00",
-      "lastCheckedAt": "2026-07-15T17:20:59+08:00",
+      "lastCheckedAt": "2026-07-15T19:50:16+08:00",
       "status": "stale"
     }
   },
