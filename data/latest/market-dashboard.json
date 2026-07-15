@@ -1,18 +1,18 @@
 {
-  "asOf": "2026/07/14 盤後",
-  "generatedAt": "2026-07-14T23:04:06+08:00",
+  "asOf": "2026/07/15 盤後",
+  "generatedAt": "2026-07-15T13:59:11+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
-    "date": "2026/07/14",
-    "close": 44737.95,
-    "change": -642.57,
-    "changePercent": -1.42,
-    "direction": "down"
+    "date": "2026/07/15",
+    "close": 45631.59,
+    "change": 893.64,
+    "changePercent": 2,
+    "direction": "up"
   },
   "summary": {
     "institutionalNet": -2263692452,
-    "futuresNetOpenInterest": -7165,
+    "futuresNetOpenInterest": 1022,
     "marginBalance": 6040.34,
     "marginChange": -142.66,
     "shortChange": -26080
@@ -132,19 +132,19 @@
       "participant": "外資",
       "long": null,
       "short": null,
-      "net": -83390
+      "net": 1192
     },
     {
       "participant": "投信",
       "long": null,
       "short": null,
-      "net": 73873
+      "net": 1773
     },
     {
       "participant": "自營商",
       "long": null,
       "short": null,
-      "net": 2352
+      "net": -1943
     }
   ],
   "credit": [
@@ -227,36 +227,32 @@
   },
   "sectionUpdates": {
     "index": {
-      "dataDate": "2026/07/14",
-      "updatedAt": "2026-07-14T23:04:06+08:00",
-      "lastCheckedAt": "2026-07-14T23:04:06+08:00",
+      "dataDate": "2026/07/15",
+      "updatedAt": "2026-07-15T13:59:11+08:00",
+      "lastCheckedAt": "2026-07-15T13:59:11+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/07/14",
       "updatedAt": "2026-07-14T23:04:06+08:00",
-      "lastCheckedAt": "2026-07-14T23:04:06+08:00",
-      "status": "current"
+      "lastCheckedAt": "2026-07-15T13:59:11+08:00",
+      "status": "stale"
     },
     "futures": {
-      "dataDate": "2026/07/14",
-      "updatedAt": "2026-07-14T23:04:06+08:00",
-      "lastCheckedAt": "2026-07-14T23:04:06+08:00",
+      "dataDate": "2026/07/15",
+      "updatedAt": "2026-07-15T13:59:11+08:00",
+      "lastCheckedAt": "2026-07-15T13:59:11+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/07/14",
       "updatedAt": "2026-07-14T20:55:01+08:00",
-      "lastCheckedAt": "2026-07-14T23:04:06+08:00",
+      "lastCheckedAt": "2026-07-15T13:59:11+08:00",
       "status": "stale"
     }
   },
   "sourceIssues": [
-    "TPEx institutional data returned HTTP 520.",
-    "TPEx margin trading讀取失敗：HTTP 520",
-    "TWSE credit trading statistics讀取失敗：HTTP 307",
-    "TWSE margin OpenAPI讀取失敗：回傳不是 JSON。",
-    "櫃買三大法人買賣超沿用備援資料，待接穩定官方端點。",
-    "融資融券 2026/07/14 資料尚未發布，信用交易維持前次版本。"
+    "三大法人 2026/07/15 資料尚未完整發布，法人資料維持前次版本。",
+    "融資融券 2026/07/15 資料尚未發布，信用交易維持前次版本。"
   ]
 }
