@@ -4,6 +4,7 @@ const {
   buildClosePriceMap,
   extractTwseMarketIndex,
   buildInstitutionalHistoryRow,
+  buildTwseInstitutionalAmountHistoryRow,
   normalizeInstitutionalSummary,
   normalizeInstitutionalHistory,
   normalizeCreditHistory,
@@ -222,6 +223,31 @@ assert.equal(generatedInstitutionalRow.dealerTotal, -0.67);
 assert.equal(generatedInstitutionalRow.total, 11.53);
 assert.equal(generatedInstitutionalRow.futuresForeignNet, -80730);
 
+const officialInstitutionalRow = buildTwseInstitutionalAmountHistoryRow({
+  date: "2026/07/09",
+  rows: [
+    { "單位名稱": "自營商(自行買賣)", "買賣差額": "-2,036,187,921" },
+    { "單位名稱": "自營商(避險)", "買賣差額": "-5,634,977,890" },
+    { "單位名稱": "投信", "買賣差額": "19,900,600,663" },
+    { "單位名稱": "外資及陸資(不含外資自營商)", "買賣差額": "-47,252,816,429" },
+    { "單位名稱": "外資自營商", "買賣差額": "0" },
+    { "單位名稱": "合計", "買賣差額": "-35,023,381,577" }
+  ],
+  futuresNet: {
+    futuresForeignNet: -80730,
+    futuresInvestmentTrustNet: 71689,
+    futuresDealerNet: 2243,
+    futuresTotalNet: -6798
+  }
+});
+
+assert.equal(officialInstitutionalRow.foreignTotal, -472.53);
+assert.equal(officialInstitutionalRow.twseForeignTotal, -472.53);
+assert.equal(officialInstitutionalRow.investmentTrust, 199.01);
+assert.equal(officialInstitutionalRow.dealerTotal, -76.71);
+assert.equal(officialInstitutionalRow.total, -350.23);
+assert.equal(officialInstitutionalRow.futuresForeignNet, -80730);
+
 const parsedFutures = parseTaifexFuturesOpenInterestHtml(`
   <tr><td>1</td><td>臺股期貨</td><td>自營商</td><td>7,489</td><td>68,392,046</td><td>8,439</td><td>77,152,690</td><td>-950</td><td>-8,760,643</td><td>7,455</td><td>68,296,266</td><td>5,212</td><td>47,769,736</td><td>2,243</td><td>20,526,530</td></tr>
   <tr><td>投信</td><td>7,421</td><td>68,185,516</td><td>5,719</td><td>52,315,804</td><td>1,702</td><td>15,869,712</td><td>77,706</td><td>710,124,202</td><td>6,017</td><td>55,009,742</td><td>71,689</td><td>655,114,460</td></tr>
@@ -233,6 +259,19 @@ assert.deepEqual(parsedFutures, {
   futuresInvestmentTrustNet: 71689,
   futuresDealerNet: 2243,
   futuresTotalNet: -6798
+});
+
+const incompleteFutures = parseTaifexFuturesOpenInterestHtml(`
+  <tr><td>1</td><td>臺股期貨</td><td>自營商</td><td>8,774</td><td>79,913,086</td><td>10,717</td><td>97,646,365</td><td>-1,943</td><td>-17,733,279</td></tr>
+  <tr><td>投信</td><td>6,242</td><td>57,219,234</td><td>4,469</td><td>40,853,445</td><td>1,773</td><td>16,365,789</td></tr>
+  <tr><td>外資</td><td>61,727</td><td>561,690,489</td><td>60,535</td><td>551,182,103</td><td>1,192</td><td>10,508,385</td></tr>
+`);
+
+assert.deepEqual(incompleteFutures, {
+  futuresForeignNet: 0,
+  futuresInvestmentTrustNet: 0,
+  futuresDealerNet: 0,
+  futuresTotalNet: 0
 });
 
 const futures = normalizeFuturesOpenInterest([

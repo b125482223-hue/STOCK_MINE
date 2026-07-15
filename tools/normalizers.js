@@ -140,6 +140,35 @@ function buildInstitutionalHistoryRow({
   };
 }
 
+function buildTwseInstitutionalAmountHistoryRow({ date, rows = [], futuresNet = {} } = {}) {
+  const netAmount = (label) => {
+    const row = rows.find((item) => textFrom(item, ["participant", "單位名稱"]) === label);
+    return numberFrom(row || {}, ["netAmount", "買賣差額"]) / 100000000;
+  };
+  const foreignNonDealer = netAmount("外資及陸資(不含外資自營商)");
+  const foreignDealer = netAmount("外資自營商");
+  const dealerProprietary = netAmount("自營商(自行買賣)");
+  const dealerHedge = netAmount("自營商(避險)");
+  const futuresValue = (key) => Number.isFinite(Number(futuresNet[key])) ? Number(futuresNet[key]) : null;
+
+  return {
+    date,
+    foreignNonDealer: round2(foreignNonDealer),
+    foreignDealer: round2(foreignDealer),
+    foreignTotal: round2(foreignNonDealer + foreignDealer),
+    twseForeignTotal: round2(foreignNonDealer + foreignDealer),
+    investmentTrust: round2(netAmount("投信")),
+    dealerProprietary: round2(dealerProprietary),
+    dealerHedge: round2(dealerHedge),
+    dealerTotal: round2(dealerProprietary + dealerHedge),
+    total: round2(netAmount("合計")),
+    futuresForeignNet: futuresValue("futuresForeignNet"),
+    futuresInvestmentTrustNet: futuresValue("futuresInvestmentTrustNet"),
+    futuresDealerNet: futuresValue("futuresDealerNet"),
+    futuresTotalNet: futuresValue("futuresTotalNet")
+  };
+}
+
 function addAmount(target, targetKey, row, sourceKeys, close) {
   target[targetKey] += numberFrom(row, sourceKeys) * close / 100000000;
 }
@@ -151,6 +180,7 @@ function parseTaifexFuturesOpenInterestHtml(html = "") {
     futuresDealerNet: 0,
     futuresTotalNet: 0
   };
+  const completeParticipants = new Set();
 
   const rows = [...String(html).matchAll(/<tr[^>]*>[\s\S]*?<\/tr>/gi)].map((match) => match[0]);
   rows.forEach((row) => {
@@ -160,8 +190,17 @@ function parseTaifexFuturesOpenInterestHtml(html = "") {
       return;
     }
 
-    const numbers = cells.map((cell) => numberFrom({ value: cell }, ["value"], NaN)).filter(Number.isFinite);
+    const participantIndex = cells.indexOf(participant);
+    const numbers = cells
+      .slice(participantIndex + 1)
+      .map((cell) => numberFrom({ value: cell }, ["value"], NaN))
+      .filter(Number.isFinite);
+    if (numbers.length < 12) {
+      return;
+    }
+
     const netOpenInterest = numbers[numbers.length - 2] || 0;
+    completeParticipants.add(participant);
 
     if (participant === "外資") {
       result.futuresForeignNet = netOpenInterest;
@@ -171,6 +210,15 @@ function parseTaifexFuturesOpenInterestHtml(html = "") {
       result.futuresDealerNet = netOpenInterest;
     }
   });
+
+  if (completeParticipants.size < 3) {
+    return {
+      futuresForeignNet: 0,
+      futuresInvestmentTrustNet: 0,
+      futuresDealerNet: 0,
+      futuresTotalNet: 0
+    };
+  }
 
   result.futuresTotalNet = result.futuresForeignNet + result.futuresInvestmentTrustNet + result.futuresDealerNet;
   return result;
@@ -346,6 +394,7 @@ module.exports = {
   buildClosePriceMap,
   extractTwseMarketIndex,
   buildInstitutionalHistoryRow,
+  buildTwseInstitutionalAmountHistoryRow,
   normalizeInstitutionalSummary,
   normalizeInstitutionalHistory,
   normalizeCreditSummary,

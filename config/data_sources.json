@@ -8,6 +8,13 @@
       "url": "https://www.twse.com.tw/rwd/zh/fund/T86?date={YYYYMMDD}&selectType=ALLBUT0999&response=json",
       "status": "candidate"
     },
+    "institutionalTwseAmount": {
+      "label": "上市三大法人買賣金額統計表",
+      "provider": "TWSE",
+      "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate={YYYYMMDD}&type=day&response=json",
+      "status": "verified",
+      "note": "首頁與法人買賣金額歷史表的官方金額來源。"
+    },
     "twseClosePrices": {
       "label": "上市收盤價",
       "provider": "TWSE",

@@ -2,9 +2,8 @@ const fs = require("node:fs/promises");
 const path = require("node:path");
 const {
   buildDashboardData,
-  buildClosePriceMap,
   extractTwseMarketIndex,
-  buildInstitutionalHistoryRow,
+  buildTwseInstitutionalAmountHistoryRow,
   normalizeInstitutionalSummary,
   normalizeCreditSummary,
   buildCreditHistoryRow,
@@ -33,6 +32,19 @@ async function main() {
   const sourceIssues = [];
   const requestedYyyymmdd = marketDate.replaceAll("-", "");
   const displayDate = formatDisplayDate(requestedYyyymmdd);
+
+  const twseInstitutionalAmountPayload = await tryFetchJson(
+    config.sources.institutionalTwseAmount.url.replace("{YYYYMMDD}", requestedYyyymmdd),
+    sourceIssues,
+    "TWSE BFI82U institutional amounts",
+    true,
+    displayDate
+  );
+  const twseInstitutionalAmountRows = extractTwseInstitutionalAmountRows(twseInstitutionalAmountPayload);
+  updateApiCall("TWSE BFI82U institutional amounts", displayDate, {
+    dataAvailable: twseInstitutionalAmountRows.length > 0,
+    rowCount: twseInstitutionalAmountRows.length
+  });
 
   const twseInstitutionalRows = await tryFetchTwseInstitutional(
     config,
@@ -89,7 +101,7 @@ async function main() {
   let creditHistory = previous?.creditHistory || sample?.creditHistory || [];
   const sectionUpdates = buildPreviousSectionUpdates(previous, runAt);
 
-  const institutionalAvailable = twseInstitutionalRows.length > 0 && closeRows.length > 0;
+  const institutionalAvailable = twseInstitutionalAmountRows.length > 0;
   const indexAvailable = Boolean(currentMarketIndex);
   const futuresAvailable = hasFuturesNet(taifexFuturesNet);
   const generatedCreditHistoryRow = buildCreditHistoryRow({
@@ -111,16 +123,13 @@ async function main() {
       twseRows: twseInstitutionalRows,
       tpexRows: tpexBundle.institutionalRows
     });
-    replaceEmptyMarket(institutional, "大盤", previous, sample, sourceIssues, "大盤三大法人買賣超");
-    replaceEmptyMarket(institutional, "櫃買", previous, sample, sourceIssues, "櫃買三大法人買賣超");
+    replaceEmptyMarket(institutional, "大盤", previous, sample, sourceIssues, "大盤法人股數明細（不影響官方金額）");
+    replaceEmptyMarket(institutional, "櫃買", previous, sample, sourceIssues, "櫃買法人股數明細（不影響官方金額）");
 
-    const generatedInstitutionalHistoryRow = buildInstitutionalHistoryRow({
+    const generatedInstitutionalHistoryRow = buildTwseInstitutionalAmountHistoryRow({
       date: displayDate,
-      twseRows: twseInstitutionalRows,
-      closePriceMap: buildClosePriceMap(closeRows),
-      tpexRows: tpexBundle.institutionalRows,
-      tpexClosePriceMap: buildClosePriceMap(tpexBundle.closeRows),
-      futuresNet: taifexFuturesNet
+      rows: twseInstitutionalAmountRows,
+      futuresNet: futuresAvailable ? taifexFuturesNet : {}
     });
     institutionalHistory = mergeHistoryRows(generatedInstitutionalHistoryRow, institutionalHistory, 20);
     sectionUpdates.institutional = currentSectionUpdate(displayDate, runAt);
@@ -452,6 +461,16 @@ function extractTwseCloseRows(payload) {
   return table.data.map((values) => Object.fromEntries(table.fields.map((field, index) => [field, values[index]])));
 }
 
+function extractTwseInstitutionalAmountRows(payload) {
+  if (!Array.isArray(payload?.data) || !Array.isArray(payload?.fields)) {
+    return [];
+  }
+
+  return payload.data.map((values) => Object.fromEntries(
+    payload.fields.map((field, index) => [field, values[index]])
+  ));
+}
+
 function mergeHistoryRows(newRow, existingRows, limit) {
   const rows = [newRow, ...existingRows.filter((row) => row.date !== newRow.date)];
   return rows.filter((row) => row.date).slice(0, limit);
@@ -640,8 +659,14 @@ function buildUpdateStatus({ institutionalAvailable, futuresAvailable, creditAva
   if (creditAvailable) {
     return { stage: "credit", label: "信用交易已更新" };
   }
-  if (institutionalAvailable || futuresAvailable) {
-    return { stage: "partial", label: "部分盤後資料已更新" };
+  if (institutionalAvailable && futuresAvailable) {
+    return { stage: "partial", label: "法人與期貨已更新，信用待晚間" };
+  }
+  if (institutionalAvailable) {
+    return { stage: "partial", label: "法人已更新，期貨待公布" };
+  }
+  if (futuresAvailable) {
+    return { stage: "partial", label: "期貨已更新，法人待公布" };
   }
   return { stage: "waiting", label: "等待官方資料" };
 }
