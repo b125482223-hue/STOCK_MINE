@@ -1,5 +1,7 @@
 const LATEST_URL = "data/latest/market-dashboard.json";
 const SAMPLE_URL = "data/sample/market-dashboard.json";
+const AUTO_REFRESH_MS = 5 * 60 * 1000;
+let dashboardLoadInProgress = false;
 const BUNDLED_FALLBACK = {
   asOf: "2026-07-10 15:30",
   source: "bundled-sample",
@@ -62,11 +64,28 @@ const els = {
 
 setupFuturesTable();
 els.refreshButton.addEventListener("click", () => loadDashboard());
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) {
+    loadDashboard({ showLoading: false });
+  }
+});
 
 loadDashboard();
+setInterval(() => {
+  if (!document.hidden) {
+    loadDashboard({ showLoading: false });
+  }
+}, AUTO_REFRESH_MS);
 
-async function loadDashboard() {
-  setStatus("載入中");
+async function loadDashboard({ showLoading = true } = {}) {
+  if (dashboardLoadInProgress) {
+    return;
+  }
+
+  dashboardLoadInProgress = true;
+  if (showLoading) {
+    setStatus("載入中");
+  }
 
   try {
     const latest = await fetchJson(LATEST_URL);
@@ -80,6 +99,8 @@ async function loadDashboard() {
       console.warn("Sample data failed, using bundled fallback.", sampleError);
       renderDashboard(BUNDLED_FALLBACK, "內建範例");
     }
+  } finally {
+    dashboardLoadInProgress = false;
   }
 }
 
