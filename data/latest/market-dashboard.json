@@ -1,13 +1,13 @@
 {
-  "asOf": "2026/07/17 盤後",
-  "generatedAt": "2026-07-17T22:53:47+08:00",
+  "asOf": "2026/07/20 盤後",
+  "generatedAt": "2026-07-20T14:34:56+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
-    "date": "2026/07/17",
-    "close": 42671.27,
-    "change": -2953.71,
-    "changePercent": -6.47,
+    "date": "2026/07/20",
+    "close": 42449.7,
+    "change": -221.57,
+    "changePercent": -0.52,
     "direction": "down"
   },
   "summary": {
@@ -298,37 +298,38 @@
     }
   ],
   "updateStatus": {
-    "stage": "complete",
-    "label": "當日資料已補齊"
+    "stage": "waiting",
+    "label": "等待官方資料"
   },
   "sectionUpdates": {
     "index": {
-      "dataDate": "2026/07/17",
-      "updatedAt": "2026-07-17T22:53:47+08:00",
-      "lastCheckedAt": "2026-07-17T22:53:47+08:00",
+      "dataDate": "2026/07/20",
+      "updatedAt": "2026-07-20T14:34:56+08:00",
+      "lastCheckedAt": "2026-07-20T14:34:56+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/07/17",
       "updatedAt": "2026-07-17T22:53:47+08:00",
-      "lastCheckedAt": "2026-07-17T22:53:47+08:00",
-      "status": "current"
+      "lastCheckedAt": "2026-07-20T14:34:56+08:00",
+      "status": "stale"
     },
     "futures": {
       "dataDate": "2026/07/17",
       "updatedAt": "2026-07-17T22:53:47+08:00",
-      "lastCheckedAt": "2026-07-17T22:53:47+08:00",
-      "status": "current"
+      "lastCheckedAt": "2026-07-20T14:34:56+08:00",
+      "status": "stale"
     },
     "credit": {
       "dataDate": "2026/07/17",
       "updatedAt": "2026-07-17T22:53:47+08:00",
-      "lastCheckedAt": "2026-07-17T22:53:47+08:00",
-      "status": "current"
+      "lastCheckedAt": "2026-07-20T14:34:56+08:00",
+      "status": "stale"
     }
   },
   "sourceIssues": [
-    "TPEx institutional data returned HTTP 520.",
-    "櫃買法人股數明細（不影響官方金額）沿用備援資料，待接穩定官方端點。"
+    "三大法人 2026/07/20 資料尚未完整發布，法人資料維持前次版本。",
+    "外資未平倉 2026/07/20 資料尚未發布，期貨資料維持前次版本。",
+    "融資融券 2026/07/20 資料尚未發布，信用交易維持前次版本。"
   ]
 }
