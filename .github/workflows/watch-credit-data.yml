@@ -1,0 +1,83 @@
+name: Watch credit data
+
+on:
+  schedule:
+    # 21:35 and 22:05 Asia/Taipei. Once started, each run polls internally.
+    - cron: "35 13 * * 1-5"
+    - cron: "5 14 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: credit-data-watchdog
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Resolve market date
+        shell: bash
+        run: |
+          hour="$(TZ=Asia/Taipei date +%H)"
+          if ((10#$hour < 6)); then
+            market_date="$(TZ=Asia/Taipei date -d yesterday +%F)"
+          else
+            market_date="$(TZ=Asia/Taipei date +%F)"
+          fi
+          echo "MARKET_DATE=$market_date" >> "$GITHUB_ENV"
+
+      - name: Poll and publish credit data
+        shell: bash
+        env:
+          MARKET_UPDATE_TRIGGER: ${{ github.event_name }}
+          MARKET_SCHEDULE: ${{ github.event.schedule }}
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          commit_data() {
+            git add data/latest/market-dashboard.json data/logs/api-call-history.json
+            if git diff --cached --quiet; then
+              return
+            fi
+            git commit -m "chore: probe credit market data"
+            git push
+          }
+
+          for attempt in $(seq 1 12); do
+            echo "Credit probe $attempt/12 for $MARKET_DATE"
+
+            if node tools/probe_credit_data.js; then
+              if node -e 'const d=require("./data/latest/market-dashboard.json"); process.exit(d.sectionUpdates?.credit?.dataDate === process.env.MARKET_DATE.replaceAll("-", "/") ? 0 : 1)'; then
+                commit_data
+                echo "Credit data was already current."
+                exit 0
+              fi
+
+              node tools/build_daily_data.js
+              commit_data
+              echo "Credit data published."
+              exit 0
+            fi
+
+            commit_data
+            if [[ "$attempt" -lt 12 ]]; then
+              sleep 600
+            fi
+          done
+
+          echo "Credit data was not available before the watchdog deadline." >> "$GITHUB_STEP_SUMMARY"
