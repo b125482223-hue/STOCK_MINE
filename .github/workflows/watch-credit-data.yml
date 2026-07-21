@@ -2,7 +2,8 @@ name: Watch credit data
 
 on:
   schedule:
-    # 21:35 and 22:05 Asia/Taipei. Once started, each run polls internally.
+    # Start before the publication window because GitHub schedule events can be delayed.
+    - cron: "5 12 * * 1-5"
     - cron: "35 13 * * 1-5"
     - cron: "5 14 * * 1-5"
   workflow_dispatch:
@@ -17,7 +18,7 @@ concurrency:
 jobs:
   watch:
     runs-on: ubuntu-latest
-    timeout-minutes: 150
+    timeout-minutes: 250
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -58,8 +59,8 @@ jobs:
             git push
           }
 
-          for attempt in $(seq 1 12); do
-            echo "Credit probe $attempt/12 for $MARKET_DATE"
+          for attempt in $(seq 1 24); do
+            echo "Credit probe $attempt/24 for $MARKET_DATE"
 
             if node tools/probe_credit_data.js; then
               if node -e 'const d=require("./data/latest/market-dashboard.json"); process.exit(d.sectionUpdates?.credit?.dataDate === process.env.MARKET_DATE.replaceAll("-", "/") ? 0 : 1)'; then
@@ -75,7 +76,7 @@ jobs:
             fi
 
             commit_data
-            if [[ "$attempt" -lt 12 ]]; then
+            if [[ "$attempt" -lt 24 ]]; then
               sleep 600
             fi
           done
