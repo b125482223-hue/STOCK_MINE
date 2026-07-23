@@ -1,6 +1,6 @@
 {
   "asOf": "2026/07/23 盤後",
-  "generatedAt": "2026-07-23T14:18:43+08:00",
+  "generatedAt": "2026-07-23T14:38:53+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -376,26 +376,26 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/07/23",
-      "updatedAt": "2026-07-23T14:18:43+08:00",
-      "lastCheckedAt": "2026-07-23T14:18:43+08:00",
+      "updatedAt": "2026-07-23T14:38:53+08:00",
+      "lastCheckedAt": "2026-07-23T14:38:53+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/07/22",
       "updatedAt": "2026-07-22T22:01:55+08:00",
-      "lastCheckedAt": "2026-07-23T14:18:43+08:00",
+      "lastCheckedAt": "2026-07-23T14:38:53+08:00",
       "status": "stale"
     },
     "futures": {
       "dataDate": "2026/07/22",
       "updatedAt": "2026-07-22T22:01:55+08:00",
-      "lastCheckedAt": "2026-07-23T14:18:43+08:00",
+      "lastCheckedAt": "2026-07-23T14:38:53+08:00",
       "status": "stale"
     },
     "credit": {
       "dataDate": "2026/07/22",
       "updatedAt": "2026-07-22T22:01:55+08:00",
-      "lastCheckedAt": "2026-07-23T14:18:43+08:00",
+      "lastCheckedAt": "2026-07-23T14:38:53+08:00",
       "status": "stale"
     }
   },
