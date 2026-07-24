@@ -1,7 +1,32 @@
 {
   "version": "1.0.0",
-  "updatedAt": "2026-07-24T23:14:54+08:00",
+  "updatedAt": "2026-07-24T23:25:28+08:00",
   "entries": [
+    {
+      "runAt": "2026-07-24T23:25:28+08:00",
+      "marketDate": "2026-07-24",
+      "trigger": "schedule",
+      "schedule": "5 14 * * 1-5",
+      "result": {
+        "institutionalUpdated": false,
+        "indexUpdated": false,
+        "futuresUpdated": false,
+        "creditUpdated": false
+      },
+      "calls": [
+        {
+          "source": "TWSE credit trading watchdog",
+          "requestedDate": "2026/07/24",
+          "calledAt": "2026-07-24T23:25:28+08:00",
+          "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20260724&response=json",
+          "httpStatus": 200,
+          "ok": true,
+          "dataAvailable": true,
+          "rowCount": 3,
+          "message": null
+        }
+      ]
+    },
     {
       "runAt": "2026-07-24T23:14:54+08:00",
       "marketDate": "2026-07-24",
