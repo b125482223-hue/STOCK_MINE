@@ -1,18 +1,18 @@
 {
-  "asOf": "2026/07/24 盤後",
-  "generatedAt": "2026-07-24T21:51:37+08:00",
+  "asOf": "2026/07/27 盤後",
+  "generatedAt": "2026-07-27T14:51:57+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
-    "date": "2026/07/24",
-    "close": 43654.84,
-    "change": -1195.97,
-    "changePercent": -2.67,
+    "date": "2026/07/27",
+    "close": 43634.19,
+    "change": -20.65,
+    "changePercent": -0.05,
     "direction": "down"
   },
   "summary": {
     "institutionalNet": -1050226945,
-    "futuresNetOpenInterest": -164,
+    "futuresNetOpenInterest": -2697,
     "marginBalance": 5770.6,
     "marginChange": -55.67,
     "shortChange": 2610
@@ -264,19 +264,19 @@
       "participant": "外資",
       "long": null,
       "short": null,
-      "net": -76260
+      "net": -78699
     },
     {
       "participant": "投信",
       "long": null,
       "short": null,
-      "net": 73838
+      "net": 74111
     },
     {
       "participant": "自營商",
       "long": null,
       "short": null,
-      "net": 2258
+      "net": 1891
     }
   ],
   "credit": [
@@ -418,34 +418,37 @@
     }
   ],
   "updateStatus": {
-    "stage": "complete",
-    "label": "當日資料已補齊"
+    "stage": "partial",
+    "label": "期貨已更新，法人待公布"
   },
   "sectionUpdates": {
     "index": {
-      "dataDate": "2026/07/24",
-      "updatedAt": "2026-07-24T21:51:37+08:00",
-      "lastCheckedAt": "2026-07-24T21:51:37+08:00",
+      "dataDate": "2026/07/27",
+      "updatedAt": "2026-07-27T14:51:57+08:00",
+      "lastCheckedAt": "2026-07-27T14:51:57+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/07/24",
       "updatedAt": "2026-07-24T21:51:37+08:00",
-      "lastCheckedAt": "2026-07-24T21:51:37+08:00",
-      "status": "current"
+      "lastCheckedAt": "2026-07-27T14:51:57+08:00",
+      "status": "stale"
     },
     "futures": {
-      "dataDate": "2026/07/24",
-      "updatedAt": "2026-07-24T21:51:37+08:00",
-      "lastCheckedAt": "2026-07-24T21:51:37+08:00",
+      "dataDate": "2026/07/27",
+      "updatedAt": "2026-07-27T14:51:57+08:00",
+      "lastCheckedAt": "2026-07-27T14:51:57+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/07/24",
       "updatedAt": "2026-07-24T21:51:37+08:00",
-      "lastCheckedAt": "2026-07-24T23:25:28+08:00",
-      "status": "current"
+      "lastCheckedAt": "2026-07-27T14:51:57+08:00",
+      "status": "stale"
     }
   },
-  "sourceIssues": []
+  "sourceIssues": [
+    "三大法人 2026/07/27 資料尚未完整發布，法人資料維持前次版本。",
+    "融資融券 2026/07/27 資料尚未發布，信用交易維持前次版本。"
+  ]
 }
