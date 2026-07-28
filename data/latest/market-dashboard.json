@@ -1,6 +1,6 @@
 {
   "asOf": "2026/07/28 盤後",
-  "generatedAt": "2026-07-28T17:46:33+08:00",
+  "generatedAt": "2026-07-28T22:15:55+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -11,40 +11,40 @@
     "direction": "down"
   },
   "summary": {
-    "institutionalNet": -2359220034,
+    "institutionalNet": -2358712900,
     "futuresNetOpenInterest": -4781,
-    "marginBalance": 5686.63,
-    "marginChange": -83.96,
-    "shortChange": -24988
+    "marginBalance": 5455.35,
+    "marginChange": -231.29,
+    "shortChange": 35636
   },
   "institutional": [
     {
       "market": "大盤",
-      "foreign": -793747470,
-      "investmentTrust": 37686763,
+      "foreign": -787984470,
+      "investmentTrust": 33345875,
       "dealer": -1752919012,
-      "total": -2508979719
+      "total": -2507557607
     },
     {
       "market": "櫃買",
       "foreign": 77412803,
-      "investmentTrust": -406965,
+      "investmentTrust": -1321943,
       "dealer": 72753847,
-      "total": 149759685
+      "total": 148844707
     }
   ],
   "institutionalHistory": [
     {
       "date": "2026/07/28",
-      "foreignNonDealer": -875.63,
+      "foreignNonDealer": -874.85,
       "foreignDealer": 0,
-      "foreignTotal": -875.63,
-      "twseForeignTotal": -875.63,
-      "investmentTrust": 23.53,
+      "foreignTotal": -874.85,
+      "twseForeignTotal": -874.85,
+      "investmentTrust": 16.12,
       "dealerProprietary": -12.26,
       "dealerHedge": -305.04,
       "dealerTotal": -317.3,
-      "total": -1169.39,
+      "total": -1176.03,
       "futuresForeignNet": -82255,
       "futuresInvestmentTrustNet": 74886,
       "futuresDealerNet": 2588,
@@ -314,20 +314,28 @@
   "credit": [
     {
       "market": "大盤",
-      "marginBalance": 9272006,
-      "marginChange": -82804,
-      "shortBalance": 186233,
-      "shortChange": -18521
+      "marginBalance": 9096008,
+      "marginChange": -175998,
+      "shortBalance": 219259,
+      "shortChange": 33026
     },
     {
       "market": "櫃買",
-      "marginBalance": 2316538,
-      "marginChange": -17121,
-      "shortBalance": 29972,
-      "shortChange": -6467
+      "marginBalance": 2258460,
+      "marginChange": -58003,
+      "shortBalance": 32582,
+      "shortChange": 2610
     }
   ],
   "creditHistory": [
+    {
+      "date": "07/28",
+      "marginBalance": 5455.35,
+      "marginChange": -231.29,
+      "marginMaintenanceRatio": null,
+      "shortBalance": 219259,
+      "shortChange": 33026
+    },
     {
       "date": "07/27",
       "marginBalance": 5686.63,
@@ -458,36 +466,34 @@
     }
   ],
   "updateStatus": {
-    "stage": "partial",
-    "label": "法人與期貨已更新，信用待晚間"
+    "stage": "complete",
+    "label": "當日資料已補齊"
   },
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/07/28",
-      "updatedAt": "2026-07-28T17:46:33+08:00",
-      "lastCheckedAt": "2026-07-28T17:46:33+08:00",
+      "updatedAt": "2026-07-28T22:15:55+08:00",
+      "lastCheckedAt": "2026-07-28T22:15:55+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/07/28",
-      "updatedAt": "2026-07-28T17:46:33+08:00",
-      "lastCheckedAt": "2026-07-28T17:46:33+08:00",
+      "updatedAt": "2026-07-28T22:15:55+08:00",
+      "lastCheckedAt": "2026-07-28T22:15:55+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/07/28",
-      "updatedAt": "2026-07-28T17:46:33+08:00",
-      "lastCheckedAt": "2026-07-28T17:46:33+08:00",
+      "updatedAt": "2026-07-28T22:15:55+08:00",
+      "lastCheckedAt": "2026-07-28T22:15:55+08:00",
       "status": "current"
     },
     "credit": {
-      "dataDate": "2026/07/27",
-      "updatedAt": "2026-07-27T22:43:19+08:00",
-      "lastCheckedAt": "2026-07-28T17:46:33+08:00",
-      "status": "stale"
+      "dataDate": "2026/07/28",
+      "updatedAt": "2026-07-28T22:15:55+08:00",
+      "lastCheckedAt": "2026-07-28T22:15:55+08:00",
+      "status": "current"
     }
   },
-  "sourceIssues": [
-    "融資融券 2026/07/28 資料尚未發布，信用交易維持前次版本。"
-  ]
+  "sourceIssues": []
 }
