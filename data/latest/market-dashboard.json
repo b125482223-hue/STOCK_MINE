@@ -1,13 +1,13 @@
 {
-  "asOf": "2026/07/28 盤後",
-  "generatedAt": "2026-07-28T22:15:55+08:00",
+  "asOf": "2026/07/29 盤後",
+  "generatedAt": "2026-07-29T14:19:05+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
-    "date": "2026/07/28",
-    "close": 41603.36,
-    "change": -2030.83,
-    "changePercent": -4.65,
+    "date": "2026/07/29",
+    "close": 40039.18,
+    "change": -1564.18,
+    "changePercent": -3.76,
     "direction": "down"
   },
   "summary": {
@@ -466,34 +466,38 @@
     }
   ],
   "updateStatus": {
-    "stage": "complete",
-    "label": "當日資料已補齊"
+    "stage": "waiting",
+    "label": "等待官方資料"
   },
   "sectionUpdates": {
     "index": {
-      "dataDate": "2026/07/28",
-      "updatedAt": "2026-07-28T22:15:55+08:00",
-      "lastCheckedAt": "2026-07-28T22:15:55+08:00",
+      "dataDate": "2026/07/29",
+      "updatedAt": "2026-07-29T14:19:05+08:00",
+      "lastCheckedAt": "2026-07-29T14:19:05+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/07/28",
       "updatedAt": "2026-07-28T22:15:55+08:00",
-      "lastCheckedAt": "2026-07-28T22:15:55+08:00",
-      "status": "current"
+      "lastCheckedAt": "2026-07-29T14:19:05+08:00",
+      "status": "stale"
     },
     "futures": {
       "dataDate": "2026/07/28",
       "updatedAt": "2026-07-28T22:15:55+08:00",
-      "lastCheckedAt": "2026-07-28T22:15:55+08:00",
-      "status": "current"
+      "lastCheckedAt": "2026-07-29T14:19:05+08:00",
+      "status": "stale"
     },
     "credit": {
       "dataDate": "2026/07/28",
       "updatedAt": "2026-07-28T22:15:55+08:00",
-      "lastCheckedAt": "2026-07-29T00:04:59+08:00",
-      "status": "current"
+      "lastCheckedAt": "2026-07-29T14:19:05+08:00",
+      "status": "stale"
     }
   },
-  "sourceIssues": []
+  "sourceIssues": [
+    "三大法人 2026/07/29 資料尚未完整發布，法人資料維持前次版本。",
+    "外資未平倉 2026/07/29 資料尚未發布，期貨資料維持前次版本。",
+    "融資融券 2026/07/29 資料尚未發布，信用交易維持前次版本。"
+  ]
 }
