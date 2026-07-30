@@ -1,6 +1,6 @@
 {
   "asOf": "2026/07/30 盤後",
-  "generatedAt": "2026-07-30T14:12:57+08:00",
+  "generatedAt": "2026-07-30T14:39:44+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -496,30 +496,32 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/07/30",
-      "updatedAt": "2026-07-30T14:12:57+08:00",
-      "lastCheckedAt": "2026-07-30T14:12:57+08:00",
+      "updatedAt": "2026-07-30T14:39:44+08:00",
+      "lastCheckedAt": "2026-07-30T14:39:44+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/07/29",
       "updatedAt": "2026-07-29T22:18:27+08:00",
-      "lastCheckedAt": "2026-07-30T14:12:57+08:00",
+      "lastCheckedAt": "2026-07-30T14:39:44+08:00",
       "status": "stale"
     },
     "futures": {
       "dataDate": "2026/07/29",
       "updatedAt": "2026-07-29T22:18:27+08:00",
-      "lastCheckedAt": "2026-07-30T14:12:57+08:00",
+      "lastCheckedAt": "2026-07-30T14:39:44+08:00",
       "status": "stale"
     },
     "credit": {
       "dataDate": "2026/07/29",
       "updatedAt": "2026-07-29T22:18:27+08:00",
-      "lastCheckedAt": "2026-07-30T14:12:57+08:00",
+      "lastCheckedAt": "2026-07-30T14:39:44+08:00",
       "status": "stale"
     }
   },
   "sourceIssues": [
+    "TWSE credit trading statistics讀取失敗：HTTP 307",
+    "TWSE margin OpenAPI讀取失敗：回傳不是 JSON。",
     "三大法人 2026/07/30 資料尚未完整發布，法人資料維持前次版本。",
     "外資未平倉 2026/07/30 資料尚未發布，期貨資料維持前次版本。",
     "融資融券 2026/07/30 資料尚未發布，信用交易維持前次版本。"
