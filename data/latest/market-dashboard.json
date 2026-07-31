@@ -1,14 +1,14 @@
 {
-  "asOf": "2026/07/30 盤後",
-  "generatedAt": "2026-07-30T22:09:49+08:00",
+  "asOf": "2026/07/31 盤後",
+  "generatedAt": "2026-07-31T14:33:23+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
-    "date": "2026/07/30",
-    "close": 39933.3,
-    "change": -105.88,
-    "changePercent": -0.26,
-    "direction": "down"
+    "date": "2026/07/31",
+    "close": 43119.75,
+    "change": 3186.45,
+    "changePercent": 7.98,
+    "direction": "up"
   },
   "summary": {
     "institutionalNet": -654081225,
@@ -514,36 +514,38 @@
     }
   ],
   "updateStatus": {
-    "stage": "complete",
-    "label": "當日資料已補齊"
+    "stage": "waiting",
+    "label": "等待官方資料"
   },
   "sectionUpdates": {
     "index": {
-      "dataDate": "2026/07/30",
-      "updatedAt": "2026-07-30T22:09:49+08:00",
-      "lastCheckedAt": "2026-07-30T22:09:49+08:00",
+      "dataDate": "2026/07/31",
+      "updatedAt": "2026-07-31T14:33:23+08:00",
+      "lastCheckedAt": "2026-07-31T14:33:23+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/07/30",
       "updatedAt": "2026-07-30T22:09:49+08:00",
-      "lastCheckedAt": "2026-07-30T22:09:49+08:00",
-      "status": "current"
+      "lastCheckedAt": "2026-07-31T14:33:23+08:00",
+      "status": "stale"
     },
     "futures": {
       "dataDate": "2026/07/30",
       "updatedAt": "2026-07-30T22:09:49+08:00",
-      "lastCheckedAt": "2026-07-30T22:09:49+08:00",
-      "status": "current"
+      "lastCheckedAt": "2026-07-31T14:33:23+08:00",
+      "status": "stale"
     },
     "credit": {
       "dataDate": "2026/07/30",
       "updatedAt": "2026-07-30T22:09:49+08:00",
-      "lastCheckedAt": "2026-07-30T23:52:01+08:00",
-      "status": "current"
+      "lastCheckedAt": "2026-07-31T14:33:23+08:00",
+      "status": "stale"
     }
   },
   "sourceIssues": [
-    "TPEx closing prices讀取失敗：terminated"
+    "三大法人 2026/07/31 資料尚未完整發布，法人資料維持前次版本。",
+    "外資未平倉 2026/07/31 資料尚未發布，期貨資料維持前次版本。",
+    "融資融券 2026/07/31 資料尚未發布，信用交易維持前次版本。"
   ]
 }
