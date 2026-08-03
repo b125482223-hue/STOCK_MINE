@@ -1,6 +1,6 @@
 {
   "asOf": "2026/08/03 盤後",
-  "generatedAt": "2026-08-03T18:29:10+08:00",
+  "generatedAt": "2026-08-03T19:42:23+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -11,7 +11,7 @@
     "direction": "up"
   },
   "summary": {
-    "institutionalNet": 186927313,
+    "institutionalNet": 185658313,
     "futuresNetOpenInterest": -5420,
     "marginBalance": 5074.63,
     "marginChange": 135.97,
@@ -28,9 +28,9 @@
     {
       "market": "櫃買",
       "foreign": -39735822,
-      "investmentTrust": -4031367,
+      "investmentTrust": -5300367,
       "dealer": 60262308,
-      "total": 16495119
+      "total": 15226119
     }
   ],
   "institutionalHistory": [
@@ -560,31 +560,30 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/08/03",
-      "updatedAt": "2026-08-03T18:29:10+08:00",
-      "lastCheckedAt": "2026-08-03T18:29:10+08:00",
+      "updatedAt": "2026-08-03T19:42:23+08:00",
+      "lastCheckedAt": "2026-08-03T19:42:23+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/08/03",
-      "updatedAt": "2026-08-03T18:29:10+08:00",
-      "lastCheckedAt": "2026-08-03T18:29:10+08:00",
+      "updatedAt": "2026-08-03T19:42:23+08:00",
+      "lastCheckedAt": "2026-08-03T19:42:23+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/08/03",
-      "updatedAt": "2026-08-03T18:29:10+08:00",
-      "lastCheckedAt": "2026-08-03T18:29:10+08:00",
+      "updatedAt": "2026-08-03T19:42:23+08:00",
+      "lastCheckedAt": "2026-08-03T19:42:23+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/07/31",
       "updatedAt": "2026-07-31T22:15:40+08:00",
-      "lastCheckedAt": "2026-08-03T18:29:10+08:00",
+      "lastCheckedAt": "2026-08-03T19:42:23+08:00",
       "status": "stale"
     }
   },
   "sourceIssues": [
-    "TWSE margin OpenAPI讀取失敗：回傳不是 JSON。",
     "融資融券 2026/08/03 資料尚未發布，信用交易維持前次版本。"
   ]
 }
