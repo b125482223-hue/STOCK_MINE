@@ -1,18 +1,18 @@
 {
-  "asOf": "2026/07/31 盤後",
-  "generatedAt": "2026-07-31T22:15:40+08:00",
+  "asOf": "2026/08/03 盤後",
+  "generatedAt": "2026-08-03T14:46:59+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
-    "date": "2026/07/31",
-    "close": 43119.75,
-    "change": 3186.45,
-    "changePercent": 7.98,
+    "date": "2026/08/03",
+    "close": 43386.41,
+    "change": 266.66,
+    "changePercent": 0.62,
     "direction": "up"
   },
   "summary": {
     "institutionalNet": 651972249,
-    "futuresNetOpenInterest": 433,
+    "futuresNetOpenInterest": -5420,
     "marginBalance": 5074.63,
     "marginChange": 135.97,
     "shortChange": -17187
@@ -344,19 +344,19 @@
       "participant": "外資",
       "long": null,
       "short": null,
-      "net": -82515
+      "net": -90038
     },
     {
       "participant": "投信",
       "long": null,
       "short": null,
-      "net": 85325
+      "net": 83900
     },
     {
       "participant": "自營商",
       "long": null,
       "short": null,
-      "net": -2377
+      "net": 718
     }
   ],
   "credit": [
@@ -538,34 +538,38 @@
     }
   ],
   "updateStatus": {
-    "stage": "complete",
-    "label": "當日資料已補齊"
+    "stage": "partial",
+    "label": "期貨已更新，法人待公布"
   },
   "sectionUpdates": {
     "index": {
-      "dataDate": "2026/07/31",
-      "updatedAt": "2026-07-31T22:15:40+08:00",
-      "lastCheckedAt": "2026-07-31T22:15:40+08:00",
+      "dataDate": "2026/08/03",
+      "updatedAt": "2026-08-03T14:46:59+08:00",
+      "lastCheckedAt": "2026-08-03T14:46:59+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/07/31",
       "updatedAt": "2026-07-31T22:15:40+08:00",
-      "lastCheckedAt": "2026-07-31T22:15:40+08:00",
-      "status": "current"
+      "lastCheckedAt": "2026-08-03T14:46:59+08:00",
+      "status": "stale"
     },
     "futures": {
-      "dataDate": "2026/07/31",
-      "updatedAt": "2026-07-31T22:15:40+08:00",
-      "lastCheckedAt": "2026-07-31T22:15:40+08:00",
+      "dataDate": "2026/08/03",
+      "updatedAt": "2026-08-03T14:46:59+08:00",
+      "lastCheckedAt": "2026-08-03T14:46:59+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/07/31",
       "updatedAt": "2026-07-31T22:15:40+08:00",
-      "lastCheckedAt": "2026-08-01T00:01:34+08:00",
-      "status": "current"
+      "lastCheckedAt": "2026-08-03T14:46:59+08:00",
+      "status": "stale"
     }
   },
-  "sourceIssues": []
+  "sourceIssues": [
+    "TPEx closing prices讀取失敗：terminated",
+    "三大法人 2026/08/03 資料尚未完整發布，法人資料維持前次版本。",
+    "融資融券 2026/08/03 資料尚未發布，信用交易維持前次版本。"
+  ]
 }
