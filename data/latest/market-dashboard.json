@@ -1,6 +1,6 @@
 {
   "asOf": "2026/08/03 盤後",
-  "generatedAt": "2026-08-03T15:44:45+08:00",
+  "generatedAt": "2026-08-03T18:28:22+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -11,7 +11,7 @@
     "direction": "up"
   },
   "summary": {
-    "institutionalNet": 630154221,
+    "institutionalNet": 186927313,
     "futuresNetOpenInterest": -5420,
     "marginBalance": 5074.63,
     "marginChange": 135.97,
@@ -20,10 +20,10 @@
   "institutional": [
     {
       "market": "大盤",
-      "foreign": 2182910963,
-      "investmentTrust": 76204758,
-      "dealer": -1645456619,
-      "total": 613659102
+      "foreign": 489237445,
+      "investmentTrust": 99268027,
+      "dealer": -418073278,
+      "total": 170432194
     },
     {
       "market": "櫃買",
@@ -560,31 +560,30 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/08/03",
-      "updatedAt": "2026-08-03T15:44:45+08:00",
-      "lastCheckedAt": "2026-08-03T15:44:45+08:00",
+      "updatedAt": "2026-08-03T18:28:22+08:00",
+      "lastCheckedAt": "2026-08-03T18:28:22+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/08/03",
-      "updatedAt": "2026-08-03T15:44:45+08:00",
-      "lastCheckedAt": "2026-08-03T15:44:45+08:00",
+      "updatedAt": "2026-08-03T18:28:22+08:00",
+      "lastCheckedAt": "2026-08-03T18:28:22+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/08/03",
-      "updatedAt": "2026-08-03T15:44:45+08:00",
-      "lastCheckedAt": "2026-08-03T15:44:45+08:00",
+      "updatedAt": "2026-08-03T18:28:22+08:00",
+      "lastCheckedAt": "2026-08-03T18:28:22+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/07/31",
       "updatedAt": "2026-07-31T22:15:40+08:00",
-      "lastCheckedAt": "2026-08-03T15:44:45+08:00",
+      "lastCheckedAt": "2026-08-03T18:28:22+08:00",
       "status": "stale"
     }
   },
   "sourceIssues": [
-    "大盤法人股數明細（不影響官方金額）沿用備援資料，待接穩定官方端點。",
     "融資融券 2026/08/03 資料尚未發布，信用交易維持前次版本。"
   ]
 }
