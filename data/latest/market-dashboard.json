@@ -1,14 +1,14 @@
 {
-  "asOf": "2026/08/05 盤後",
-  "generatedAt": "2026-08-05T22:16:41+08:00",
+  "asOf": "2026/08/06 盤後",
+  "generatedAt": "2026-08-06T14:15:29+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
-    "date": "2026/08/05",
-    "close": 44611.6,
-    "change": 1250.94,
-    "changePercent": 2.88,
-    "direction": "up"
+    "date": "2026/08/06",
+    "close": 44396.7,
+    "change": -214.9,
+    "changePercent": -0.48,
+    "direction": "down"
   },
   "summary": {
     "institutionalNet": 1192807568,
@@ -554,36 +554,41 @@
     }
   ],
   "updateStatus": {
-    "stage": "complete",
-    "label": "當日資料已補齊"
+    "stage": "waiting",
+    "label": "等待官方資料"
   },
   "sectionUpdates": {
     "index": {
-      "dataDate": "2026/08/05",
-      "updatedAt": "2026-08-05T22:16:41+08:00",
-      "lastCheckedAt": "2026-08-05T22:16:41+08:00",
+      "dataDate": "2026/08/06",
+      "updatedAt": "2026-08-06T14:15:29+08:00",
+      "lastCheckedAt": "2026-08-06T14:15:29+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/08/05",
       "updatedAt": "2026-08-05T22:16:41+08:00",
-      "lastCheckedAt": "2026-08-05T22:16:41+08:00",
-      "status": "current"
+      "lastCheckedAt": "2026-08-06T14:15:29+08:00",
+      "status": "stale"
     },
     "futures": {
       "dataDate": "2026/08/05",
       "updatedAt": "2026-08-05T22:16:41+08:00",
-      "lastCheckedAt": "2026-08-05T22:16:41+08:00",
-      "status": "current"
+      "lastCheckedAt": "2026-08-06T14:15:29+08:00",
+      "status": "stale"
     },
     "credit": {
       "dataDate": "2026/08/05",
       "updatedAt": "2026-08-05T22:16:41+08:00",
-      "lastCheckedAt": "2026-08-06T00:00:58+08:00",
-      "status": "current"
+      "lastCheckedAt": "2026-08-06T14:15:29+08:00",
+      "status": "stale"
     }
   },
   "sourceIssues": [
-    "TPEx closing prices讀取失敗：HTTP 520"
+    "TPEx institutional data returned HTTP 520.",
+    "TPEx closing prices讀取失敗：terminated",
+    "TPEx margin trading讀取失敗：HTTP 520",
+    "三大法人 2026/08/06 資料尚未完整發布，法人資料維持前次版本。",
+    "外資未平倉 2026/08/06 資料尚未發布，期貨資料維持前次版本。",
+    "融資融券 2026/08/06 資料尚未發布，信用交易維持前次版本。"
   ]
 }
