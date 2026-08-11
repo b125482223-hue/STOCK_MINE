@@ -1,6 +1,6 @@
 {
   "asOf": "2026/08/11 盤後",
-  "generatedAt": "2026-08-11T15:58:11+08:00",
+  "generatedAt": "2026-08-11T17:12:20+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -11,7 +11,7 @@
     "direction": "up"
   },
   "summary": {
-    "institutionalNet": 798852215,
+    "institutionalNet": -84099736,
     "futuresNetOpenInterest": -3607,
     "marginBalance": 5452.96,
     "marginChange": 76.31,
@@ -20,10 +20,10 @@
   "institutional": [
     {
       "market": "大盤",
-      "foreign": 413261167,
-      "investmentTrust": 43409971,
-      "dealer": 474466419,
-      "total": 931137557
+      "foreign": -62983222,
+      "investmentTrust": 35324132,
+      "dealer": 75844696,
+      "total": 48185606
     },
     {
       "market": "櫃買",
@@ -560,31 +560,30 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/08/11",
-      "updatedAt": "2026-08-11T15:58:11+08:00",
-      "lastCheckedAt": "2026-08-11T15:58:11+08:00",
+      "updatedAt": "2026-08-11T17:12:20+08:00",
+      "lastCheckedAt": "2026-08-11T17:12:20+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/08/11",
-      "updatedAt": "2026-08-11T15:58:11+08:00",
-      "lastCheckedAt": "2026-08-11T15:58:11+08:00",
+      "updatedAt": "2026-08-11T17:12:20+08:00",
+      "lastCheckedAt": "2026-08-11T17:12:20+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/08/11",
-      "updatedAt": "2026-08-11T15:58:11+08:00",
-      "lastCheckedAt": "2026-08-11T15:58:11+08:00",
+      "updatedAt": "2026-08-11T17:12:20+08:00",
+      "lastCheckedAt": "2026-08-11T17:12:20+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/08/10",
       "updatedAt": "2026-08-10T21:15:39+08:00",
-      "lastCheckedAt": "2026-08-11T15:58:11+08:00",
+      "lastCheckedAt": "2026-08-11T17:12:20+08:00",
       "status": "stale"
     }
   },
   "sourceIssues": [
-    "大盤法人股數明細（不影響官方金額）沿用備援資料，待接穩定官方端點。",
     "融資融券 2026/08/11 資料尚未發布，信用交易維持前次版本。"
   ]
 }
