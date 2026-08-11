@@ -1,6 +1,6 @@
 {
   "asOf": "2026/08/10 盤後",
-  "generatedAt": "2026-08-11T12:53:39+08:00",
+  "generatedAt": "2026-08-11T13:21:00+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -561,31 +561,30 @@
     "index": {
       "dataDate": "2026/08/10",
       "updatedAt": "2026-08-10T21:15:39+08:00",
-      "lastCheckedAt": "2026-08-11T12:53:39+08:00",
+      "lastCheckedAt": "2026-08-11T13:21:00+08:00",
       "status": "stale"
     },
     "institutional": {
       "dataDate": "2026/08/10",
       "updatedAt": "2026-08-10T21:15:39+08:00",
-      "lastCheckedAt": "2026-08-11T12:53:39+08:00",
+      "lastCheckedAt": "2026-08-11T13:21:00+08:00",
       "status": "stale"
     },
     "futures": {
       "dataDate": "2026/08/10",
       "updatedAt": "2026-08-10T21:15:39+08:00",
-      "lastCheckedAt": "2026-08-11T12:53:39+08:00",
+      "lastCheckedAt": "2026-08-11T13:21:00+08:00",
       "status": "stale"
     },
     "credit": {
       "dataDate": "2026/08/10",
       "updatedAt": "2026-08-10T21:15:39+08:00",
-      "lastCheckedAt": "2026-08-11T12:53:39+08:00",
+      "lastCheckedAt": "2026-08-11T13:21:00+08:00",
       "status": "stale"
     }
   },
   "sourceIssues": [
-    "TPEx institutional data returned HTTP 520.",
-    "TPEx closing prices讀取失敗：HTTP 520",
+    "TPEx closing prices讀取失敗：terminated",
     "加權指數 2026/08/11 資料尚未發布，指數資料維持前次版本。",
     "三大法人 2026/08/11 資料尚未完整發布，法人資料維持前次版本。",
     "外資未平倉 2026/08/11 資料尚未發布，期貨資料維持前次版本。",
