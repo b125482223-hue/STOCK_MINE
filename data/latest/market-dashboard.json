@@ -1,18 +1,18 @@
 {
-  "asOf": "2026/08/11 盤後",
-  "generatedAt": "2026-08-12T13:44:33+08:00",
+  "asOf": "2026/08/12 盤後",
+  "generatedAt": "2026-08-12T14:58:29+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
-    "date": "2026/08/11",
-    "close": 45120.72,
-    "change": 191.96,
-    "changePercent": 0.43,
+    "date": "2026/08/12",
+    "close": 45518.07,
+    "change": 397.35,
+    "changePercent": 0.88,
     "direction": "up"
   },
   "summary": {
     "institutionalNet": -82092994,
-    "futuresNetOpenInterest": -3607,
+    "futuresNetOpenInterest": -3011,
     "marginBalance": 5441.52,
     "marginChange": -11.44,
     "shortChange": 3776
@@ -360,19 +360,19 @@
       "participant": "外資",
       "long": null,
       "short": null,
-      "net": -88924
+      "net": -86633
     },
     {
       "participant": "投信",
       "long": null,
       "short": null,
-      "net": 83418
+      "net": 82383
     },
     {
       "participant": "自營商",
       "long": null,
       "short": null,
-      "net": 1899
+      "net": 1239
     }
   ],
   "credit": [
@@ -554,41 +554,37 @@
     }
   ],
   "updateStatus": {
-    "stage": "waiting",
-    "label": "等待官方資料"
+    "stage": "partial",
+    "label": "期貨已更新，法人待公布"
   },
   "sectionUpdates": {
     "index": {
-      "dataDate": "2026/08/11",
-      "updatedAt": "2026-08-11T21:12:27+08:00",
-      "lastCheckedAt": "2026-08-12T13:44:33+08:00",
-      "status": "stale"
+      "dataDate": "2026/08/12",
+      "updatedAt": "2026-08-12T14:58:29+08:00",
+      "lastCheckedAt": "2026-08-12T14:58:29+08:00",
+      "status": "current"
     },
     "institutional": {
       "dataDate": "2026/08/11",
       "updatedAt": "2026-08-11T21:12:27+08:00",
-      "lastCheckedAt": "2026-08-12T13:44:33+08:00",
+      "lastCheckedAt": "2026-08-12T14:58:29+08:00",
       "status": "stale"
     },
     "futures": {
-      "dataDate": "2026/08/11",
-      "updatedAt": "2026-08-11T21:12:27+08:00",
-      "lastCheckedAt": "2026-08-12T13:44:33+08:00",
-      "status": "stale"
+      "dataDate": "2026/08/12",
+      "updatedAt": "2026-08-12T14:58:29+08:00",
+      "lastCheckedAt": "2026-08-12T14:58:29+08:00",
+      "status": "current"
     },
     "credit": {
       "dataDate": "2026/08/11",
       "updatedAt": "2026-08-11T21:12:27+08:00",
-      "lastCheckedAt": "2026-08-12T13:44:33+08:00",
+      "lastCheckedAt": "2026-08-12T14:58:29+08:00",
       "status": "stale"
     }
   },
   "sourceIssues": [
-    "TWSE T86 institutional讀取失敗：HTTP 307",
-    "TWSE margin OpenAPI讀取失敗：回傳不是 JSON。",
-    "加權指數 2026/08/12 資料尚未發布，指數資料維持前次版本。",
     "三大法人 2026/08/12 資料尚未完整發布，法人資料維持前次版本。",
-    "外資未平倉 2026/08/12 資料尚未發布，期貨資料維持前次版本。",
     "融資融券 2026/08/12 資料尚未發布，信用交易維持前次版本。"
   ]
 }
