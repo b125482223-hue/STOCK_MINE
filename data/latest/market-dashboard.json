@@ -1,6 +1,6 @@
 {
   "asOf": "2026/08/17 盤後",
-  "generatedAt": "2026-08-17T16:00:42+08:00",
+  "generatedAt": "2026-08-17T16:24:15+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -11,7 +11,7 @@
     "direction": "up"
   },
   "summary": {
-    "institutionalNet": 931894520,
+    "institutionalNet": 306165948,
     "futuresNetOpenInterest": -4440,
     "marginBalance": 5470.59,
     "marginChange": -27.21,
@@ -20,10 +20,10 @@
   "institutional": [
     {
       "market": "大盤",
-      "foreign": 631323269,
-      "investmentTrust": 122567160,
-      "dealer": 335633465,
-      "total": 1089523894
+      "foreign": 262618770,
+      "investmentTrust": 76592070,
+      "dealer": 124584482,
+      "total": 463795322
     },
     {
       "market": "櫃買",
@@ -560,31 +560,30 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/08/17",
-      "updatedAt": "2026-08-17T16:00:42+08:00",
-      "lastCheckedAt": "2026-08-17T16:00:42+08:00",
+      "updatedAt": "2026-08-17T16:24:15+08:00",
+      "lastCheckedAt": "2026-08-17T16:24:15+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/08/17",
-      "updatedAt": "2026-08-17T16:00:42+08:00",
-      "lastCheckedAt": "2026-08-17T16:00:42+08:00",
+      "updatedAt": "2026-08-17T16:24:15+08:00",
+      "lastCheckedAt": "2026-08-17T16:24:15+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/08/17",
-      "updatedAt": "2026-08-17T16:00:42+08:00",
-      "lastCheckedAt": "2026-08-17T16:00:42+08:00",
+      "updatedAt": "2026-08-17T16:24:15+08:00",
+      "lastCheckedAt": "2026-08-17T16:24:15+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/08/14",
       "updatedAt": "2026-08-14T21:13:24+08:00",
-      "lastCheckedAt": "2026-08-17T16:00:42+08:00",
+      "lastCheckedAt": "2026-08-17T16:24:15+08:00",
       "status": "stale"
     }
   },
   "sourceIssues": [
-    "大盤法人股數明細（不影響官方金額）沿用備援資料，待接穩定官方端點。",
     "融資融券 2026/08/17 資料尚未發布，信用交易維持前次版本。"
   ]
 }
