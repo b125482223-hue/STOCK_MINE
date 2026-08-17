@@ -1,6 +1,6 @@
 {
   "asOf": "2026/08/17 盤後",
-  "generatedAt": "2026-08-17T14:05:22+08:00",
+  "generatedAt": "2026-08-17T15:14:31+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -11,8 +11,8 @@
     "direction": "up"
   },
   "summary": {
-    "institutionalNet": 939127044,
-    "futuresNetOpenInterest": -3380,
+    "institutionalNet": 931894520,
+    "futuresNetOpenInterest": -4440,
     "marginBalance": 5470.59,
     "marginChange": -27.21,
     "shortChange": 8478
@@ -27,13 +27,29 @@
     },
     {
       "market": "櫃買",
-      "foreign": -60450864,
-      "investmentTrust": -509300,
-      "dealer": -89436686,
-      "total": -150396850
+      "foreign": -27720936,
+      "investmentTrust": 745641,
+      "dealer": -130654079,
+      "total": -157629374
     }
   ],
   "institutionalHistory": [
+    {
+      "date": "2026/08/17",
+      "foreignNonDealer": 454.47,
+      "foreignDealer": 0,
+      "foreignTotal": 454.47,
+      "twseForeignTotal": 454.47,
+      "investmentTrust": -177.47,
+      "dealerProprietary": 35.4,
+      "dealerHedge": -21.35,
+      "dealerTotal": 14.05,
+      "total": 291.06,
+      "futuresForeignNet": -83474,
+      "futuresInvestmentTrustNet": 78013,
+      "futuresDealerNet": 1021,
+      "futuresTotalNet": -4440
+    },
     {
       "date": "2026/08/14",
       "foreignNonDealer": 453.51,
@@ -337,22 +353,6 @@
       "futuresInvestmentTrustNet": 75570,
       "futuresDealerNet": 1203,
       "futuresTotalNet": -1717
-    },
-    {
-      "date": "2026/07/20",
-      "foreignNonDealer": -60.84,
-      "foreignDealer": 0,
-      "foreignTotal": -60.84,
-      "twseForeignTotal": -60.84,
-      "investmentTrust": 163.22,
-      "dealerProprietary": 5.64,
-      "dealerHedge": -86.28,
-      "dealerTotal": -80.64,
-      "total": 21.74,
-      "futuresForeignNet": -78337,
-      "futuresInvestmentTrustNet": 72446,
-      "futuresDealerNet": 2974,
-      "futuresTotalNet": -2917
     }
   ],
   "futuresOpenInterest": [
@@ -360,19 +360,19 @@
       "participant": "外資",
       "long": null,
       "short": null,
-      "net": -85179
+      "net": -83474
     },
     {
       "participant": "投信",
       "long": null,
       "short": null,
-      "net": 80335
+      "net": 78013
     },
     {
       "participant": "自營商",
       "long": null,
       "short": null,
-      "net": 1464
+      "net": 1021
     }
   ],
   "credit": [
@@ -554,38 +554,37 @@
     }
   ],
   "updateStatus": {
-    "stage": "waiting",
-    "label": "等待官方資料"
+    "stage": "partial",
+    "label": "法人與期貨已更新，信用待晚間"
   },
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/08/17",
-      "updatedAt": "2026-08-17T14:05:22+08:00",
-      "lastCheckedAt": "2026-08-17T14:05:22+08:00",
+      "updatedAt": "2026-08-17T15:14:31+08:00",
+      "lastCheckedAt": "2026-08-17T15:14:31+08:00",
       "status": "current"
     },
     "institutional": {
-      "dataDate": "2026/08/14",
-      "updatedAt": "2026-08-14T21:13:24+08:00",
-      "lastCheckedAt": "2026-08-17T14:05:22+08:00",
-      "status": "stale"
+      "dataDate": "2026/08/17",
+      "updatedAt": "2026-08-17T15:14:31+08:00",
+      "lastCheckedAt": "2026-08-17T15:14:31+08:00",
+      "status": "current"
     },
     "futures": {
-      "dataDate": "2026/08/14",
-      "updatedAt": "2026-08-14T21:13:24+08:00",
-      "lastCheckedAt": "2026-08-17T14:05:22+08:00",
-      "status": "stale"
+      "dataDate": "2026/08/17",
+      "updatedAt": "2026-08-17T15:14:31+08:00",
+      "lastCheckedAt": "2026-08-17T15:14:31+08:00",
+      "status": "current"
     },
     "credit": {
       "dataDate": "2026/08/14",
       "updatedAt": "2026-08-14T21:13:24+08:00",
-      "lastCheckedAt": "2026-08-17T14:05:22+08:00",
+      "lastCheckedAt": "2026-08-17T15:14:31+08:00",
       "status": "stale"
     }
   },
   "sourceIssues": [
-    "三大法人 2026/08/17 資料尚未完整發布，法人資料維持前次版本。",
-    "外資未平倉 2026/08/17 資料尚未發布，期貨資料維持前次版本。",
+    "大盤法人股數明細（不影響官方金額）沿用備援資料，待接穩定官方端點。",
     "融資融券 2026/08/17 資料尚未發布，信用交易維持前次版本。"
   ]
 }
