@@ -1,14 +1,14 @@
 {
-  "asOf": "2026/08/14 盤後",
-  "generatedAt": "2026-08-17T13:48:19+08:00",
+  "asOf": "2026/08/17 盤後",
+  "generatedAt": "2026-08-17T14:05:22+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
-    "date": "2026/08/14",
-    "close": 45811.01,
-    "change": -210.47,
-    "changePercent": -0.46,
-    "direction": "down"
+    "date": "2026/08/17",
+    "close": 45857.27,
+    "change": 46.26,
+    "changePercent": 0.1,
+    "direction": "up"
   },
   "summary": {
     "institutionalNet": 939127044,
@@ -559,32 +559,31 @@
   },
   "sectionUpdates": {
     "index": {
-      "dataDate": "2026/08/14",
-      "updatedAt": "2026-08-14T21:13:24+08:00",
-      "lastCheckedAt": "2026-08-17T13:48:19+08:00",
-      "status": "stale"
+      "dataDate": "2026/08/17",
+      "updatedAt": "2026-08-17T14:05:22+08:00",
+      "lastCheckedAt": "2026-08-17T14:05:22+08:00",
+      "status": "current"
     },
     "institutional": {
       "dataDate": "2026/08/14",
       "updatedAt": "2026-08-14T21:13:24+08:00",
-      "lastCheckedAt": "2026-08-17T13:48:19+08:00",
+      "lastCheckedAt": "2026-08-17T14:05:22+08:00",
       "status": "stale"
     },
     "futures": {
       "dataDate": "2026/08/14",
       "updatedAt": "2026-08-14T21:13:24+08:00",
-      "lastCheckedAt": "2026-08-17T13:48:19+08:00",
+      "lastCheckedAt": "2026-08-17T14:05:22+08:00",
       "status": "stale"
     },
     "credit": {
       "dataDate": "2026/08/14",
       "updatedAt": "2026-08-14T21:13:24+08:00",
-      "lastCheckedAt": "2026-08-17T13:48:19+08:00",
+      "lastCheckedAt": "2026-08-17T14:05:22+08:00",
       "status": "stale"
     }
   },
   "sourceIssues": [
-    "加權指數 2026/08/17 資料尚未發布，指數資料維持前次版本。",
     "三大法人 2026/08/17 資料尚未完整發布，法人資料維持前次版本。",
     "外資未平倉 2026/08/17 資料尚未發布，期貨資料維持前次版本。",
     "融資融券 2026/08/17 資料尚未發布，信用交易維持前次版本。"
