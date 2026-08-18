@@ -1,6 +1,6 @@
 {
   "asOf": "2026/08/18 盤後",
-  "generatedAt": "2026-08-18T15:52:11+08:00",
+  "generatedAt": "2026-08-18T16:15:26+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -11,7 +11,7 @@
     "direction": "down"
   },
   "summary": {
-    "institutionalNet": 278011818,
+    "institutionalNet": -653378469,
     "futuresNetOpenInterest": -4400,
     "marginBalance": 5501.02,
     "marginChange": 30.42,
@@ -20,10 +20,10 @@
   "institutional": [
     {
       "market": "大盤",
-      "foreign": 262618770,
-      "investmentTrust": 75891070,
-      "dealer": 124584482,
-      "total": 463094322
+      "foreign": -119543039,
+      "investmentTrust": 122901065,
+      "dealer": -471653991,
+      "total": -468295965
     },
     {
       "market": "櫃買",
@@ -560,32 +560,30 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/08/18",
-      "updatedAt": "2026-08-18T15:52:11+08:00",
-      "lastCheckedAt": "2026-08-18T15:52:11+08:00",
+      "updatedAt": "2026-08-18T16:15:26+08:00",
+      "lastCheckedAt": "2026-08-18T16:15:26+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/08/18",
-      "updatedAt": "2026-08-18T15:52:11+08:00",
-      "lastCheckedAt": "2026-08-18T15:52:11+08:00",
+      "updatedAt": "2026-08-18T16:15:26+08:00",
+      "lastCheckedAt": "2026-08-18T16:15:26+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/08/18",
-      "updatedAt": "2026-08-18T15:52:11+08:00",
-      "lastCheckedAt": "2026-08-18T15:52:11+08:00",
+      "updatedAt": "2026-08-18T16:15:26+08:00",
+      "lastCheckedAt": "2026-08-18T16:15:26+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/08/17",
       "updatedAt": "2026-08-17T20:50:07+08:00",
-      "lastCheckedAt": "2026-08-18T15:52:11+08:00",
+      "lastCheckedAt": "2026-08-18T16:15:26+08:00",
       "status": "stale"
     }
   },
   "sourceIssues": [
-    "TPEx closing prices讀取失敗：terminated",
-    "大盤法人股數明細（不影響官方金額）沿用備援資料，待接穩定官方端點。",
     "融資融券 2026/08/18 資料尚未發布，信用交易維持前次版本。"
   ]
 }
