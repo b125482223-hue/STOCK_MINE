@@ -1,18 +1,18 @@
 {
-  "asOf": "2026/08/17 盤後",
-  "generatedAt": "2026-08-18T14:01:51+08:00",
+  "asOf": "2026/08/18 盤後",
+  "generatedAt": "2026-08-18T15:02:34+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
-    "date": "2026/08/17",
-    "close": 45857.27,
-    "change": 46.26,
-    "changePercent": 0.1,
-    "direction": "up"
+    "date": "2026/08/18",
+    "close": 45308.68,
+    "change": -548.59,
+    "changePercent": -1.2,
+    "direction": "down"
   },
   "summary": {
     "institutionalNet": 305503948,
-    "futuresNetOpenInterest": -4440,
+    "futuresNetOpenInterest": -4400,
     "marginBalance": 5501.02,
     "marginChange": 30.42,
     "shortChange": -3346
@@ -34,6 +34,22 @@
     }
   ],
   "institutionalHistory": [
+    {
+      "date": "2026/08/18",
+      "foreignNonDealer": -119.86,
+      "foreignDealer": 0,
+      "foreignTotal": -119.86,
+      "twseForeignTotal": -119.86,
+      "investmentTrust": 56.63,
+      "dealerProprietary": -21.73,
+      "dealerHedge": -154.34,
+      "dealerTotal": -176.07,
+      "total": -239.3,
+      "futuresForeignNet": -83078,
+      "futuresInvestmentTrustNet": 76112,
+      "futuresDealerNet": 2566,
+      "futuresTotalNet": -4400
+    },
     {
       "date": "2026/08/17",
       "foreignNonDealer": 454.47,
@@ -337,22 +353,6 @@
       "futuresInvestmentTrustNet": 75623,
       "futuresDealerNet": 1139,
       "futuresTotalNet": 167
-    },
-    {
-      "date": "2026/07/21",
-      "foreignNonDealer": -43.32,
-      "foreignDealer": 0,
-      "foreignTotal": -43.32,
-      "twseForeignTotal": -43.32,
-      "investmentTrust": 171.14,
-      "dealerProprietary": 13.97,
-      "dealerHedge": 21.1,
-      "dealerTotal": 35.07,
-      "total": 162.89,
-      "futuresForeignNet": -78490,
-      "futuresInvestmentTrustNet": 75570,
-      "futuresDealerNet": 1203,
-      "futuresTotalNet": -1717
     }
   ],
   "futuresOpenInterest": [
@@ -360,19 +360,19 @@
       "participant": "外資",
       "long": null,
       "short": null,
-      "net": -83474
+      "net": -83078
     },
     {
       "participant": "投信",
       "long": null,
       "short": null,
-      "net": 78013
+      "net": 76112
     },
     {
       "participant": "自營商",
       "long": null,
       "short": null,
-      "net": 1021
+      "net": 2566
     }
   ],
   "credit": [
@@ -554,39 +554,38 @@
     }
   ],
   "updateStatus": {
-    "stage": "waiting",
-    "label": "等待官方資料"
+    "stage": "partial",
+    "label": "法人與期貨已更新，信用待晚間"
   },
   "sectionUpdates": {
     "index": {
-      "dataDate": "2026/08/17",
-      "updatedAt": "2026-08-17T20:50:07+08:00",
-      "lastCheckedAt": "2026-08-18T14:01:51+08:00",
-      "status": "stale"
+      "dataDate": "2026/08/18",
+      "updatedAt": "2026-08-18T15:02:34+08:00",
+      "lastCheckedAt": "2026-08-18T15:02:34+08:00",
+      "status": "current"
     },
     "institutional": {
-      "dataDate": "2026/08/17",
-      "updatedAt": "2026-08-17T20:50:07+08:00",
-      "lastCheckedAt": "2026-08-18T14:01:51+08:00",
-      "status": "stale"
+      "dataDate": "2026/08/18",
+      "updatedAt": "2026-08-18T15:02:34+08:00",
+      "lastCheckedAt": "2026-08-18T15:02:34+08:00",
+      "status": "current"
     },
     "futures": {
-      "dataDate": "2026/08/17",
-      "updatedAt": "2026-08-17T20:50:07+08:00",
-      "lastCheckedAt": "2026-08-18T14:01:51+08:00",
-      "status": "stale"
+      "dataDate": "2026/08/18",
+      "updatedAt": "2026-08-18T15:02:34+08:00",
+      "lastCheckedAt": "2026-08-18T15:02:34+08:00",
+      "status": "current"
     },
     "credit": {
       "dataDate": "2026/08/17",
       "updatedAt": "2026-08-17T20:50:07+08:00",
-      "lastCheckedAt": "2026-08-18T14:01:51+08:00",
+      "lastCheckedAt": "2026-08-18T15:02:34+08:00",
       "status": "stale"
     }
   },
   "sourceIssues": [
-    "加權指數 2026/08/18 資料尚未發布，指數資料維持前次版本。",
-    "三大法人 2026/08/18 資料尚未完整發布，法人資料維持前次版本。",
-    "外資未平倉 2026/08/18 資料尚未發布，期貨資料維持前次版本。",
+    "大盤法人股數明細（不影響官方金額）沿用備援資料，待接穩定官方端點。",
+    "櫃買法人股數明細（不影響官方金額）沿用備援資料，待接穩定官方端點。",
     "融資融券 2026/08/18 資料尚未發布，信用交易維持前次版本。"
   ]
 }
