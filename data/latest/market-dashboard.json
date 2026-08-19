@@ -1,6 +1,6 @@
 {
   "asOf": "2026/08/19 盤後",
-  "generatedAt": "2026-08-19T16:15:49+08:00",
+  "generatedAt": "2026-08-19T16:53:07+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -11,7 +11,7 @@
     "direction": "down"
   },
   "summary": {
-    "institutionalNet": -502915615,
+    "institutionalNet": -761630990,
     "futuresNetOpenInterest": -4150,
     "marginBalance": 5470.11,
     "marginChange": -30.9,
@@ -20,10 +20,10 @@
   "institutional": [
     {
       "market": "大盤",
-      "foreign": -119543039,
-      "investmentTrust": 120876601,
-      "dealer": -471653991,
-      "total": -470320429
+      "foreign": -282246707,
+      "investmentTrust": 24712086,
+      "dealer": -471501183,
+      "total": -729035804
     },
     {
       "market": "櫃買",
@@ -560,31 +560,31 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/08/19",
-      "updatedAt": "2026-08-19T16:15:49+08:00",
-      "lastCheckedAt": "2026-08-19T16:15:49+08:00",
+      "updatedAt": "2026-08-19T16:53:07+08:00",
+      "lastCheckedAt": "2026-08-19T16:53:07+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/08/19",
-      "updatedAt": "2026-08-19T16:15:49+08:00",
-      "lastCheckedAt": "2026-08-19T16:15:49+08:00",
+      "updatedAt": "2026-08-19T16:53:07+08:00",
+      "lastCheckedAt": "2026-08-19T16:53:07+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/08/19",
-      "updatedAt": "2026-08-19T16:15:49+08:00",
-      "lastCheckedAt": "2026-08-19T16:15:49+08:00",
+      "updatedAt": "2026-08-19T16:53:07+08:00",
+      "lastCheckedAt": "2026-08-19T16:53:07+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/08/18",
       "updatedAt": "2026-08-18T20:52:12+08:00",
-      "lastCheckedAt": "2026-08-19T16:15:49+08:00",
+      "lastCheckedAt": "2026-08-19T16:53:07+08:00",
       "status": "stale"
     }
   },
   "sourceIssues": [
-    "大盤法人股數明細（不影響官方金額）沿用備援資料，待接穩定官方端點。",
+    "TWSE credit trading statistics讀取失敗：fetch failed",
     "融資融券 2026/08/19 資料尚未發布，信用交易維持前次版本。"
   ]
 }
