@@ -1,6 +1,6 @@
 {
   "asOf": "2026/08/21 盤後",
-  "generatedAt": "2026-08-21T14:04:20+08:00",
+  "generatedAt": "2026-08-21T15:05:34+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -360,19 +360,19 @@
       "participant": "外資",
       "long": null,
       "short": null,
-      "net": -82423
+      "net": -82594
     },
     {
       "participant": "投信",
       "long": null,
       "short": null,
-      "net": 75825
+      "net": 76316
     },
     {
       "participant": "自營商",
       "long": null,
       "short": null,
-      "net": 2019
+      "net": 1699
     }
   ],
   "credit": [
@@ -554,38 +554,38 @@
     }
   ],
   "updateStatus": {
-    "stage": "waiting",
-    "label": "等待官方資料"
+    "stage": "partial",
+    "label": "期貨已更新，法人待公布"
   },
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/08/21",
-      "updatedAt": "2026-08-21T14:04:20+08:00",
-      "lastCheckedAt": "2026-08-21T14:04:20+08:00",
+      "updatedAt": "2026-08-21T15:05:34+08:00",
+      "lastCheckedAt": "2026-08-21T15:05:34+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/08/20",
       "updatedAt": "2026-08-20T20:55:06+08:00",
-      "lastCheckedAt": "2026-08-21T14:04:20+08:00",
+      "lastCheckedAt": "2026-08-21T15:05:34+08:00",
       "status": "stale"
     },
     "futures": {
-      "dataDate": "2026/08/20",
-      "updatedAt": "2026-08-20T20:55:06+08:00",
-      "lastCheckedAt": "2026-08-21T14:04:20+08:00",
-      "status": "stale"
+      "dataDate": "2026/08/21",
+      "updatedAt": "2026-08-21T15:05:34+08:00",
+      "lastCheckedAt": "2026-08-21T15:05:34+08:00",
+      "status": "current"
     },
     "credit": {
       "dataDate": "2026/08/20",
       "updatedAt": "2026-08-20T20:55:06+08:00",
-      "lastCheckedAt": "2026-08-21T14:04:20+08:00",
+      "lastCheckedAt": "2026-08-21T15:05:34+08:00",
       "status": "stale"
     }
   },
   "sourceIssues": [
+    "TPEx closing prices讀取失敗：terminated",
     "三大法人 2026/08/21 資料尚未完整發布，法人資料維持前次版本。",
-    "外資未平倉 2026/08/21 資料尚未發布，期貨資料維持前次版本。",
     "融資融券 2026/08/21 資料尚未發布，信用交易維持前次版本。"
   ]
 }
