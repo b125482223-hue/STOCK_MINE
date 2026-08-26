@@ -1,6 +1,6 @@
 {
   "asOf": "2026/08/26 盤後",
-  "generatedAt": "2026-08-26T15:57:32+08:00",
+  "generatedAt": "2026-08-26T16:23:47+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -11,7 +11,7 @@
     "direction": "up"
   },
   "summary": {
-    "institutionalNet": -200147433,
+    "institutionalNet": 932269519,
     "futuresNetOpenInterest": -6032,
     "marginBalance": 5469.38,
     "marginChange": 16.78,
@@ -20,10 +20,10 @@
   "institutional": [
     {
       "market": "大盤",
-      "foreign": -117462931,
-      "investmentTrust": -766771,
-      "dealer": -205368067,
-      "total": -323597769
+      "foreign": 422449129,
+      "investmentTrust": 9383035,
+      "dealer": 376987019,
+      "total": 808819183
     },
     {
       "market": "櫃買",
@@ -560,31 +560,32 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/08/26",
-      "updatedAt": "2026-08-26T15:57:32+08:00",
-      "lastCheckedAt": "2026-08-26T15:57:32+08:00",
+      "updatedAt": "2026-08-26T16:23:47+08:00",
+      "lastCheckedAt": "2026-08-26T16:23:47+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/08/26",
-      "updatedAt": "2026-08-26T15:57:32+08:00",
-      "lastCheckedAt": "2026-08-26T15:57:32+08:00",
+      "updatedAt": "2026-08-26T16:23:47+08:00",
+      "lastCheckedAt": "2026-08-26T16:23:47+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/08/26",
-      "updatedAt": "2026-08-26T15:57:32+08:00",
-      "lastCheckedAt": "2026-08-26T15:57:32+08:00",
+      "updatedAt": "2026-08-26T16:23:47+08:00",
+      "lastCheckedAt": "2026-08-26T16:23:47+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/08/25",
       "updatedAt": "2026-08-25T20:52:50+08:00",
-      "lastCheckedAt": "2026-08-26T15:57:32+08:00",
+      "lastCheckedAt": "2026-08-26T16:23:47+08:00",
       "status": "stale"
     }
   },
   "sourceIssues": [
-    "大盤法人股數明細（不影響官方金額）沿用備援資料，待接穩定官方端點。",
+    "TPEx closing prices讀取失敗：terminated",
+    "TWSE margin OpenAPI讀取失敗：fetch failed",
     "融資融券 2026/08/26 資料尚未發布，信用交易維持前次版本。"
   ]
 }
