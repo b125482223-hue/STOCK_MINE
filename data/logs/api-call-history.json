@@ -1,7 +1,120 @@
 {
   "version": "1.0.0",
-  "updatedAt": "2026-08-26T17:24:42+08:00",
+  "updatedAt": "2026-08-26T17:55:35+08:00",
   "entries": [
+    {
+      "runAt": "2026-08-26T17:55:35+08:00",
+      "marketDate": "2026-08-26",
+      "trigger": "schedule",
+      "schedule": "17 4-9 * * 1-5",
+      "result": {
+        "institutionalUpdated": true,
+        "indexUpdated": true,
+        "futuresUpdated": true,
+        "creditUpdated": false
+      },
+      "calls": [
+        {
+          "source": "TWSE BFI82U institutional amounts",
+          "requestedDate": "2026/08/26",
+          "calledAt": "2026-08-26T17:55:35+08:00",
+          "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20260826&type=day&response=json",
+          "httpStatus": 200,
+          "ok": true,
+          "dataAvailable": true,
+          "rowCount": 6,
+          "message": null
+        },
+        {
+          "source": "TWSE T86 institutional",
+          "requestedDate": "2026/08/26",
+          "calledAt": "2026-08-26T17:55:36+08:00",
+          "url": "https://www.twse.com.tw/rwd/zh/fund/T86?date=20260826&selectType=ALLBUT0999&response=json",
+          "httpStatus": 200,
+          "ok": true,
+          "dataAvailable": true,
+          "rowCount": 1334,
+          "message": null
+        },
+        {
+          "source": "TWSE closing prices",
+          "requestedDate": "2026/08/26",
+          "calledAt": "2026-08-26T17:55:36+08:00",
+          "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20260826&type=ALLBUT0999&response=json",
+          "httpStatus": 200,
+          "ok": true,
+          "dataAvailable": true,
+          "rowCount": 1378,
+          "message": null
+        },
+        {
+          "source": "TAIFEX futures open interest",
+          "requestedDate": "2026/08/26",
+          "calledAt": "2026-08-26T17:55:36+08:00",
+          "url": "https://www.taifex.com.tw/cht/3/futContractsDate",
+          "httpStatus": 200,
+          "ok": true,
+          "dataAvailable": true,
+          "rowCount": 3,
+          "message": null
+        },
+        {
+          "source": "TPEx institutional data",
+          "requestedDate": "2026/08/26",
+          "calledAt": "2026-08-26T17:55:37+08:00",
+          "url": "https://www.tpex.org.tw/www/zh-tw/insti/dailyTrade",
+          "httpStatus": 200,
+          "ok": true,
+          "dataAvailable": true,
+          "rowCount": 900,
+          "message": null
+        },
+        {
+          "source": "TPEx closing prices",
+          "requestedDate": "2026/08/26",
+          "calledAt": "2026-08-26T17:55:38+08:00",
+          "url": "https://www.tpex.org.tw/web/stock/aftertrading/daily_close_quotes/stk_quote_result.php?l=zh-tw&o=json&d=20260826",
+          "httpStatus": 200,
+          "ok": true,
+          "dataAvailable": true,
+          "rowCount": 10550,
+          "message": null
+        },
+        {
+          "source": "TPEx margin trading",
+          "requestedDate": "2026/08/26",
+          "calledAt": "2026-08-26T17:55:41+08:00",
+          "url": "https://www.tpex.org.tw/web/stock/margin_trading/margin_balance/margin_bal_result.php?l=zh-tw&o=json&d=20260826",
+          "httpStatus": 200,
+          "ok": true,
+          "dataAvailable": true,
+          "rowCount": 920,
+          "message": null
+        },
+        {
+          "source": "TWSE credit trading statistics",
+          "requestedDate": "2026/08/26",
+          "calledAt": "2026-08-26T17:55:41+08:00",
+          "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20260826&response=json",
+          "httpStatus": 200,
+          "ok": true,
+          "dataAvailable": false,
+          "rowCount": 0,
+          "message": null
+        },
+        {
+          "source": "TWSE margin OpenAPI",
+          "requestedDate": "2026/08/26",
+          "calledAt": "2026-08-26T17:55:42+08:00",
+          "url": "https://openapi.twse.com.tw/v1/exchangeReport/MI_MARGN",
+          "httpStatus": 200,
+          "ok": true,
+          "dataAvailable": true,
+          "rowCount": 1295,
+          "message": null
+        }
+      ]
+    },
     {
       "runAt": "2026-08-26T17:24:42+08:00",
       "marketDate": "2026-08-26",
@@ -9601,119 +9714,6 @@
           "ok": true,
           "dataAvailable": true,
           "rowCount": 3,
-          "message": null
-        }
-      ]
-    },
-    {
-      "runAt": "2026-08-18T20:52:12+08:00",
-      "marketDate": "2026-08-18",
-      "trigger": "schedule",
-      "schedule": "5 12 * * 1-5",
-      "result": {
-        "institutionalUpdated": true,
-        "indexUpdated": true,
-        "futuresUpdated": true,
-        "creditUpdated": true
-      },
-      "calls": [
-        {
-          "source": "TWSE BFI82U institutional amounts",
-          "requestedDate": "2026/08/18",
-          "calledAt": "2026-08-18T20:52:12+08:00",
-          "url": "https://www.twse.com.tw/rwd/zh/fund/BFI82U?dayDate=20260818&type=day&response=json",
-          "httpStatus": 200,
-          "ok": true,
-          "dataAvailable": true,
-          "rowCount": 6,
-          "message": null
-        },
-        {
-          "source": "TWSE T86 institutional",
-          "requestedDate": "2026/08/18",
-          "calledAt": "2026-08-18T20:52:13+08:00",
-          "url": "https://www.twse.com.tw/rwd/zh/fund/T86?date=20260818&selectType=ALLBUT0999&response=json",
-          "httpStatus": 200,
-          "ok": true,
-          "dataAvailable": true,
-          "rowCount": 1327,
-          "message": null
-        },
-        {
-          "source": "TWSE closing prices",
-          "requestedDate": "2026/08/18",
-          "calledAt": "2026-08-18T20:54:31+08:00",
-          "url": "https://www.twse.com.tw/rwd/zh/afterTrading/MI_INDEX?date=20260818&type=ALLBUT0999&response=json",
-          "httpStatus": 200,
-          "ok": true,
-          "dataAvailable": true,
-          "rowCount": 1378,
-          "message": null
-        },
-        {
-          "source": "TAIFEX futures open interest",
-          "requestedDate": "2026/08/18",
-          "calledAt": "2026-08-18T20:54:31+08:00",
-          "url": "https://www.taifex.com.tw/cht/3/futContractsDate",
-          "httpStatus": 200,
-          "ok": true,
-          "dataAvailable": true,
-          "rowCount": 3,
-          "message": null
-        },
-        {
-          "source": "TPEx institutional data",
-          "requestedDate": "2026/08/18",
-          "calledAt": "2026-08-18T20:54:34+08:00",
-          "url": "https://www.tpex.org.tw/www/zh-tw/insti/dailyTrade",
-          "httpStatus": 200,
-          "ok": true,
-          "dataAvailable": true,
-          "rowCount": 916,
-          "message": null
-        },
-        {
-          "source": "TPEx closing prices",
-          "requestedDate": "2026/08/18",
-          "calledAt": "2026-08-18T20:54:35+08:00",
-          "url": "https://www.tpex.org.tw/web/stock/aftertrading/daily_close_quotes/stk_quote_result.php?l=zh-tw&o=json&d=20260818",
-          "httpStatus": 200,
-          "ok": true,
-          "dataAvailable": true,
-          "rowCount": 10561,
-          "message": null
-        },
-        {
-          "source": "TPEx margin trading",
-          "requestedDate": "2026/08/18",
-          "calledAt": "2026-08-18T20:54:38+08:00",
-          "url": "https://www.tpex.org.tw/web/stock/margin_trading/margin_balance/margin_bal_result.php?l=zh-tw&o=json&d=20260818",
-          "httpStatus": 200,
-          "ok": true,
-          "dataAvailable": true,
-          "rowCount": 918,
-          "message": null
-        },
-        {
-          "source": "TWSE credit trading statistics",
-          "requestedDate": "2026/08/18",
-          "calledAt": "2026-08-18T20:54:38+08:00",
-          "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20260818&response=json",
-          "httpStatus": 200,
-          "ok": true,
-          "dataAvailable": true,
-          "rowCount": 3,
-          "message": null
-        },
-        {
-          "source": "TWSE margin OpenAPI",
-          "requestedDate": "2026/08/18",
-          "calledAt": "2026-08-18T20:54:40+08:00",
-          "url": "https://openapi.twse.com.tw/v1/exchangeReport/MI_MARGN",
-          "httpStatus": 200,
-          "ok": true,
-          "dataAvailable": true,
-          "rowCount": 1294,
           "message": null
         }
       ]
