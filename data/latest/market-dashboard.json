@@ -1,6 +1,6 @@
 {
   "asOf": "2026/08/26 盤後",
-  "generatedAt": "2026-08-26T17:00:39+08:00",
+  "generatedAt": "2026-08-26T17:24:42+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -11,7 +11,7 @@
     "direction": "up"
   },
   "summary": {
-    "institutionalNet": 932269519,
+    "institutionalNet": 932069519,
     "futuresNetOpenInterest": -6032,
     "marginBalance": 5469.38,
     "marginChange": 16.78,
@@ -27,10 +27,10 @@
     },
     {
       "market": "櫃買",
-      "foreign": 68745075,
+      "foreign": 68545075,
       "investmentTrust": 4553294,
       "dealer": 50151967,
-      "total": 123450336
+      "total": 123250336
     }
   ],
   "institutionalHistory": [
@@ -560,31 +560,30 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/08/26",
-      "updatedAt": "2026-08-26T17:00:39+08:00",
-      "lastCheckedAt": "2026-08-26T17:00:39+08:00",
+      "updatedAt": "2026-08-26T17:24:42+08:00",
+      "lastCheckedAt": "2026-08-26T17:24:42+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/08/26",
-      "updatedAt": "2026-08-26T17:00:39+08:00",
-      "lastCheckedAt": "2026-08-26T17:00:39+08:00",
+      "updatedAt": "2026-08-26T17:24:42+08:00",
+      "lastCheckedAt": "2026-08-26T17:24:42+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/08/26",
-      "updatedAt": "2026-08-26T17:00:39+08:00",
-      "lastCheckedAt": "2026-08-26T17:00:39+08:00",
+      "updatedAt": "2026-08-26T17:24:42+08:00",
+      "lastCheckedAt": "2026-08-26T17:24:42+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/08/25",
       "updatedAt": "2026-08-25T20:52:50+08:00",
-      "lastCheckedAt": "2026-08-26T17:00:39+08:00",
+      "lastCheckedAt": "2026-08-26T17:24:42+08:00",
       "status": "stale"
     }
   },
   "sourceIssues": [
-    "TPEx closing prices讀取失敗：terminated",
     "融資融券 2026/08/26 資料尚未發布，信用交易維持前次版本。"
   ]
 }
