@@ -1,6 +1,6 @@
 {
   "asOf": "2026/08/27 盤後",
-  "generatedAt": "2026-08-27T22:46:39+08:00",
+  "generatedAt": "2026-08-27T23:13:39+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -560,28 +560,32 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/08/27",
-      "updatedAt": "2026-08-27T22:46:39+08:00",
-      "lastCheckedAt": "2026-08-27T22:46:39+08:00",
+      "updatedAt": "2026-08-27T23:13:39+08:00",
+      "lastCheckedAt": "2026-08-27T23:13:39+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/08/27",
-      "updatedAt": "2026-08-27T22:46:39+08:00",
-      "lastCheckedAt": "2026-08-27T22:46:39+08:00",
+      "updatedAt": "2026-08-27T23:13:39+08:00",
+      "lastCheckedAt": "2026-08-27T23:13:39+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/08/27",
-      "updatedAt": "2026-08-27T22:46:39+08:00",
-      "lastCheckedAt": "2026-08-27T22:46:39+08:00",
+      "updatedAt": "2026-08-27T23:13:39+08:00",
+      "lastCheckedAt": "2026-08-27T23:13:39+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/08/27",
-      "updatedAt": "2026-08-27T22:46:39+08:00",
-      "lastCheckedAt": "2026-08-27T22:46:39+08:00",
+      "updatedAt": "2026-08-27T23:13:39+08:00",
+      "lastCheckedAt": "2026-08-27T23:13:39+08:00",
       "status": "current"
     }
   },
-  "sourceIssues": []
+  "sourceIssues": [
+    "TPEx institutional data returned HTTP 520.",
+    "TWSE margin OpenAPI讀取失敗：回傳不是 JSON。",
+    "櫃買法人股數明細（不影響官方金額）沿用備援資料，待接穩定官方端點。"
+  ]
 }
