@@ -1,39 +1,55 @@
 {
-  "asOf": "2026/08/26 盤後",
-  "generatedAt": "2026-08-26T20:58:22+08:00",
+  "asOf": "2026/08/27 盤後",
+  "generatedAt": "2026-08-27T22:46:39+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
-    "date": "2026/08/26",
-    "close": 45832.62,
-    "change": 663.16,
-    "changePercent": 1.47,
+    "date": "2026/08/27",
+    "close": 45975.22,
+    "change": 142.6,
+    "changePercent": 0.31,
     "direction": "up"
   },
   "summary": {
-    "institutionalNet": 940861306,
-    "futuresNetOpenInterest": -6032,
-    "marginBalance": 5548.03,
-    "marginChange": 78.65,
-    "shortChange": 11077
+    "institutionalNet": 633020555,
+    "futuresNetOpenInterest": -7626,
+    "marginBalance": 5599.19,
+    "marginChange": 51.16,
+    "shortChange": 6404
   },
   "institutional": [
     {
       "market": "大盤",
-      "foreign": 423359129,
-      "investmentTrust": 8660639,
-      "dealer": 376987019,
-      "total": 809006787
+      "foreign": 404389705,
+      "investmentTrust": -9560495,
+      "dealer": 210662230,
+      "total": 605491440
     },
     {
       "market": "櫃買",
-      "foreign": 68545075,
-      "investmentTrust": 13157477,
-      "dealer": 50151967,
-      "total": 131854519
+      "foreign": 34451128,
+      "investmentTrust": 10336999,
+      "dealer": -17259012,
+      "total": 27529115
     }
   ],
   "institutionalHistory": [
+    {
+      "date": "2026/08/27",
+      "foreignNonDealer": 490.94,
+      "foreignDealer": 0,
+      "foreignTotal": 490.94,
+      "twseForeignTotal": 490.94,
+      "investmentTrust": -14.5,
+      "dealerProprietary": 59.83,
+      "dealerHedge": 90.52,
+      "dealerTotal": 150.35,
+      "total": 626.79,
+      "futuresForeignNet": -84836,
+      "futuresInvestmentTrustNet": 76834,
+      "futuresDealerNet": 376,
+      "futuresTotalNet": -7626
+    },
     {
       "date": "2026/08/26",
       "foreignNonDealer": 366.13,
@@ -337,22 +353,6 @@
       "futuresInvestmentTrustNet": 85325,
       "futuresDealerNet": -2377,
       "futuresTotalNet": 433
-    },
-    {
-      "date": "2026/07/30",
-      "foreignNonDealer": -483.12,
-      "foreignDealer": 0,
-      "foreignTotal": -483.12,
-      "twseForeignTotal": -483.12,
-      "investmentTrust": 139.97,
-      "dealerProprietary": -5.04,
-      "dealerHedge": -147.22,
-      "dealerTotal": -152.27,
-      "total": -495.41,
-      "futuresForeignNet": -81017,
-      "futuresInvestmentTrustNet": 75857,
-      "futuresDealerNet": 1996,
-      "futuresTotalNet": -3164
     }
   ],
   "futuresOpenInterest": [
@@ -360,38 +360,46 @@
       "participant": "外資",
       "long": null,
       "short": null,
-      "net": -83654
+      "net": -84836
     },
     {
       "participant": "投信",
       "long": null,
       "short": null,
-      "net": 78043
+      "net": 76834
     },
     {
       "participant": "自營商",
       "long": null,
       "short": null,
-      "net": -421
+      "net": 376
     }
   ],
   "credit": [
     {
       "market": "大盤",
-      "marginBalance": 8894036,
-      "marginChange": -6769,
-      "shortBalance": 206809,
-      "shortChange": 6305
+      "marginBalance": 8881555,
+      "marginChange": -12476,
+      "shortBalance": 210591,
+      "shortChange": 3782
     },
     {
       "market": "櫃買",
-      "marginBalance": 2248866,
-      "marginChange": 15341,
-      "shortBalance": 41386,
-      "shortChange": 4772
+      "marginBalance": 2254630,
+      "marginChange": 5764,
+      "shortBalance": 44008,
+      "shortChange": 2622
     }
   ],
   "creditHistory": [
+    {
+      "date": "08/27",
+      "marginBalance": 5599.19,
+      "marginChange": 51.16,
+      "marginMaintenanceRatio": null,
+      "shortBalance": 210591,
+      "shortChange": 3782
+    },
     {
       "date": "08/26",
       "marginBalance": 5548.03,
@@ -543,14 +551,6 @@
       "marginMaintenanceRatio": null,
       "shortBalance": 188324,
       "shortChange": -15890
-    },
-    {
-      "date": "07/30",
-      "marginBalance": 4938.67,
-      "marginChange": -131.43,
-      "marginMaintenanceRatio": null,
-      "shortBalance": 204214,
-      "shortChange": -13271
     }
   ],
   "updateStatus": {
@@ -559,27 +559,27 @@
   },
   "sectionUpdates": {
     "index": {
-      "dataDate": "2026/08/26",
-      "updatedAt": "2026-08-26T20:58:22+08:00",
-      "lastCheckedAt": "2026-08-26T20:58:22+08:00",
+      "dataDate": "2026/08/27",
+      "updatedAt": "2026-08-27T22:46:39+08:00",
+      "lastCheckedAt": "2026-08-27T22:46:39+08:00",
       "status": "current"
     },
     "institutional": {
-      "dataDate": "2026/08/26",
-      "updatedAt": "2026-08-26T20:58:22+08:00",
-      "lastCheckedAt": "2026-08-26T20:58:22+08:00",
+      "dataDate": "2026/08/27",
+      "updatedAt": "2026-08-27T22:46:39+08:00",
+      "lastCheckedAt": "2026-08-27T22:46:39+08:00",
       "status": "current"
     },
     "futures": {
-      "dataDate": "2026/08/26",
-      "updatedAt": "2026-08-26T20:58:22+08:00",
-      "lastCheckedAt": "2026-08-26T20:58:22+08:00",
+      "dataDate": "2026/08/27",
+      "updatedAt": "2026-08-27T22:46:39+08:00",
+      "lastCheckedAt": "2026-08-27T22:46:39+08:00",
       "status": "current"
     },
     "credit": {
-      "dataDate": "2026/08/26",
-      "updatedAt": "2026-08-26T20:58:22+08:00",
-      "lastCheckedAt": "2026-08-26T22:43:24+08:00",
+      "dataDate": "2026/08/27",
+      "updatedAt": "2026-08-27T22:46:39+08:00",
+      "lastCheckedAt": "2026-08-27T22:46:39+08:00",
       "status": "current"
     }
   },
