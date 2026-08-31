@@ -1,6 +1,6 @@
 {
   "asOf": "2026/08/31 盤後",
-  "generatedAt": "2026-08-31T18:06:00+08:00",
+  "generatedAt": "2026-08-31T18:49:36+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -560,31 +560,30 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/08/31",
-      "updatedAt": "2026-08-31T18:06:00+08:00",
-      "lastCheckedAt": "2026-08-31T18:06:00+08:00",
+      "updatedAt": "2026-08-31T18:49:36+08:00",
+      "lastCheckedAt": "2026-08-31T18:49:36+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/08/31",
-      "updatedAt": "2026-08-31T18:06:00+08:00",
-      "lastCheckedAt": "2026-08-31T18:06:00+08:00",
+      "updatedAt": "2026-08-31T18:49:36+08:00",
+      "lastCheckedAt": "2026-08-31T18:49:36+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/08/31",
-      "updatedAt": "2026-08-31T18:06:00+08:00",
-      "lastCheckedAt": "2026-08-31T18:06:00+08:00",
+      "updatedAt": "2026-08-31T18:49:36+08:00",
+      "lastCheckedAt": "2026-08-31T18:49:36+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/08/28",
       "updatedAt": "2026-08-28T23:40:47+08:00",
-      "lastCheckedAt": "2026-08-31T18:06:00+08:00",
+      "lastCheckedAt": "2026-08-31T18:49:36+08:00",
       "status": "stale"
     }
   },
   "sourceIssues": [
-    "TPEx closing prices讀取失敗：terminated",
     "融資融券 2026/08/31 資料尚未發布，信用交易維持前次版本。"
   ]
 }
