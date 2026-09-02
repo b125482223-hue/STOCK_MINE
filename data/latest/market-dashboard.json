@@ -1,6 +1,6 @@
 {
   "asOf": "2026/09/02 盤後",
-  "generatedAt": "2026-09-02T16:45:43+08:00",
+  "generatedAt": "2026-09-02T19:45:10+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -40,11 +40,11 @@
       "foreignDealer": 0,
       "foreignTotal": -913.55,
       "twseForeignTotal": -913.55,
-      "investmentTrust": -33.18,
+      "investmentTrust": -35.28,
       "dealerProprietary": 1.56,
       "dealerHedge": -205.18,
       "dealerTotal": -203.62,
-      "total": -1150.34,
+      "total": -1152.44,
       "futuresForeignNet": -85329,
       "futuresInvestmentTrustNet": 75062,
       "futuresDealerNet": 1109,
@@ -560,26 +560,26 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/09/02",
-      "updatedAt": "2026-09-02T16:45:43+08:00",
-      "lastCheckedAt": "2026-09-02T16:45:43+08:00",
+      "updatedAt": "2026-09-02T19:45:10+08:00",
+      "lastCheckedAt": "2026-09-02T19:45:10+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/09/02",
-      "updatedAt": "2026-09-02T16:45:43+08:00",
-      "lastCheckedAt": "2026-09-02T16:45:43+08:00",
+      "updatedAt": "2026-09-02T19:45:10+08:00",
+      "lastCheckedAt": "2026-09-02T19:45:10+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/09/02",
-      "updatedAt": "2026-09-02T16:45:43+08:00",
-      "lastCheckedAt": "2026-09-02T16:45:43+08:00",
+      "updatedAt": "2026-09-02T19:45:10+08:00",
+      "lastCheckedAt": "2026-09-02T19:45:10+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/09/01",
       "updatedAt": "2026-09-02T00:17:53+08:00",
-      "lastCheckedAt": "2026-09-02T16:45:43+08:00",
+      "lastCheckedAt": "2026-09-02T19:45:10+08:00",
       "status": "stale"
     }
   },
