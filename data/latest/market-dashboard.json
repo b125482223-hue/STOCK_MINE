@@ -1,6 +1,6 @@
 {
   "asOf": "2026/09/03 盤後",
-  "generatedAt": "2026-09-03T21:00:32+08:00",
+  "generatedAt": "2026-09-03T21:34:02+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -15,7 +15,7 @@
     "futuresNetOpenInterest": -6052,
     "marginBalance": 5787.39,
     "marginChange": -69.36,
-    "shortChange": 8216
+    "shortChange": 9202
   },
   "institutional": [
     {
@@ -385,10 +385,10 @@
     },
     {
       "market": "櫃買",
-      "marginBalance": 2286146,
-      "marginChange": 9339,
-      "shortBalance": 39063,
-      "shortChange": -312
+      "marginBalance": 2276754,
+      "marginChange": -9382,
+      "shortBalance": 39737,
+      "shortChange": 674
     }
   ],
   "creditHistory": [
@@ -560,26 +560,26 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/09/03",
-      "updatedAt": "2026-09-03T21:00:32+08:00",
-      "lastCheckedAt": "2026-09-03T21:00:32+08:00",
+      "updatedAt": "2026-09-03T21:34:02+08:00",
+      "lastCheckedAt": "2026-09-03T21:34:02+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/09/03",
-      "updatedAt": "2026-09-03T21:00:32+08:00",
-      "lastCheckedAt": "2026-09-03T21:00:32+08:00",
+      "updatedAt": "2026-09-03T21:34:02+08:00",
+      "lastCheckedAt": "2026-09-03T21:34:02+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/09/03",
-      "updatedAt": "2026-09-03T21:00:32+08:00",
-      "lastCheckedAt": "2026-09-03T21:00:32+08:00",
+      "updatedAt": "2026-09-03T21:34:02+08:00",
+      "lastCheckedAt": "2026-09-03T21:34:02+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/09/03",
-      "updatedAt": "2026-09-03T21:00:32+08:00",
-      "lastCheckedAt": "2026-09-03T21:00:32+08:00",
+      "updatedAt": "2026-09-03T21:34:02+08:00",
+      "lastCheckedAt": "2026-09-03T21:34:02+08:00",
       "status": "current"
     }
   },
