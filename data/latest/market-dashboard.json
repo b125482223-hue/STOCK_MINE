@@ -1,6 +1,6 @@
 {
   "asOf": "2026/09/04 盤後",
-  "generatedAt": "2026-09-04T20:55:44+08:00",
+  "generatedAt": "2026-09-04T21:31:20+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -560,28 +560,30 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/09/04",
-      "updatedAt": "2026-09-04T20:55:44+08:00",
-      "lastCheckedAt": "2026-09-04T20:55:44+08:00",
+      "updatedAt": "2026-09-04T21:31:20+08:00",
+      "lastCheckedAt": "2026-09-04T21:31:20+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/09/04",
-      "updatedAt": "2026-09-04T20:55:44+08:00",
-      "lastCheckedAt": "2026-09-04T20:55:44+08:00",
+      "updatedAt": "2026-09-04T21:31:20+08:00",
+      "lastCheckedAt": "2026-09-04T21:31:20+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/09/04",
-      "updatedAt": "2026-09-04T20:55:44+08:00",
-      "lastCheckedAt": "2026-09-04T20:55:44+08:00",
+      "updatedAt": "2026-09-04T21:31:20+08:00",
+      "lastCheckedAt": "2026-09-04T21:31:20+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/09/04",
-      "updatedAt": "2026-09-04T20:55:44+08:00",
-      "lastCheckedAt": "2026-09-04T20:55:44+08:00",
+      "updatedAt": "2026-09-04T21:31:20+08:00",
+      "lastCheckedAt": "2026-09-04T21:31:20+08:00",
       "status": "current"
     }
   },
-  "sourceIssues": []
+  "sourceIssues": [
+    "TPEx closing prices讀取失敗：terminated"
+  ]
 }
