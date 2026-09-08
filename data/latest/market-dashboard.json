@@ -1,6 +1,6 @@
 {
   "asOf": "2026/09/08 盤後",
-  "generatedAt": "2026-09-08T21:04:27+08:00",
+  "generatedAt": "2026-09-08T21:35:46+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -554,34 +554,38 @@
     }
   ],
   "updateStatus": {
-    "stage": "complete",
-    "label": "當日資料已補齊"
+    "stage": "credit",
+    "label": "信用交易已更新"
   },
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/09/08",
-      "updatedAt": "2026-09-08T21:04:27+08:00",
-      "lastCheckedAt": "2026-09-08T21:04:27+08:00",
+      "updatedAt": "2026-09-08T21:35:46+08:00",
+      "lastCheckedAt": "2026-09-08T21:35:46+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/09/08",
       "updatedAt": "2026-09-08T21:04:27+08:00",
-      "lastCheckedAt": "2026-09-08T21:04:27+08:00",
-      "status": "current"
+      "lastCheckedAt": "2026-09-08T21:35:46+08:00",
+      "status": "stale"
     },
     "futures": {
       "dataDate": "2026/09/08",
-      "updatedAt": "2026-09-08T21:04:27+08:00",
-      "lastCheckedAt": "2026-09-08T21:04:27+08:00",
+      "updatedAt": "2026-09-08T21:35:46+08:00",
+      "lastCheckedAt": "2026-09-08T21:35:46+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/09/08",
-      "updatedAt": "2026-09-08T21:04:27+08:00",
-      "lastCheckedAt": "2026-09-08T21:04:27+08:00",
+      "updatedAt": "2026-09-08T21:35:46+08:00",
+      "lastCheckedAt": "2026-09-08T21:35:46+08:00",
       "status": "current"
     }
   },
-  "sourceIssues": []
+  "sourceIssues": [
+    "TWSE BFI82U institutional amounts讀取失敗：HTTP 307",
+    "TWSE margin OpenAPI讀取失敗：回傳不是 JSON。",
+    "三大法人 2026/09/08 資料尚未完整發布，法人資料維持前次版本。"
+  ]
 }
