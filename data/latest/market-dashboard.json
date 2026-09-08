@@ -1,6 +1,6 @@
 {
   "asOf": "2026/09/08 盤後",
-  "generatedAt": "2026-09-08T16:50:59+08:00",
+  "generatedAt": "2026-09-08T19:45:55+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -11,7 +11,7 @@
     "direction": "down"
   },
   "summary": {
-    "institutionalNet": -558102192,
+    "institutionalNet": -551956996,
     "futuresNetOpenInterest": -7844,
     "marginBalance": 5882.72,
     "marginChange": 63.77,
@@ -21,16 +21,16 @@
     {
       "market": "大盤",
       "foreign": -11995726,
-      "investmentTrust": 47215285,
+      "investmentTrust": 44436891,
       "dealer": -552225100,
-      "total": -517005541
+      "total": -519783935
     },
     {
       "market": "櫃買",
       "foreign": -88226599,
-      "investmentTrust": 9240898,
+      "investmentTrust": 18164488,
       "dealer": 37889050,
-      "total": -41096651
+      "total": -32173061
     }
   ],
   "institutionalHistory": [
@@ -560,26 +560,26 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/09/08",
-      "updatedAt": "2026-09-08T16:50:59+08:00",
-      "lastCheckedAt": "2026-09-08T16:50:59+08:00",
+      "updatedAt": "2026-09-08T19:45:55+08:00",
+      "lastCheckedAt": "2026-09-08T19:45:55+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/09/08",
-      "updatedAt": "2026-09-08T16:50:59+08:00",
-      "lastCheckedAt": "2026-09-08T16:50:59+08:00",
+      "updatedAt": "2026-09-08T19:45:55+08:00",
+      "lastCheckedAt": "2026-09-08T19:45:55+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/09/08",
-      "updatedAt": "2026-09-08T16:50:59+08:00",
-      "lastCheckedAt": "2026-09-08T16:50:59+08:00",
+      "updatedAt": "2026-09-08T19:45:55+08:00",
+      "lastCheckedAt": "2026-09-08T19:45:55+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/09/07",
       "updatedAt": "2026-09-07T22:27:41+08:00",
-      "lastCheckedAt": "2026-09-08T16:50:59+08:00",
+      "lastCheckedAt": "2026-09-08T19:45:55+08:00",
       "status": "stale"
     }
   },
