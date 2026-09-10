@@ -1,6 +1,6 @@
 {
   "asOf": "2026/09/10 盤後",
-  "generatedAt": "2026-09-10T19:51:47+08:00",
+  "generatedAt": "2026-09-10T21:07:33+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -13,9 +13,9 @@
   "summary": {
     "institutionalNet": -656729309,
     "futuresNetOpenInterest": -8056,
-    "marginBalance": 5871.67,
-    "marginChange": 9,
-    "shortChange": -3099
+    "marginBalance": 5918.98,
+    "marginChange": 47.31,
+    "shortChange": -3817
   },
   "institutional": [
     {
@@ -40,11 +40,11 @@
       "foreignDealer": 0,
       "foreignTotal": -383.34,
       "twseForeignTotal": -383.34,
-      "investmentTrust": 17.86,
+      "investmentTrust": 33.51,
       "dealerProprietary": -35.61,
       "dealerHedge": -102.03,
       "dealerTotal": -137.64,
-      "total": -503.12,
+      "total": -487.47,
       "futuresForeignNet": -83918,
       "futuresInvestmentTrustNet": 74483,
       "futuresDealerNet": 1379,
@@ -378,20 +378,28 @@
   "credit": [
     {
       "market": "大盤",
-      "marginBalance": 9070714,
-      "marginChange": 22053,
-      "shortBalance": 203610,
-      "shortChange": -5004
+      "marginBalance": 9102908,
+      "marginChange": 32196,
+      "shortBalance": 197447,
+      "shortChange": -6163
     },
     {
       "market": "櫃買",
-      "marginBalance": 2316911,
-      "marginChange": 10681,
-      "shortBalance": 38965,
-      "shortChange": 1905
+      "marginBalance": 2323019,
+      "marginChange": 6108,
+      "shortBalance": 41311,
+      "shortChange": 2346
     }
   ],
   "creditHistory": [
+    {
+      "date": "09/10",
+      "marginBalance": 5918.98,
+      "marginChange": 47.31,
+      "marginMaintenanceRatio": null,
+      "shortBalance": 197447,
+      "shortChange": -6163
+    },
     {
       "date": "09/09",
       "marginBalance": 5871.67,
@@ -543,47 +551,37 @@
       "marginMaintenanceRatio": null,
       "shortBalance": 222827,
       "shortChange": 8781
-    },
-    {
-      "date": "08/13",
-      "marginBalance": 5497.81,
-      "marginChange": 16.97,
-      "marginMaintenanceRatio": null,
-      "shortBalance": 214046,
-      "shortChange": 12099
     }
   ],
   "updateStatus": {
-    "stage": "partial",
-    "label": "法人與期貨已更新，信用待晚間"
+    "stage": "complete",
+    "label": "當日資料已補齊"
   },
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/09/10",
-      "updatedAt": "2026-09-10T19:51:47+08:00",
-      "lastCheckedAt": "2026-09-10T19:51:47+08:00",
+      "updatedAt": "2026-09-10T21:07:33+08:00",
+      "lastCheckedAt": "2026-09-10T21:07:33+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/09/10",
-      "updatedAt": "2026-09-10T19:51:47+08:00",
-      "lastCheckedAt": "2026-09-10T19:51:47+08:00",
+      "updatedAt": "2026-09-10T21:07:33+08:00",
+      "lastCheckedAt": "2026-09-10T21:07:33+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/09/10",
-      "updatedAt": "2026-09-10T19:51:47+08:00",
-      "lastCheckedAt": "2026-09-10T19:51:47+08:00",
+      "updatedAt": "2026-09-10T21:07:33+08:00",
+      "lastCheckedAt": "2026-09-10T21:07:33+08:00",
       "status": "current"
     },
     "credit": {
-      "dataDate": "2026/09/09",
-      "updatedAt": "2026-09-09T21:41:29+08:00",
-      "lastCheckedAt": "2026-09-10T19:51:47+08:00",
-      "status": "stale"
+      "dataDate": "2026/09/10",
+      "updatedAt": "2026-09-10T21:07:33+08:00",
+      "lastCheckedAt": "2026-09-10T21:07:33+08:00",
+      "status": "current"
     }
   },
-  "sourceIssues": [
-    "融資融券 2026/09/10 資料尚未發布，信用交易維持前次版本。"
-  ]
+  "sourceIssues": []
 }
