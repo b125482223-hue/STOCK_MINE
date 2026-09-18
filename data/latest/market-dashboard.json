@@ -1,6 +1,6 @@
 {
   "asOf": "2026/09/18 盤後",
-  "generatedAt": "2026-09-18T17:00:07+08:00",
+  "generatedAt": "2026-09-18T19:53:06+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -11,7 +11,7 @@
     "direction": "up"
   },
   "summary": {
-    "institutionalNet": 957207346,
+    "institutionalNet": 955052346,
     "futuresNetOpenInterest": -4192,
     "marginBalance": 5893.97,
     "marginChange": 32.29,
@@ -28,9 +28,9 @@
     {
       "market": "櫃買",
       "foreign": 160649365,
-      "investmentTrust": 5983018,
+      "investmentTrust": 3828018,
       "dealer": 20704627,
-      "total": 187337010
+      "total": 185182010
     }
   ],
   "institutionalHistory": [
@@ -40,11 +40,11 @@
       "foreignDealer": 0,
       "foreignTotal": 869.94,
       "twseForeignTotal": 869.94,
-      "investmentTrust": 52.89,
+      "investmentTrust": 81.53,
       "dealerProprietary": 141.82,
       "dealerHedge": 101.22,
       "dealerTotal": 243.03,
-      "total": 1165.87,
+      "total": 1194.51,
       "futuresForeignNet": -76110,
       "futuresInvestmentTrustNet": 75110,
       "futuresDealerNet": -3192,
@@ -560,32 +560,31 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/09/18",
-      "updatedAt": "2026-09-18T17:00:07+08:00",
-      "lastCheckedAt": "2026-09-18T17:00:07+08:00",
+      "updatedAt": "2026-09-18T19:53:06+08:00",
+      "lastCheckedAt": "2026-09-18T19:53:06+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/09/18",
-      "updatedAt": "2026-09-18T17:00:07+08:00",
-      "lastCheckedAt": "2026-09-18T17:00:07+08:00",
+      "updatedAt": "2026-09-18T19:53:06+08:00",
+      "lastCheckedAt": "2026-09-18T19:53:06+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/09/18",
-      "updatedAt": "2026-09-18T17:00:07+08:00",
-      "lastCheckedAt": "2026-09-18T17:00:07+08:00",
+      "updatedAt": "2026-09-18T19:53:06+08:00",
+      "lastCheckedAt": "2026-09-18T19:53:06+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/09/17",
       "updatedAt": "2026-09-18T00:33:40+08:00",
-      "lastCheckedAt": "2026-09-18T17:00:07+08:00",
+      "lastCheckedAt": "2026-09-18T19:53:06+08:00",
       "status": "stale"
     }
   },
   "sourceIssues": [
-    "TPEx institutional data failed: fetch failed",
-    "櫃買法人股數明細（不影響官方金額）沿用備援資料，待接穩定官方端點。",
+    "TPEx closing prices讀取失敗：terminated",
     "融資融券 2026/09/18 資料尚未發布，信用交易維持前次版本。"
   ]
 }
