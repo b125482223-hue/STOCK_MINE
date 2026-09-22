@@ -1,6 +1,6 @@
 {
   "asOf": "2026/09/22 盤後",
-  "generatedAt": "2026-09-22T20:04:12+08:00",
+  "generatedAt": "2026-09-22T22:03:19+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -13,9 +13,9 @@
   "summary": {
     "institutionalNet": 1651714531,
     "futuresNetOpenInterest": -5049,
-    "marginBalance": 6030.38,
-    "marginChange": 89.98,
-    "shortChange": 12082
+    "marginBalance": 6048.61,
+    "marginChange": 18.24,
+    "shortChange": -15846
   },
   "institutional": [
     {
@@ -378,20 +378,28 @@
   "credit": [
     {
       "market": "大盤",
-      "marginBalance": 9330477,
-      "marginChange": 53272,
-      "shortBalance": 231582,
-      "shortChange": 8619
+      "marginBalance": 9245371,
+      "marginChange": -85096,
+      "shortBalance": 218839,
+      "shortChange": -12743
     },
     {
       "market": "櫃買",
-      "marginBalance": 2332823,
-      "marginChange": 2124,
-      "shortBalance": 38886,
-      "shortChange": 3463
+      "marginBalance": 2335144,
+      "marginChange": 2322,
+      "shortBalance": 35783,
+      "shortChange": -3103
     }
   ],
   "creditHistory": [
+    {
+      "date": "09/22",
+      "marginBalance": 6048.61,
+      "marginChange": 18.24,
+      "marginMaintenanceRatio": null,
+      "shortBalance": 218839,
+      "shortChange": -12743
+    },
     {
       "date": "09/21",
       "marginBalance": 6030.38,
@@ -543,47 +551,37 @@
       "marginMaintenanceRatio": null,
       "shortBalance": 206809,
       "shortChange": 6305
-    },
-    {
-      "date": "08/25",
-      "marginBalance": 5469.38,
-      "marginChange": 16.78,
-      "marginMaintenanceRatio": null,
-      "shortBalance": 200504,
-      "shortChange": -1009
     }
   ],
   "updateStatus": {
-    "stage": "partial",
-    "label": "法人與期貨已更新，信用待晚間"
+    "stage": "complete",
+    "label": "當日資料已補齊"
   },
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/09/22",
-      "updatedAt": "2026-09-22T20:04:12+08:00",
-      "lastCheckedAt": "2026-09-22T20:04:12+08:00",
+      "updatedAt": "2026-09-22T22:03:19+08:00",
+      "lastCheckedAt": "2026-09-22T22:03:19+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/09/22",
-      "updatedAt": "2026-09-22T20:04:12+08:00",
-      "lastCheckedAt": "2026-09-22T20:04:12+08:00",
+      "updatedAt": "2026-09-22T22:03:19+08:00",
+      "lastCheckedAt": "2026-09-22T22:03:19+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/09/22",
-      "updatedAt": "2026-09-22T20:04:12+08:00",
-      "lastCheckedAt": "2026-09-22T20:04:12+08:00",
+      "updatedAt": "2026-09-22T22:03:19+08:00",
+      "lastCheckedAt": "2026-09-22T22:03:19+08:00",
       "status": "current"
     },
     "credit": {
-      "dataDate": "2026/09/21",
-      "updatedAt": "2026-09-21T21:23:04+08:00",
-      "lastCheckedAt": "2026-09-22T20:04:12+08:00",
-      "status": "stale"
+      "dataDate": "2026/09/22",
+      "updatedAt": "2026-09-22T22:03:19+08:00",
+      "lastCheckedAt": "2026-09-22T22:03:19+08:00",
+      "status": "current"
     }
   },
-  "sourceIssues": [
-    "融資融券 2026/09/22 資料尚未發布，信用交易維持前次版本。"
-  ]
+  "sourceIssues": []
 }
