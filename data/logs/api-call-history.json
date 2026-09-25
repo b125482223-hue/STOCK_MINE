@@ -1,7 +1,32 @@
 {
   "version": "1.0.0",
-  "updatedAt": "2026-09-26T00:52:03+08:00",
+  "updatedAt": "2026-09-26T01:02:07+08:00",
   "entries": [
+    {
+      "runAt": "2026-09-26T01:02:07+08:00",
+      "marketDate": "2026-09-25",
+      "trigger": "schedule",
+      "schedule": "5 12 * * 1-5",
+      "result": {
+        "institutionalUpdated": false,
+        "indexUpdated": false,
+        "futuresUpdated": false,
+        "creditUpdated": false
+      },
+      "calls": [
+        {
+          "source": "TWSE credit trading watchdog",
+          "requestedDate": "2026/09/25",
+          "calledAt": "2026-09-26T01:02:07+08:00",
+          "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20260925&response=json",
+          "httpStatus": 200,
+          "ok": true,
+          "dataAvailable": false,
+          "rowCount": 0,
+          "message": null
+        }
+      ]
+    },
     {
       "runAt": "2026-09-26T00:52:03+08:00",
       "marketDate": "2026-09-25",
@@ -7220,31 +7245,6 @@
           "source": "TWSE credit trading watchdog",
           "requestedDate": "2026/09/08",
           "calledAt": "2026-09-09T01:24:26+08:00",
-          "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20260908&response=json",
-          "httpStatus": 200,
-          "ok": true,
-          "dataAvailable": true,
-          "rowCount": 3,
-          "message": null
-        }
-      ]
-    },
-    {
-      "runAt": "2026-09-09T00:17:58+08:00",
-      "marketDate": "2026-09-08",
-      "trigger": "schedule",
-      "schedule": "5 12 * * 1-5",
-      "result": {
-        "institutionalUpdated": false,
-        "indexUpdated": false,
-        "futuresUpdated": false,
-        "creditUpdated": false
-      },
-      "calls": [
-        {
-          "source": "TWSE credit trading watchdog",
-          "requestedDate": "2026/09/08",
-          "calledAt": "2026-09-09T00:17:58+08:00",
           "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20260908&response=json",
           "httpStatus": 200,
           "ok": true,
