@@ -1,6 +1,6 @@
 {
-  "asOf": "2026/09/24 盤後",
-  "generatedAt": "2026-09-28T18:51:42+08:00",
+  "asOf": "2026/09/28 盤後",
+  "generatedAt": "2026-09-28T22:32:55+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -12,7 +12,7 @@
   },
   "summary": {
     "institutionalNet": -582480576,
-    "futuresNetOpenInterest": -5687,
+    "futuresNetOpenInterest": 0,
     "marginBalance": 6151.03,
     "marginChange": 87.36,
     "shortChange": -10767
@@ -359,20 +359,17 @@
     {
       "participant": "外資",
       "long": null,
-      "short": null,
-      "net": -77031
+      "short": null
     },
     {
       "participant": "投信",
       "long": null,
-      "short": null,
-      "net": 72864
+      "short": null
     },
     {
       "participant": "自營商",
       "long": null,
-      "short": null,
-      "net": -1520
+      "short": null
     }
   ],
   "credit": [
@@ -554,39 +551,39 @@
     }
   ],
   "updateStatus": {
-    "stage": "waiting",
-    "label": "等待官方資料"
+    "stage": "partial",
+    "label": "期貨已更新，法人待公布"
   },
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/09/24",
       "updatedAt": "2026-09-24T22:14:05+08:00",
-      "lastCheckedAt": "2026-09-28T18:51:42+08:00",
+      "lastCheckedAt": "2026-09-28T22:32:55+08:00",
       "status": "stale"
     },
     "institutional": {
       "dataDate": "2026/09/24",
       "updatedAt": "2026-09-24T22:14:05+08:00",
-      "lastCheckedAt": "2026-09-28T18:51:42+08:00",
+      "lastCheckedAt": "2026-09-28T22:32:55+08:00",
       "status": "stale"
     },
     "futures": {
-      "dataDate": "2026/09/24",
-      "updatedAt": "2026-09-24T22:14:05+08:00",
-      "lastCheckedAt": "2026-09-28T18:51:42+08:00",
-      "status": "stale"
+      "dataDate": "2026/09/28",
+      "updatedAt": "2026-09-28T22:32:55+08:00",
+      "lastCheckedAt": "2026-09-28T22:32:55+08:00",
+      "status": "current"
     },
     "credit": {
       "dataDate": "2026/09/24",
       "updatedAt": "2026-09-24T22:14:05+08:00",
-      "lastCheckedAt": "2026-09-28T18:51:42+08:00",
+      "lastCheckedAt": "2026-09-28T22:32:55+08:00",
       "status": "stale"
     }
   },
   "sourceIssues": [
+    "期交所台股期貨未平倉讀取失敗：HTTP 403",
     "加權指數 2026/09/28 資料尚未發布，指數資料維持前次版本。",
     "三大法人 2026/09/28 資料尚未完整發布，法人資料維持前次版本。",
-    "外資未平倉 2026/09/28 資料尚未發布，期貨資料維持前次版本。",
     "融資融券 2026/09/28 資料尚未發布，信用交易維持前次版本。"
   ]
 }
