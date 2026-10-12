@@ -1,6 +1,6 @@
 {
   "asOf": "2026/10/12 盤後",
-  "generatedAt": "2026-10-12T19:20:19+08:00",
+  "generatedAt": "2026-10-12T19:55:27+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -11,7 +11,7 @@
     "direction": "down"
   },
   "summary": {
-    "institutionalNet": -350873507,
+    "institutionalNet": -350595524,
     "futuresNetOpenInterest": -5811,
     "marginBalance": 6464.06,
     "marginChange": 64.05,
@@ -21,16 +21,16 @@
     {
       "market": "大盤",
       "foreign": 217578161,
-      "investmentTrust": 48896155,
-      "dealer": -611532182,
-      "total": -345057866
+      "investmentTrust": 49138938,
+      "dealer": -611530982,
+      "total": -344813883
     },
     {
       "market": "櫃買",
       "foreign": -10563618,
-      "investmentTrust": 1518441,
+      "investmentTrust": 1552441,
       "dealer": 3229536,
-      "total": -5815641
+      "total": -5781641
     }
   ],
   "institutionalHistory": [
@@ -40,11 +40,11 @@
       "foreignDealer": 0,
       "foreignTotal": -521.98,
       "twseForeignTotal": -521.98,
-      "investmentTrust": 71.24,
+      "investmentTrust": 71.41,
       "dealerProprietary": -7.99,
       "dealerHedge": -134.95,
       "dealerTotal": -142.94,
-      "total": -593.69,
+      "total": -593.51,
       "futuresForeignNet": -82806,
       "futuresInvestmentTrustNet": 76848,
       "futuresDealerNet": 147,
@@ -560,30 +560,31 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/10/12",
-      "updatedAt": "2026-10-12T19:20:19+08:00",
-      "lastCheckedAt": "2026-10-12T19:20:19+08:00",
+      "updatedAt": "2026-10-12T19:55:27+08:00",
+      "lastCheckedAt": "2026-10-12T19:55:27+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/10/12",
-      "updatedAt": "2026-10-12T19:20:19+08:00",
-      "lastCheckedAt": "2026-10-12T19:20:19+08:00",
+      "updatedAt": "2026-10-12T19:55:27+08:00",
+      "lastCheckedAt": "2026-10-12T19:55:27+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/10/12",
-      "updatedAt": "2026-10-12T19:20:19+08:00",
-      "lastCheckedAt": "2026-10-12T19:20:19+08:00",
+      "updatedAt": "2026-10-12T19:55:27+08:00",
+      "lastCheckedAt": "2026-10-12T19:55:27+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/10/08",
       "updatedAt": "2026-10-08T22:04:22+08:00",
-      "lastCheckedAt": "2026-10-12T19:20:19+08:00",
+      "lastCheckedAt": "2026-10-12T19:55:27+08:00",
       "status": "stale"
     }
   },
   "sourceIssues": [
+    "TPEx closing prices讀取失敗：terminated",
     "融資融券 2026/10/12 資料尚未發布，信用交易維持前次版本。"
   ]
 }
