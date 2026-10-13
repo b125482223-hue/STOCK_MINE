@@ -1,6 +1,6 @@
 {
   "asOf": "2026/10/13 盤後",
-  "generatedAt": "2026-10-13T19:08:16+08:00",
+  "generatedAt": "2026-10-13T19:44:23+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -11,7 +11,7 @@
     "direction": "down"
   },
   "summary": {
-    "institutionalNet": -2803110393,
+    "institutionalNet": -2803251043,
     "futuresNetOpenInterest": -7910,
     "marginBalance": 6533.3,
     "marginChange": 69.24,
@@ -28,9 +28,9 @@
     {
       "market": "櫃買",
       "foreign": 35476789,
-      "investmentTrust": 8927107,
+      "investmentTrust": 8786457,
       "dealer": 23741183,
-      "total": 68145079
+      "total": 68004429
     }
   ],
   "institutionalHistory": [
@@ -560,26 +560,26 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/10/13",
-      "updatedAt": "2026-10-13T19:08:16+08:00",
-      "lastCheckedAt": "2026-10-13T19:08:16+08:00",
+      "updatedAt": "2026-10-13T19:44:23+08:00",
+      "lastCheckedAt": "2026-10-13T19:44:23+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/10/13",
-      "updatedAt": "2026-10-13T19:08:16+08:00",
-      "lastCheckedAt": "2026-10-13T19:08:16+08:00",
+      "updatedAt": "2026-10-13T19:44:23+08:00",
+      "lastCheckedAt": "2026-10-13T19:44:23+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/10/13",
-      "updatedAt": "2026-10-13T19:08:16+08:00",
-      "lastCheckedAt": "2026-10-13T19:08:16+08:00",
+      "updatedAt": "2026-10-13T19:44:23+08:00",
+      "lastCheckedAt": "2026-10-13T19:44:23+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/10/12",
       "updatedAt": "2026-10-13T05:04:26+08:00",
-      "lastCheckedAt": "2026-10-13T19:08:16+08:00",
+      "lastCheckedAt": "2026-10-13T19:44:23+08:00",
       "status": "stale"
     }
   },
