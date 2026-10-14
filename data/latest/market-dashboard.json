@@ -1,6 +1,6 @@
 {
   "asOf": "2026/10/14 盤後",
-  "generatedAt": "2026-10-14T17:29:13+08:00",
+  "generatedAt": "2026-10-14T20:27:08+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -11,8 +11,8 @@
     "direction": "up"
   },
   "summary": {
-    "institutionalNet": 244802300,
-    "futuresNetOpenInterest": 0,
+    "institutionalNet": 244862143,
+    "futuresNetOpenInterest": -6083,
     "marginBalance": 6449.79,
     "marginChange": -83.51,
     "shortChange": 7332
@@ -21,16 +21,16 @@
     {
       "market": "大盤",
       "foreign": 699333258,
-      "investmentTrust": 42452593,
-      "dealer": -517830834,
-      "total": 223955017
+      "investmentTrust": 43281663,
+      "dealer": -517829634,
+      "total": 224785287
     },
     {
       "market": "櫃買",
       "foreign": -25063963,
-      "investmentTrust": 12401661,
+      "investmentTrust": 11631234,
       "dealer": 33509585,
-      "total": 20847283
+      "total": 20076856
     }
   ],
   "institutionalHistory": [
@@ -40,15 +40,15 @@
       "foreignDealer": 0,
       "foreignTotal": -200.37,
       "twseForeignTotal": -200.37,
-      "investmentTrust": 161.11,
+      "investmentTrust": 160.27,
       "dealerProprietary": -25.1,
       "dealerHedge": -89.61,
-      "dealerTotal": -114.71,
-      "total": -153.97,
-      "futuresForeignNet": null,
-      "futuresInvestmentTrustNet": null,
-      "futuresDealerNet": null,
-      "futuresTotalNet": null
+      "dealerTotal": -114.7,
+      "total": -154.81,
+      "futuresForeignNet": -86814,
+      "futuresInvestmentTrustNet": 78417,
+      "futuresDealerNet": 2314,
+      "futuresTotalNet": -6083
     },
     {
       "date": "2026/10/13",
@@ -359,17 +359,20 @@
     {
       "participant": "外資",
       "long": null,
-      "short": null
+      "short": null,
+      "net": -86814
     },
     {
       "participant": "投信",
       "long": null,
-      "short": null
+      "short": null,
+      "net": 78417
     },
     {
       "participant": "自營商",
       "long": null,
-      "short": null
+      "short": null,
+      "net": 2314
     }
   ],
   "credit": [
@@ -557,31 +560,30 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/10/14",
-      "updatedAt": "2026-10-14T17:29:13+08:00",
-      "lastCheckedAt": "2026-10-14T17:29:13+08:00",
+      "updatedAt": "2026-10-14T20:27:08+08:00",
+      "lastCheckedAt": "2026-10-14T20:27:08+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/10/14",
-      "updatedAt": "2026-10-14T17:29:13+08:00",
-      "lastCheckedAt": "2026-10-14T17:29:13+08:00",
+      "updatedAt": "2026-10-14T20:27:08+08:00",
+      "lastCheckedAt": "2026-10-14T20:27:08+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/10/14",
-      "updatedAt": "2026-10-14T17:29:13+08:00",
-      "lastCheckedAt": "2026-10-14T17:29:13+08:00",
+      "updatedAt": "2026-10-14T20:27:08+08:00",
+      "lastCheckedAt": "2026-10-14T20:27:08+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/10/13",
       "updatedAt": "2026-10-13T22:36:29+08:00",
-      "lastCheckedAt": "2026-10-14T17:29:13+08:00",
+      "lastCheckedAt": "2026-10-14T20:27:08+08:00",
       "status": "stale"
     }
   },
   "sourceIssues": [
-    "期交所台股期貨未平倉讀取失敗：HTTP 520",
     "融資融券 2026/10/14 資料尚未發布，信用交易維持前次版本。"
   ]
 }
