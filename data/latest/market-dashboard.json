@@ -1,6 +1,6 @@
 {
   "asOf": "2026/10/14 盤後",
-  "generatedAt": "2026-10-14T17:01:48+08:00",
+  "generatedAt": "2026-10-14T17:29:13+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -557,32 +557,31 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/10/14",
-      "updatedAt": "2026-10-14T17:01:48+08:00",
-      "lastCheckedAt": "2026-10-14T17:01:48+08:00",
+      "updatedAt": "2026-10-14T17:29:13+08:00",
+      "lastCheckedAt": "2026-10-14T17:29:13+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/10/14",
-      "updatedAt": "2026-10-14T17:01:48+08:00",
-      "lastCheckedAt": "2026-10-14T17:01:48+08:00",
+      "updatedAt": "2026-10-14T17:29:13+08:00",
+      "lastCheckedAt": "2026-10-14T17:29:13+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/10/14",
-      "updatedAt": "2026-10-14T17:01:48+08:00",
-      "lastCheckedAt": "2026-10-14T17:01:48+08:00",
+      "updatedAt": "2026-10-14T17:29:13+08:00",
+      "lastCheckedAt": "2026-10-14T17:29:13+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/10/13",
       "updatedAt": "2026-10-13T22:36:29+08:00",
-      "lastCheckedAt": "2026-10-14T17:01:48+08:00",
+      "lastCheckedAt": "2026-10-14T17:29:13+08:00",
       "status": "stale"
     }
   },
   "sourceIssues": [
     "期交所台股期貨未平倉讀取失敗：HTTP 520",
-    "TPEx closing prices讀取失敗：terminated",
     "融資融券 2026/10/14 資料尚未發布，信用交易維持前次版本。"
   ]
 }
