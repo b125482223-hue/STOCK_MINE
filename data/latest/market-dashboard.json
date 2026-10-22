@@ -1,6 +1,6 @@
 {
   "asOf": "2026/10/22 盤後",
-  "generatedAt": "2026-10-22T17:22:53+08:00",
+  "generatedAt": "2026-10-22T20:30:23+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -11,7 +11,7 @@
     "direction": "down"
   },
   "summary": {
-    "institutionalNet": -1786626862,
+    "institutionalNet": -1778786299,
     "futuresNetOpenInterest": -436,
     "marginBalance": 6443.74,
     "marginChange": 62.73,
@@ -20,31 +20,31 @@
   "institutional": [
     {
       "market": "大盤",
-      "foreign": -290530655,
-      "investmentTrust": -15233723,
-      "dealer": -1553939258,
-      "total": -1859703636
+      "foreign": -284113812,
+      "investmentTrust": -14647281,
+      "dealer": -1553936358,
+      "total": -1852697451
     },
     {
       "market": "櫃買",
       "foreign": 10309941,
-      "investmentTrust": -4336500,
+      "investmentTrust": -3502122,
       "dealer": 67103333,
-      "total": 73076774
+      "total": 73911152
     }
   ],
   "institutionalHistory": [
     {
       "date": "2026/10/22",
-      "foreignNonDealer": -816.57,
+      "foreignNonDealer": -815.82,
       "foreignDealer": 0,
-      "foreignTotal": -816.57,
-      "twseForeignTotal": -816.57,
-      "investmentTrust": 88.75,
+      "foreignTotal": -815.82,
+      "twseForeignTotal": -815.82,
+      "investmentTrust": 94.92,
       "dealerProprietary": -37.16,
-      "dealerHedge": -236.62,
-      "dealerTotal": -273.78,
-      "total": -1001.6,
+      "dealerHedge": -236.61,
+      "dealerTotal": -273.77,
+      "total": -994.67,
       "futuresForeignNet": -87297,
       "futuresInvestmentTrustNet": 83601,
       "futuresDealerNet": 3260,
@@ -560,26 +560,26 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/10/22",
-      "updatedAt": "2026-10-22T17:22:53+08:00",
-      "lastCheckedAt": "2026-10-22T17:22:53+08:00",
+      "updatedAt": "2026-10-22T20:30:23+08:00",
+      "lastCheckedAt": "2026-10-22T20:30:23+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/10/22",
-      "updatedAt": "2026-10-22T17:22:53+08:00",
-      "lastCheckedAt": "2026-10-22T17:22:53+08:00",
+      "updatedAt": "2026-10-22T20:30:23+08:00",
+      "lastCheckedAt": "2026-10-22T20:30:23+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/10/22",
-      "updatedAt": "2026-10-22T17:22:53+08:00",
-      "lastCheckedAt": "2026-10-22T17:22:53+08:00",
+      "updatedAt": "2026-10-22T20:30:23+08:00",
+      "lastCheckedAt": "2026-10-22T20:30:23+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/10/21",
       "updatedAt": "2026-10-22T00:52:19+08:00",
-      "lastCheckedAt": "2026-10-22T17:22:53+08:00",
+      "lastCheckedAt": "2026-10-22T20:30:23+08:00",
       "status": "stale"
     }
   },
