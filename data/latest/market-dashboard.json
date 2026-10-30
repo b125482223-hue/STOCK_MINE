@@ -1,18 +1,18 @@
 {
-  "asOf": "2026/10/29 盤後",
-  "generatedAt": "2026-10-29T21:45:25+08:00",
+  "asOf": "2026/10/30 盤後",
+  "generatedAt": "2026-10-30T18:28:17+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
-    "date": "2026/10/29",
-    "close": 46368.33,
-    "change": -667.25,
-    "changePercent": -1.42,
+    "date": "2026/10/30",
+    "close": 45211.83,
+    "change": -1156.5,
+    "changePercent": -2.49,
     "direction": "down"
   },
   "summary": {
-    "institutionalNet": -1586754247,
-    "futuresNetOpenInterest": -793,
+    "institutionalNet": -3027625244,
+    "futuresNetOpenInterest": -1294,
     "marginBalance": 6339.11,
     "marginChange": 16.11,
     "shortChange": -6513
@@ -20,20 +20,36 @@
   "institutional": [
     {
       "market": "大盤",
-      "foreign": -492757701,
-      "investmentTrust": -32675186,
-      "dealer": -1130775908,
-      "total": -1656208795
+      "foreign": -655515631,
+      "investmentTrust": 45370762,
+      "dealer": -2555782830,
+      "total": -3165927699
     },
     {
       "market": "櫃買",
-      "foreign": -17837777,
-      "investmentTrust": 2628898,
-      "dealer": 84663427,
-      "total": 69454548
+      "foreign": 42585834,
+      "investmentTrust": 7202187,
+      "dealer": 88514434,
+      "total": 138302455
     }
   ],
   "institutionalHistory": [
+    {
+      "date": "2026/10/30",
+      "foreignNonDealer": -1124.67,
+      "foreignDealer": 0,
+      "foreignTotal": -1124.67,
+      "twseForeignTotal": -1124.67,
+      "investmentTrust": 239.93,
+      "dealerProprietary": -38.4,
+      "dealerHedge": -475.3,
+      "dealerTotal": -513.7,
+      "total": -1398.44,
+      "futuresForeignNet": -92241,
+      "futuresInvestmentTrustNet": 89211,
+      "futuresDealerNet": 1736,
+      "futuresTotalNet": -1294
+    },
     {
       "date": "2026/10/29",
       "foreignNonDealer": -688.15,
@@ -337,22 +353,6 @@
       "futuresInvestmentTrustNet": 73839,
       "futuresDealerNet": -1070,
       "futuresTotalNet": -5382
-    },
-    {
-      "date": "2026/09/29",
-      "foreignNonDealer": -625.83,
-      "foreignDealer": 0,
-      "foreignTotal": -625.83,
-      "twseForeignTotal": -625.83,
-      "investmentTrust": 5.79,
-      "dealerProprietary": -8.09,
-      "dealerHedge": -155.94,
-      "dealerTotal": -164.03,
-      "total": -784.06,
-      "futuresForeignNet": -79029,
-      "futuresInvestmentTrustNet": 72812,
-      "futuresDealerNet": -488,
-      "futuresTotalNet": -6705
     }
   ],
   "futuresOpenInterest": [
@@ -360,19 +360,19 @@
       "participant": "外資",
       "long": null,
       "short": null,
-      "net": -89522
+      "net": -92241
     },
     {
       "participant": "投信",
       "long": null,
       "short": null,
-      "net": 87218
+      "net": 89211
     },
     {
       "participant": "自營商",
       "long": null,
       "short": null,
-      "net": 1511
+      "net": 1736
     }
   ],
   "credit": [
@@ -554,34 +554,36 @@
     }
   ],
   "updateStatus": {
-    "stage": "complete",
-    "label": "當日資料已補齊"
+    "stage": "partial",
+    "label": "法人與期貨已更新，信用待晚間"
   },
   "sectionUpdates": {
     "index": {
-      "dataDate": "2026/10/29",
-      "updatedAt": "2026-10-29T21:45:25+08:00",
-      "lastCheckedAt": "2026-10-29T21:45:25+08:00",
+      "dataDate": "2026/10/30",
+      "updatedAt": "2026-10-30T18:28:17+08:00",
+      "lastCheckedAt": "2026-10-30T18:28:17+08:00",
       "status": "current"
     },
     "institutional": {
-      "dataDate": "2026/10/29",
-      "updatedAt": "2026-10-29T21:45:25+08:00",
-      "lastCheckedAt": "2026-10-29T21:45:25+08:00",
+      "dataDate": "2026/10/30",
+      "updatedAt": "2026-10-30T18:28:17+08:00",
+      "lastCheckedAt": "2026-10-30T18:28:17+08:00",
       "status": "current"
     },
     "futures": {
-      "dataDate": "2026/10/29",
-      "updatedAt": "2026-10-29T21:45:25+08:00",
-      "lastCheckedAt": "2026-10-29T21:45:25+08:00",
+      "dataDate": "2026/10/30",
+      "updatedAt": "2026-10-30T18:28:17+08:00",
+      "lastCheckedAt": "2026-10-30T18:28:17+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/10/29",
       "updatedAt": "2026-10-29T21:45:25+08:00",
-      "lastCheckedAt": "2026-10-30T03:25:41+08:00",
-      "status": "current"
+      "lastCheckedAt": "2026-10-30T18:28:17+08:00",
+      "status": "stale"
     }
   },
-  "sourceIssues": []
+  "sourceIssues": [
+    "融資融券 2026/10/30 資料尚未發布，信用交易維持前次版本。"
+  ]
 }
