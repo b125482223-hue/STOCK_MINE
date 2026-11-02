@@ -1,6 +1,6 @@
 {
   "asOf": "2026/11/02 盤後",
-  "generatedAt": "2026-11-03T00:35:43+08:00",
+  "generatedAt": "2026-11-03T05:31:47+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -13,9 +13,9 @@
   "summary": {
     "institutionalNet": -1165352056,
     "futuresNetOpenInterest": 1067,
-    "marginBalance": 6234.68,
-    "marginChange": -104.43,
-    "shortChange": 7084
+    "marginBalance": 6226.99,
+    "marginChange": -7.69,
+    "shortChange": -1903
   },
   "institutional": [
     {
@@ -378,20 +378,28 @@
   "credit": [
     {
       "market": "大盤",
-      "marginBalance": 9555729,
-      "marginChange": -33027,
-      "shortBalance": 197359,
-      "shortChange": 8357
+      "marginBalance": 9571091,
+      "marginChange": 15365,
+      "shortBalance": 194930,
+      "shortChange": -2429
     },
     {
       "market": "櫃買",
-      "marginBalance": 2307268,
-      "marginChange": -27855,
-      "shortBalance": 36178,
-      "shortChange": -1273
+      "marginBalance": 2308916,
+      "marginChange": 1650,
+      "shortBalance": 36704,
+      "shortChange": 526
     }
   ],
   "creditHistory": [
+    {
+      "date": "11/02",
+      "marginBalance": 6226.99,
+      "marginChange": -7.69,
+      "marginMaintenanceRatio": null,
+      "shortBalance": 194930,
+      "shortChange": -2429
+    },
     {
       "date": "10/30",
       "marginBalance": 6234.68,
@@ -543,50 +551,37 @@
       "marginMaintenanceRatio": null,
       "shortBalance": 233322,
       "shortChange": -1972
-    },
-    {
-      "date": "09/30",
-      "marginBalance": 6222.52,
-      "marginChange": 35.99,
-      "marginMaintenanceRatio": null,
-      "shortBalance": 235296,
-      "shortChange": 17297
     }
   ],
   "updateStatus": {
-    "stage": "waiting",
-    "label": "等待官方資料"
+    "stage": "complete",
+    "label": "當日資料已補齊"
   },
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/11/02",
-      "updatedAt": "2026-11-02T20:19:41+08:00",
-      "lastCheckedAt": "2026-11-03T00:35:43+08:00",
-      "status": "stale"
+      "updatedAt": "2026-11-03T05:31:47+08:00",
+      "lastCheckedAt": "2026-11-03T05:31:47+08:00",
+      "status": "current"
     },
     "institutional": {
       "dataDate": "2026/11/02",
-      "updatedAt": "2026-11-02T20:19:41+08:00",
-      "lastCheckedAt": "2026-11-03T00:35:43+08:00",
-      "status": "stale"
+      "updatedAt": "2026-11-03T05:31:47+08:00",
+      "lastCheckedAt": "2026-11-03T05:31:47+08:00",
+      "status": "current"
     },
     "futures": {
       "dataDate": "2026/11/02",
-      "updatedAt": "2026-11-02T20:19:41+08:00",
-      "lastCheckedAt": "2026-11-03T00:35:43+08:00",
-      "status": "stale"
+      "updatedAt": "2026-11-03T05:31:47+08:00",
+      "lastCheckedAt": "2026-11-03T05:31:47+08:00",
+      "status": "current"
     },
     "credit": {
-      "dataDate": "2026/10/30",
-      "updatedAt": "2026-10-30T21:38:11+08:00",
-      "lastCheckedAt": "2026-11-03T00:35:43+08:00",
-      "status": "stale"
+      "dataDate": "2026/11/02",
+      "updatedAt": "2026-11-03T05:31:47+08:00",
+      "lastCheckedAt": "2026-11-03T05:31:47+08:00",
+      "status": "current"
     }
   },
-  "sourceIssues": [
-    "加權指數 2026/11/03 資料尚未發布，指數資料維持前次版本。",
-    "三大法人 2026/11/03 資料尚未完整發布，法人資料維持前次版本。",
-    "外資未平倉 2026/11/03 資料尚未發布，期貨資料維持前次版本。",
-    "融資融券 2026/11/03 資料尚未發布，信用交易維持前次版本。"
-  ]
+  "sourceIssues": []
 }
