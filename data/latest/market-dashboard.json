@@ -579,8 +579,8 @@
     "credit": {
       "dataDate": "2026/11/02",
       "updatedAt": "2026-11-03T05:31:47+08:00",
-      "lastCheckedAt": "2026-11-03T05:31:47+08:00",
-      "status": "current"
+      "lastCheckedAt": "2026-11-03T06:26:38+08:00",
+      "status": "stale"
     }
   },
   "sourceIssues": []
