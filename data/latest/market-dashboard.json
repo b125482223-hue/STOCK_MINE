@@ -1,6 +1,6 @@
 {
   "asOf": "2026/11/05 盤後",
-  "generatedAt": "2026-11-05T20:16:50+08:00",
+  "generatedAt": "2026-11-05T22:58:21+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -13,9 +13,9 @@
   "summary": {
     "institutionalNet": -2482335415,
     "futuresNetOpenInterest": -3038,
-    "marginBalance": 5969.46,
-    "marginChange": -28.29,
-    "shortChange": -15111
+    "marginBalance": 5764.09,
+    "marginChange": -205.37,
+    "shortChange": 31898
   },
   "institutional": [
     {
@@ -378,20 +378,28 @@
   "credit": [
     {
       "market": "大盤",
-      "marginBalance": 9514915,
-      "marginChange": 32079,
-      "shortBalance": 246812,
-      "shortChange": -11149
+      "marginBalance": 9440455,
+      "marginChange": -74458,
+      "shortBalance": 277051,
+      "shortChange": 30239
     },
     {
       "market": "櫃買",
-      "marginBalance": 2250593,
-      "marginChange": -18713,
-      "shortBalance": 34409,
-      "shortChange": -3962
+      "marginBalance": 2220606,
+      "marginChange": -29980,
+      "shortBalance": 36068,
+      "shortChange": 1659
     }
   ],
   "creditHistory": [
+    {
+      "date": "11/05",
+      "marginBalance": 5764.09,
+      "marginChange": -205.37,
+      "marginMaintenanceRatio": null,
+      "shortBalance": 277051,
+      "shortChange": 30239
+    },
     {
       "date": "11/04",
       "marginBalance": 5969.46,
@@ -543,47 +551,39 @@
       "marginMaintenanceRatio": null,
       "shortBalance": 214529,
       "shortChange": -3929
-    },
-    {
-      "date": "10/05",
-      "marginBalance": 6333.52,
-      "marginChange": -17.53,
-      "marginMaintenanceRatio": null,
-      "shortBalance": 218458,
-      "shortChange": -13528
     }
   ],
   "updateStatus": {
-    "stage": "partial",
-    "label": "法人與期貨已更新，信用待晚間"
+    "stage": "complete",
+    "label": "當日資料已補齊"
   },
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/11/05",
-      "updatedAt": "2026-11-05T20:16:50+08:00",
-      "lastCheckedAt": "2026-11-05T20:16:50+08:00",
+      "updatedAt": "2026-11-05T22:58:21+08:00",
+      "lastCheckedAt": "2026-11-05T22:58:21+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/11/05",
-      "updatedAt": "2026-11-05T20:16:50+08:00",
-      "lastCheckedAt": "2026-11-05T20:16:50+08:00",
+      "updatedAt": "2026-11-05T22:58:21+08:00",
+      "lastCheckedAt": "2026-11-05T22:58:21+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/11/05",
-      "updatedAt": "2026-11-05T20:16:50+08:00",
-      "lastCheckedAt": "2026-11-05T20:16:50+08:00",
+      "updatedAt": "2026-11-05T22:58:21+08:00",
+      "lastCheckedAt": "2026-11-05T22:58:21+08:00",
       "status": "current"
     },
     "credit": {
-      "dataDate": "2026/11/04",
-      "updatedAt": "2026-11-04T22:53:41+08:00",
-      "lastCheckedAt": "2026-11-05T20:16:50+08:00",
-      "status": "stale"
+      "dataDate": "2026/11/05",
+      "updatedAt": "2026-11-05T22:58:21+08:00",
+      "lastCheckedAt": "2026-11-05T22:58:21+08:00",
+      "status": "current"
     }
   },
   "sourceIssues": [
-    "融資融券 2026/11/05 資料尚未發布，信用交易維持前次版本。"
+    "TPEx closing prices讀取失敗：terminated"
   ]
 }
