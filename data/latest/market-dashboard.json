@@ -1,6 +1,6 @@
 {
   "asOf": "2026/11/11 盤後",
-  "generatedAt": "2026-11-11T19:27:36+08:00",
+  "generatedAt": "2026-11-11T19:51:05+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -11,7 +11,7 @@
     "direction": "up"
   },
   "summary": {
-    "institutionalNet": 639768789,
+    "institutionalNet": 645125253,
     "futuresNetOpenInterest": -2368,
     "marginBalance": 5366.79,
     "marginChange": -32.37,
@@ -21,16 +21,16 @@
     {
       "market": "大盤",
       "foreign": 479144722,
-      "investmentTrust": 27311137,
+      "investmentTrust": 32522563,
       "dealer": 113089359,
-      "total": 619545218
+      "total": 624756644
     },
     {
       "market": "櫃買",
       "foreign": 9518498,
-      "investmentTrust": -683016,
+      "investmentTrust": -537978,
       "dealer": 11388089,
-      "total": 20223571
+      "total": 20368609
     }
   ],
   "institutionalHistory": [
@@ -40,11 +40,11 @@
       "foreignDealer": 0,
       "foreignTotal": -7.66,
       "twseForeignTotal": -7.66,
-      "investmentTrust": 147.66,
+      "investmentTrust": 185.85,
       "dealerProprietary": 28.01,
       "dealerHedge": 34.56,
       "dealerTotal": 62.57,
-      "total": 202.56,
+      "total": 240.76,
       "futuresForeignNet": -104271,
       "futuresInvestmentTrustNet": 101870,
       "futuresDealerNet": 33,
@@ -560,26 +560,26 @@
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/11/11",
-      "updatedAt": "2026-11-11T19:27:36+08:00",
-      "lastCheckedAt": "2026-11-11T19:27:36+08:00",
+      "updatedAt": "2026-11-11T19:51:05+08:00",
+      "lastCheckedAt": "2026-11-11T19:51:05+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/11/11",
-      "updatedAt": "2026-11-11T19:27:36+08:00",
-      "lastCheckedAt": "2026-11-11T19:27:36+08:00",
+      "updatedAt": "2026-11-11T19:51:05+08:00",
+      "lastCheckedAt": "2026-11-11T19:51:05+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/11/11",
-      "updatedAt": "2026-11-11T19:27:36+08:00",
-      "lastCheckedAt": "2026-11-11T19:27:36+08:00",
+      "updatedAt": "2026-11-11T19:51:05+08:00",
+      "lastCheckedAt": "2026-11-11T19:51:05+08:00",
       "status": "current"
     },
     "credit": {
       "dataDate": "2026/11/10",
       "updatedAt": "2026-11-10T23:15:04+08:00",
-      "lastCheckedAt": "2026-11-11T19:27:36+08:00",
+      "lastCheckedAt": "2026-11-11T19:51:05+08:00",
       "status": "stale"
     }
   },
