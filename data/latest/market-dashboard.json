@@ -1,6 +1,6 @@
 {
   "asOf": "2026/11/17 盤後",
-  "generatedAt": "2026-11-17T20:29:01+08:00",
+  "generatedAt": "2026-11-17T21:19:17+08:00",
   "source": "generated",
   "marketIndex": {
     "name": "發行量加權股價指數",
@@ -12,10 +12,10 @@
   },
   "summary": {
     "institutionalNet": -2274093922,
-    "futuresNetOpenInterest": -7106,
-    "marginBalance": 5244.98,
-    "marginChange": -121.01,
-    "shortChange": 9771
+    "futuresNetOpenInterest": 0,
+    "marginBalance": 5087.21,
+    "marginChange": -157.77,
+    "shortChange": -14557
   },
   "institutional": [
     {
@@ -45,10 +45,10 @@
       "dealerHedge": -220.84,
       "dealerTotal": -156.96,
       "total": -576.11,
-      "futuresForeignNet": -97896,
-      "futuresInvestmentTrustNet": 91226,
-      "futuresDealerNet": -436,
-      "futuresTotalNet": -7106
+      "futuresForeignNet": null,
+      "futuresInvestmentTrustNet": null,
+      "futuresDealerNet": null,
+      "futuresTotalNet": null
     },
     {
       "date": "2026/11/16",
@@ -359,39 +359,44 @@
     {
       "participant": "外資",
       "long": null,
-      "short": null,
-      "net": -97896
+      "short": null
     },
     {
       "participant": "投信",
       "long": null,
-      "short": null,
-      "net": 91226
+      "short": null
     },
     {
       "participant": "自營商",
       "long": null,
-      "short": null,
-      "net": -436
+      "short": null
     }
   ],
   "credit": [
     {
       "market": "大盤",
-      "marginBalance": 8993806,
-      "marginChange": -17628,
-      "shortBalance": 217384,
-      "shortChange": 8611
+      "marginBalance": 8986689,
+      "marginChange": -15035,
+      "shortBalance": 207959,
+      "shortChange": -9425
     },
     {
       "market": "櫃買",
-      "marginBalance": 2152744,
-      "marginChange": 20074,
-      "shortBalance": 37108,
-      "shortChange": 1160
+      "marginBalance": 2086351,
+      "marginChange": -32658,
+      "shortBalance": 34077,
+      "shortChange": -5132
     }
   ],
   "creditHistory": [
+    {
+      "date": "11/17",
+      "marginBalance": 5087.21,
+      "marginChange": -157.77,
+      "marginMaintenanceRatio": null,
+      "shortBalance": 207959,
+      "shortChange": -9425
+    },
     {
       "date": "11/16",
       "marginBalance": 5244.98,
@@ -543,47 +548,39 @@
       "marginMaintenanceRatio": null,
       "shortBalance": 201916,
       "shortChange": -31686
-    },
-    {
-      "date": "10/16",
-      "marginBalance": 6455.94,
-      "marginChange": -8.22,
-      "marginMaintenanceRatio": null,
-      "shortBalance": 233602,
-      "shortChange": 4452
     }
   ],
   "updateStatus": {
-    "stage": "partial",
-    "label": "法人與期貨已更新，信用待晚間"
+    "stage": "complete",
+    "label": "當日資料已補齊"
   },
   "sectionUpdates": {
     "index": {
       "dataDate": "2026/11/17",
-      "updatedAt": "2026-11-17T20:29:01+08:00",
-      "lastCheckedAt": "2026-11-17T20:29:01+08:00",
+      "updatedAt": "2026-11-17T21:19:17+08:00",
+      "lastCheckedAt": "2026-11-17T21:19:17+08:00",
       "status": "current"
     },
     "institutional": {
       "dataDate": "2026/11/17",
-      "updatedAt": "2026-11-17T20:29:01+08:00",
-      "lastCheckedAt": "2026-11-17T20:29:01+08:00",
+      "updatedAt": "2026-11-17T21:19:17+08:00",
+      "lastCheckedAt": "2026-11-17T21:19:17+08:00",
       "status": "current"
     },
     "futures": {
       "dataDate": "2026/11/17",
-      "updatedAt": "2026-11-17T20:29:01+08:00",
-      "lastCheckedAt": "2026-11-17T20:29:01+08:00",
+      "updatedAt": "2026-11-17T21:19:17+08:00",
+      "lastCheckedAt": "2026-11-17T21:19:17+08:00",
       "status": "current"
     },
     "credit": {
-      "dataDate": "2026/11/16",
-      "updatedAt": "2026-11-16T20:41:45+08:00",
-      "lastCheckedAt": "2026-11-17T20:29:01+08:00",
-      "status": "stale"
+      "dataDate": "2026/11/17",
+      "updatedAt": "2026-11-17T21:19:17+08:00",
+      "lastCheckedAt": "2026-11-17T21:19:17+08:00",
+      "status": "current"
     }
   },
   "sourceIssues": [
-    "融資融券 2026/11/17 資料尚未發布，信用交易維持前次版本。"
+    "期交所台股期貨未平倉讀取失敗：HTTP 520"
   ]
 }
