@@ -1,7 +1,32 @@
 {
   "version": "1.0.0",
-  "updatedAt": "2026-11-27T06:32:08+08:00",
+  "updatedAt": "2026-11-27T06:42:11+08:00",
   "entries": [
+    {
+      "runAt": "2026-11-27T06:42:11+08:00",
+      "marketDate": "2026-11-27",
+      "trigger": "schedule",
+      "schedule": "35 13 * * 1-5",
+      "result": {
+        "institutionalUpdated": false,
+        "indexUpdated": false,
+        "futuresUpdated": false,
+        "creditUpdated": false
+      },
+      "calls": [
+        {
+          "source": "TWSE credit trading watchdog",
+          "requestedDate": "2026/11/27",
+          "calledAt": "2026-11-27T06:42:11+08:00",
+          "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20261127&response=json",
+          "httpStatus": 200,
+          "ok": true,
+          "dataAvailable": false,
+          "rowCount": 0,
+          "message": null
+        }
+      ]
+    },
     {
       "runAt": "2026-11-27T06:32:08+08:00",
       "marketDate": "2026-11-27",
@@ -4057,31 +4082,6 @@
           "ok": true,
           "dataAvailable": true,
           "rowCount": 1311,
-          "message": null
-        }
-      ]
-    },
-    {
-      "runAt": "2026-11-19T05:42:41+08:00",
-      "marketDate": "2026-11-18",
-      "trigger": "schedule",
-      "schedule": "5 14 * * 1-5",
-      "result": {
-        "institutionalUpdated": false,
-        "indexUpdated": false,
-        "futuresUpdated": false,
-        "creditUpdated": false
-      },
-      "calls": [
-        {
-          "source": "TWSE credit trading watchdog",
-          "requestedDate": "2026/11/18",
-          "calledAt": "2026-11-19T05:42:41+08:00",
-          "url": "https://www.twse.com.tw/rwd/zh/marginTrading/MI_MARGN?date=20261118&response=json",
-          "httpStatus": 200,
-          "ok": true,
-          "dataAvailable": true,
-          "rowCount": 3,
           "message": null
         }
       ]
